@@ -1,0 +1,81 @@
+{
+  "name": "Product",
+  "type": "object",
+  "properties": {
+    "shopify_id": {
+      "type": "string",
+      "description": "Shopify product ID"
+    },
+    "shopify_variant_id": {
+      "type": "string",
+      "description": "Shopify variant ID"
+    },
+    "name": {
+      "type": "string",
+      "description": "Product name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Product description"
+    },
+    "price": {
+      "type": "number",
+      "description": "Product price"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "Product image URL"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "breakfast",
+        "lunch",
+        "dinner",
+        "snacks",
+        "drinks",
+        "desserts"
+      ],
+      "description": "Product category"
+    },
+    "dietary_tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "vegan",
+          "vegetarian",
+          "gluten-free",
+          "dairy-free",
+          "keto",
+          "paleo",
+          "high-protein"
+        ]
+      },
+      "description": "Dietary preferences"
+    },
+    "calories": {
+      "type": "number",
+      "description": "Calories per serving"
+    },
+    "protein": {
+      "type": "number",
+      "description": "Protein in grams"
+    },
+    "in_stock": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether product is in stock"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Featured product"
+    }
+  },
+  "required": [
+    "name",
+    "price",
+    "category"
+  ]
+}

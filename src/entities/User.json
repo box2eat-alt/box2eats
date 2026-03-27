@@ -1,0 +1,18 @@
+{
+  "type": "object",
+  "properties": {
+    "phone_number": {
+      "type": "string"
+    },
+    "delivery_address": {
+      "type": "string"
+    },
+    "dietary_preferences": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "name": "User"
+}

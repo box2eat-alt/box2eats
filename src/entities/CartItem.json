@@ -1,0 +1,32 @@
+{
+  "name": "CartItem",
+  "type": "object",
+  "properties": {
+    "product_id": {
+      "type": "string",
+      "description": "Reference to Product"
+    },
+    "product_name": {
+      "type": "string"
+    },
+    "product_price": {
+      "type": "number"
+    },
+    "product_image": {
+      "type": "string"
+    },
+    "quantity": {
+      "type": "number",
+      "default": 1
+    },
+    "user_email": {
+      "type": "string",
+      "description": "User who owns this cart item"
+    }
+  },
+  "required": [
+    "product_id",
+    "quantity",
+    "user_email"
+  ]
+}
