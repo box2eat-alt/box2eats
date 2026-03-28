@@ -38,7 +38,7 @@ export default function Login() {
           ? signup(formData.email, formData.password, formData.full_name)
           : login(formData.email, formData.password),
         new Promise((_, reject) =>
-          setTimeout(() => reject(new Error('Login timed out. Please try again.')), 15000)
+          setTimeout(() => reject(new Error('Login timed out. Please try again.')), 30000)
         ),
       ]);
       if (result) {
