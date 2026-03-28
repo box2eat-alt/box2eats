@@ -30,8 +30,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     let cancelled = false;
-    const SESSION_INIT_MS = 8_000;
-    const FAILSAFE_MS = 5_000;
+    const FAILSAFE_MS = 10_000;
 
     const failSafeId = window.setTimeout(() => {
       setIsLoadingAuth(false);
@@ -39,14 +38,8 @@ export const AuthProvider = ({ children }) => {
 
     (async () => {
       try {
-        const result = await Promise.race([
-          supabase.auth.getSession(),
-          new Promise((_, reject) =>
-            setTimeout(() => reject(new Error('Session check timed out')), SESSION_INIT_MS)
-          ),
-        ]);
+        const { data: { session } } = await supabase.auth.getSession();
         if (cancelled) return;
-        const session = result?.data?.session;
         if (session?.user) {
           setUser(session.user);
           setIsAuthenticated(true);
