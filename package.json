@@ -9,7 +9,9 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "db:link": "supabase link --project-ref opbljeqvphjmnbkgoppt",
-    "db:push": "supabase db push"
+    "db:push": "supabase db push",
+    "functions:deploy": "supabase functions deploy initialize-clover-payment && supabase functions deploy process-clover-iframe-payment",
+    "functions:serve": "supabase functions serve"
   },
   "dependencies": {
     "@hello-pangea/dnd": "^17.0.0",

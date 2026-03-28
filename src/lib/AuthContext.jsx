@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import React, { createContext, useState, useContext, useEffect, useCallback } from 'react';
 import { supabase } from '@/lib/supabase';
 
 const AuthContext = createContext();
@@ -9,15 +9,45 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoadingAuth, setIsLoadingAuth] = useState(true);
 
+  const fetchProfile = useCallback(async (userId) => {
+    const { data } = await supabase
+      .from('profiles')
+      .select('*')
+      .eq('id', userId)
+      .maybeSingle();
+    setProfile(data ?? null);
+    return data;
+  }, []);
+
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session?.user) {
-        setUser(session.user);
-        setIsAuthenticated(true);
-        fetchProfile(session.user.id);
+    let cancelled = false;
+    const SESSION_INIT_MS = 12_000;
+
+    (async () => {
+      try {
+        const result = await Promise.race([
+          supabase.auth.getSession(),
+          new Promise((_, reject) =>
+            setTimeout(() => reject(new Error('Session check timed out')), SESSION_INIT_MS)
+          ),
+        ]);
+        if (cancelled) return;
+        const session = result?.data?.session;
+        if (session?.user) {
+          setUser(session.user);
+          setIsAuthenticated(true);
+          void fetchProfile(session.user.id);
+        }
+      } catch (err) {
+        if (!cancelled) {
+          console.error('Auth init failed:', err);
+        }
+      } finally {
+        if (!cancelled) {
+          setIsLoadingAuth(false);
+        }
       }
-      setIsLoadingAuth(false);
-    });
+    })();
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (_event, session) => {
@@ -33,18 +63,11 @@ export const AuthProvider = ({ children }) => {
       }
     );
 
-    return () => subscription.unsubscribe();
-  }, []);
-
-  const fetchProfile = async (userId) => {
-    const { data } = await supabase
-      .from('profiles')
-      .select('*')
-      .eq('id', userId)
-      .single();
-    if (data) setProfile(data);
-    return data;
-  };
+    return () => {
+      cancelled = true;
+      subscription.unsubscribe();
+    };
+  }, [fetchProfile]);
 
   const login = async (email, password) => {
     const { data, error } = await supabase.auth.signInWithPassword({ email, password });
@@ -82,11 +105,30 @@ export const AuthProvider = ({ children }) => {
     return data;
   };
 
-  const combinedUser = profile ? {
-    ...profile,
-    id: user?.id,
-    email: user?.email || profile.email,
-  } : user ? { id: user.id, email: user.email, role: 'user' } : null;
+  const displayFullName = (p, authUser) => {
+    const fromProfile = p?.full_name?.trim();
+    if (fromProfile) return fromProfile;
+    const fromMeta = authUser?.user_metadata?.full_name?.trim();
+    if (fromMeta) return fromMeta;
+    if (authUser?.email) return authUser.email.split('@')[0];
+    return '';
+  };
+
+  const combinedUser = user
+    ? profile
+      ? {
+          ...profile,
+          id: user.id,
+          email: user.email || profile.email,
+          full_name: displayFullName(profile, user),
+        }
+      : {
+          id: user.id,
+          email: user.email,
+          role: 'user',
+          full_name: displayFullName(null, user),
+        }
+    : null;
 
   return (
     <AuthContext.Provider value={{

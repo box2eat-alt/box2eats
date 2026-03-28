@@ -68,16 +68,26 @@ export default function Cart() {
       const deliveryFee = orderData.order_type === "delivery" ? 10 : 5;
       const totalForOrder = subtotalForOrder + deliveryFee;
 
-      await supabase.from('orders').insert({
+      const { error: orderError } = await supabase.from('orders').insert({
         order_number: orderNumber,
         items,
         total: totalForOrder,
         user_id: user.id,
-        user_email: user.email,
-        ...orderData
+        user_email: orderData.email || user.email,
+        customer_first_name: orderData.first_name,
+        customer_last_name: orderData.last_name,
+        phone_number: orderData.phone_number,
+        order_type: orderData.order_type || 'pickup',
+        pickup_location: orderData.pickup_location,
+        pickup_address: orderData.pickup_address || null,
+        delivery_address: orderData.order_type === 'delivery' ? orderData.delivery_address : null,
+        delivery_instructions: orderData.delivery_instructions || null,
+        status: 'pending'
       });
+      if (orderError) throw orderError;
 
-      await supabase.from('cart_items').delete().eq('user_id', user.id);
+      const { error: cartError } = await supabase.from('cart_items').delete().eq('user_id', user.id);
+      if (cartError) throw cartError;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['cartItems'] });

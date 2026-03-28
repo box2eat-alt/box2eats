@@ -24,7 +24,7 @@ export default function OrderCard({ order }) {
           <div>
             <h3 className="font-semibold text-lg">{order.order_number}</h3>
             <p className="text-sm text-gray-600">
-              {formatInTimeZone(new Date(order.created_date), "America/Vancouver", "MMM d, yyyy 'at' h:mm a")}
+              {formatInTimeZone(new Date(order.created_at || order.created_date), "America/Vancouver", "MMM d, yyyy 'at' h:mm a")}
             </p>
           </div>
           <Badge className={status.color}>

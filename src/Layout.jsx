@@ -179,7 +179,9 @@ export default function Layout({ children, currentPageName }) {
                 <div>
                   <p className="text-sm text-gray-400">Hello,</p>
                   <p className="font-semibold text-white">
-                    {user ? user.full_name?.split(' ')[0] : 'Guest'}
+                    {user
+                      ? (user.full_name?.trim()?.split(/\s+/)[0] || user.email?.split('@')[0] || 'there')
+                      : 'Guest'}
                   </p>
                 </div>
               </div>

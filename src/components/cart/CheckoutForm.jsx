@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, MapPin, Truck, Lock, CreditCard } from "lucide-react";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { createPageUrl } from "@/utils";
 
 const locations = [
   {
@@ -70,18 +71,22 @@ export default function CheckoutForm({ total, onBack, onSubmit, isProcessing }) 
   useEffect(() => {
     const loadClover = async () => {
       try {
-        console.log('🔵 Step 1: Calling initializeCloverPayment to get config...');
-        // TODO: Replace with Supabase Edge Function call for initializeCloverPayment
-        // Previously: const response = await base44.functions.invoke('initializeCloverPayment', {});
-        // For now, this will fail gracefully until the Edge Function is set up
-        const response = await supabase.functions.invoke('initializeCloverPayment', { body: {} });
-        console.log('✅ Step 2: Got response:', response.data);
-        
-        const { clover_public_token, merchant_id } = response.data;
-        
+        console.log('🔵 Step 1: Calling initialize-clover-payment…');
+        const { data: initData, error: initError } = await supabase.functions.invoke(
+          'initialize-clover-payment',
+          { body: {} }
+        );
+        if (initError) {
+          throw new Error(initError.message || 'Failed to initialize payment');
+        }
+        if (initData?.error) {
+          throw new Error(initData.error);
+        }
+        const { clover_public_token, merchant_id } = initData ?? {};
         if (!clover_public_token || !merchant_id) {
           throw new Error('Missing credentials from backend');
         }
+        console.log('✅ Step 2: Clover config loaded');
         
         console.log('🔵 Step 3: Loading Clover SDK from production...');
         
@@ -228,42 +233,46 @@ export default function CheckoutForm({ total, onBack, onSubmit, isProcessing }) 
 
       const selectedLocation = locations.find(loc => loc.id === formData.pickup_location);
 
-      // TODO: Replace with Supabase Edge Function call for processCloverIframePayment
-      // Previously: const paymentResponse = await base44.functions.invoke('processCloverIframePayment', {...});
-      const paymentResponse = await supabase.functions.invoke('processCloverIframePayment', {
-        body: {
-          token: token,
-          amount: finalTotal,
-          order_data: {
-            first_name: formData.first_name,
-            last_name: formData.last_name,
-            email: formData.email,
-            phone_number: formData.phone_number,
-            order_type: formData.order_type,
-            pickup_location: formData.pickup_location,
-            pickup_address: selectedLocation ? `${selectedLocation.name} - ${selectedLocation.address}` : "",
-            delivery_address: formData.delivery_address,
-            delivery_instructions: formData.delivery_instructions,
-            items: items
+      const { data: payData, error: payError } = await supabase.functions.invoke(
+        'process-clover-iframe-payment',
+        {
+          body: {
+            token,
+            amount: finalTotal,
+            order_data: {
+              first_name: formData.first_name,
+              last_name: formData.last_name,
+              email: formData.email,
+              phone_number: formData.phone_number,
+              order_type: formData.order_type,
+              pickup_location: formData.pickup_location,
+              pickup_address: selectedLocation
+                ? `${selectedLocation.name} - ${selectedLocation.address}`
+                : '',
+              delivery_address: formData.delivery_address,
+              delivery_instructions: formData.delivery_instructions,
+              items
+            }
           }
         }
-      });
+      );
 
-      console.log('📥 Backend response:', paymentResponse);
+      console.log('📥 Backend response:', { payData, payError });
 
-      if (paymentResponse.data.success) {
-        console.log('✅ Payment successful!');
-        
-        for (const item of cartItems) {
-          await supabase.from('cart_items').delete().eq('id', item.id);
-        }
-        console.log('✅ Cart cleared');
-
-        window.location.href = '/Orders';
-      } else {
-        console.error('❌ Payment failed:', paymentResponse.data);
-        throw new Error(paymentResponse.data.error || 'Payment failed');
+      if (payError) {
+        throw new Error(payError.message || 'Payment request failed');
       }
+      if (!payData?.success) {
+        throw new Error(payData?.error || 'Payment failed');
+      }
+
+      console.log('✅ Payment successful!');
+
+      for (const item of cartItems) {
+        await supabase.from('cart_items').delete().eq('id', item.id);
+      }
+
+      window.location.href = createPageUrl('Orders');
 
     } catch (error) {
       console.error('❌ === CHECKOUT ERROR ===', error.message);
@@ -281,6 +290,32 @@ export default function CheckoutForm({ total, onBack, onSubmit, isProcessing }) 
 
   const deliveryFee = 0;
   const finalTotal = total + deliveryFee;
+
+  const buildOrderPayload = () => {
+    const selectedLocation = locations.find((loc) => loc.id === formData.pickup_location);
+    return {
+      first_name: formData.first_name,
+      last_name: formData.last_name,
+      email: formData.email,
+      order_type: formData.order_type,
+      pickup_location: formData.pickup_location,
+      pickup_address: selectedLocation ? `${selectedLocation.name} - ${selectedLocation.address}` : '',
+      delivery_address: formData.delivery_address,
+      phone_number: formData.phone_number,
+      delivery_instructions: formData.delivery_instructions
+    };
+  };
+
+  const handleDevPlaceOrder = (e) => {
+    e.preventDefault();
+    if (!onSubmit) return;
+    if (formData.order_type === 'delivery' && (!formData.delivery_address || formData.delivery_address.length < 10)) {
+      setPaymentError('Enter a full delivery address (10+ characters) for test order.');
+      return;
+    }
+    setPaymentError(null);
+    onSubmit(buildOrderPayload());
+  };
 
   return (
     <div className="bg-[#ffffff] p-6 min-h-screen md:p-8">
@@ -519,6 +554,18 @@ export default function CheckoutForm({ total, onBack, onSubmit, isProcessing }) 
                   <Lock className="w-5 h-5 mr-2" />
                   {isPaymentProcessing ? "Processing Payment..." : `Pay $${finalTotal.toFixed(2)}`}
                 </Button>
+
+                {import.meta.env.DEV && onSubmit && (
+                  <Button
+                    type="button"
+                    variant="outline"
+                    className="w-full mt-3 border-dashed border-amber-500 text-amber-900 hover:bg-amber-50"
+                    disabled={isProcessing || isPaymentProcessing}
+                    onClick={handleDevPlaceOrder}
+                  >
+                    Place test order (skip payment — local dev only)
+                  </Button>
+                )}
 
                 <p className="text-xs text-center text-gray-500 mt-4">
                   <Lock className="w-3 h-3 inline mr-1" />
