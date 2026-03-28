@@ -65,8 +65,8 @@ export default function Layout({ children, currentPageName }) {
 
         </div>
 
-        <div className="flex flex-col h-[calc(100vh-140px)]">
-          <nav className="space-y-2 flex-1 overflow-y-auto pr-2 pb-8">
+        <div className="flex flex-col" style={{ height: 'calc(100vh - 140px)' }}>
+          <nav className="space-y-2 flex-1 overflow-y-auto pr-2 pb-4 min-h-0">
             {navigationItems.map((item) =>
             <Link
               key={item.title}
@@ -169,7 +169,7 @@ export default function Layout({ children, currentPageName }) {
             }
           </nav>
 
-          <div className="mt-8 mb-10 pt-8 border-t border-gray-800 space-y-2">
+          <div className="shrink-0 pt-4 border-t border-gray-800 space-y-2">
             {/* User Profile */}
             <div className="mb-2">
               <div className="flex items-center gap-3 bg-gray-800 rounded-2xl p-3">
@@ -200,27 +200,27 @@ export default function Layout({ children, currentPageName }) {
               <span className="font-medium">Setting</span>
             </Link>
 
-            {user ?
-            <button
-              onClick={async (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                try { await logout(); } catch (_) {}
-                window.location.href = '/login';
-              }}
-              className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-gray-400 hover:bg-gray-800 hover:text-white transition-all cursor-pointer">
-
+            {user ? (
+              <button
+                type="button"
+                onClick={() => {
+                  supabase.auth.signOut().catch(() => {});
+                  window.location.replace('/login');
+                }}
+                className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-gray-400 hover:bg-gray-800 hover:text-white transition-all cursor-pointer z-50"
+              >
                 <LogOut className="w-5 h-5" />
                 <span className="font-medium">Logout</span>
-              </button> :
-
-            <button
-              onClick={() => navigate('/login')}
-              className="w-full px-4 py-3 bg-white text-gray-900 rounded-xl font-semibold hover:bg-gray-100 transition-colors">
-
+              </button>
+            ) : (
+              <button
+                type="button"
+                onClick={() => navigate('/login')}
+                className="w-full px-4 py-3 bg-white text-gray-900 rounded-xl font-semibold hover:bg-gray-100 transition-colors"
+              >
                 Sign In
               </button>
-            }
+            )}
           </div>
         </div>
       </div>
