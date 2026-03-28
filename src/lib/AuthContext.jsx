@@ -98,10 +98,15 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = async () => {
-    await supabase.auth.signOut();
+    try {
+      await supabase.auth.signOut();
+    } catch (e) {
+      console.error('signOut error (ignored):', e);
+    }
     setUser(null);
     setProfile(null);
     setIsAuthenticated(false);
+    window.location.href = '/login';
   };
 
   const updateProfile = async (updates) => {
