@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "db:link": "supabase link",
+    "db:link": "supabase link --project-ref opbljeqvphjmnbkgoppt",
     "db:push": "supabase db push"
   },
   "dependencies": {
