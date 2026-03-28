@@ -11,11 +11,14 @@ export const AuthProvider = ({ children }) => {
   const [isLoadingAuth, setIsLoadingAuth] = useState(isSupabaseConfigured);
 
   const fetchProfile = useCallback(async (userId) => {
-    const { data } = await supabase
+    const { data, error } = await supabase
       .from('profiles')
       .select('*')
       .eq('id', userId)
       .maybeSingle();
+    if (error) {
+      console.error('Failed to fetch profile:', error);
+    }
     setProfile(data ?? null);
     return data;
   }, []);
@@ -46,7 +49,7 @@ export const AuthProvider = ({ children }) => {
         if (session?.user) {
           setUser(session.user);
           setIsAuthenticated(true);
-          void fetchProfile(session.user.id);
+          await fetchProfile(session.user.id);
         }
       } catch (err) {
         if (!cancelled) {
