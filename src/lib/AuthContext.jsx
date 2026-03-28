@@ -40,13 +40,14 @@ export const AuthProvider = ({ children }) => {
     // Use onAuthStateChange for everything — no separate getSession() call.
     // getSession() acquires an internal lock that blocks signInWithPassword.
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
+      (event, session) => {
         console.log('[Auth] onAuthStateChange:', event, session?.user?.email ?? 'no user');
 
         if (session?.user) {
           setUser(session.user);
           setIsAuthenticated(true);
-          await fetchProfile(session.user.id);
+          // Don't await — it blocks signInWithPassword from resolving
+          void fetchProfile(session.user.id);
         } else {
           setUser(null);
           setProfile(null);
