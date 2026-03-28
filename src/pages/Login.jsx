@@ -26,12 +26,17 @@ export default function Login() {
     setError(null);
 
     try {
-      if (isSignUp) {
-        await signup(formData.email, formData.password, formData.full_name);
-      } else {
-        await login(formData.email, formData.password);
+      const result = await Promise.race([
+        isSignUp
+          ? signup(formData.email, formData.password, formData.full_name)
+          : login(formData.email, formData.password),
+        new Promise((_, reject) =>
+          setTimeout(() => reject(new Error('Login timed out. Please try again.')), 15000)
+        ),
+      ]);
+      if (result) {
+        window.location.href = '/home';
       }
-      navigate("/home");
     } catch (err) {
       setError(err.message);
     } finally {
