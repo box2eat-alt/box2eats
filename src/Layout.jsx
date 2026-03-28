@@ -202,8 +202,13 @@ export default function Layout({ children, currentPageName }) {
 
             {user ?
             <button
-              onClick={() => logout()}
-              className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-gray-400 hover:bg-gray-800 hover:text-white transition-all">
+              onClick={async (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                try { await logout(); } catch (_) {}
+                window.location.href = '/login';
+              }}
+              className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-gray-400 hover:bg-gray-800 hover:text-white transition-all cursor-pointer">
 
                 <LogOut className="w-5 h-5" />
                 <span className="font-medium">Logout</span>
