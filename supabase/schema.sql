@@ -4,6 +4,12 @@
 -- Run in: Supabase Dashboard → SQL Editor → New query → Paste → Run
 -- =============================================
 
+do $$ begin
+  create type public.app_role as enum ('user', 'admin');
+exception
+  when duplicate_object then null;
+end $$;
+
 -- 1. Profiles
 create table if not exists public.profiles (
   id uuid primary key references auth.users(id) on delete cascade,
@@ -13,7 +19,7 @@ create table if not exists public.profiles (
   delivery_address text,
   dietary_preferences text[] default '{}',
   saved_addresses jsonb default '[]',
-  role text default 'user' check (role in ('user', 'admin')),
+  role public.app_role not null default 'user'::public.app_role,
   created_at timestamptz default now(),
   updated_at timestamptz default now()
 );
@@ -159,10 +165,10 @@ create policy "Users can update own profile"
 
 create policy "Admins can view all profiles"
   on public.profiles for select using (
-    exists (select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin')
+    exists (select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin'::public.app_role)
   );
 
--- Only admins may change profile.role; others keep existing role on update (trigger).
+-- Only admins may change profile.role via API; dashboard has no JWT (auth.uid() null) → allow.
 create or replace function public.enforce_profile_role_change()
 returns trigger
 language plpgsql
@@ -171,11 +177,13 @@ set search_path = public
 as $$
 begin
   if tg_op = 'UPDATE' and (new.role is distinct from old.role) then
-    if not exists (
-      select 1 from public.profiles p
-      where p.id = auth.uid() and p.role = 'admin'
-    ) then
-      new.role := old.role;
+    if auth.uid() is not null then
+      if not exists (
+        select 1 from public.profiles p
+        where p.id = auth.uid() and p.role::text = 'admin'
+      ) then
+        new.role := old.role;
+      end if;
     end if;
   end if;
   return new;
@@ -194,15 +202,14 @@ create policy "Admins can update all profiles"
   using (
     exists (
       select 1 from public.profiles p
-      where p.id = auth.uid() and p.role = 'admin'
+      where p.id = auth.uid() and p.role = 'admin'::public.app_role
     )
   )
   with check (
     exists (
       select 1 from public.profiles p
-      where p.id = auth.uid() and p.role = 'admin'
+      where p.id = auth.uid() and p.role = 'admin'::public.app_role
     )
-    and role in ('user', 'admin')
   );
 
 -- Products
@@ -216,17 +223,17 @@ create policy "Anyone can view products"
 
 create policy "Admins can insert products"
   on public.products for insert with check (
-    exists (select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin')
+    exists (select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin'::public.app_role)
   );
 
 create policy "Admins can update products"
   on public.products for update using (
-    exists (select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin')
+    exists (select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin'::public.app_role)
   );
 
 create policy "Admins can delete products"
   on public.products for delete using (
-    exists (select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin')
+    exists (select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin'::public.app_role)
   );
 
 -- Orders
@@ -243,12 +250,12 @@ create policy "Users can create orders"
 
 create policy "Admins can view all orders"
   on public.orders for select using (
-    exists (select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin')
+    exists (select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin'::public.app_role)
   );
 
 create policy "Admins can update orders"
   on public.orders for update using (
-    exists (select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin')
+    exists (select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin'::public.app_role)
   );
 
 -- Cart
@@ -322,21 +329,21 @@ create policy "Admins upload product images"
   on storage.objects for insert
   with check (
     bucket_id = 'product-images'
-    and exists (select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin')
+    and exists (select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin'::public.app_role)
   );
 
 create policy "Admins update product images"
   on storage.objects for update
   using (
     bucket_id = 'product-images'
-    and exists (select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin')
+    and exists (select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin'::public.app_role)
   );
 
 create policy "Admins delete product images"
   on storage.objects for delete
   using (
     bucket_id = 'product-images'
-    and exists (select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin')
+    and exists (select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin'::public.app_role)
   );
 
 -- =============================================
