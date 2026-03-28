@@ -1,5 +1,6 @@
--- A) Table Editor runs without auth.uid() → old trigger reverted role to user.
--- B) ENUM type → Supabase Table Editor shows user | admin as a dropdown.
+-- A) Table Editor: auth.uid() null → trigger must not revert role.
+-- B) ENUM for role dropdown in Table Editor.
+-- C) Drop profiles RLS policies before ALTER TYPE (PG requires this).
 
 create or replace function public.enforce_profile_role_change()
 returns trigger
@@ -36,6 +37,12 @@ begin
     return;
   end if;
 
+  drop policy if exists "Users can view own profile" on public.profiles;
+  drop policy if exists "Users can update own profile" on public.profiles;
+  drop policy if exists "Users can insert own profile" on public.profiles;
+  drop policy if exists "Admins can view all profiles" on public.profiles;
+  drop policy if exists "Admins can update all profiles" on public.profiles;
+
   begin
     create type public.app_role as enum ('user', 'admin');
   exception
@@ -60,7 +67,30 @@ begin
 end;
 $$;
 
+-- Ensure policies exist (recreate after enum migration or repair partial runs)
+drop policy if exists "Users can view own profile" on public.profiles;
+drop policy if exists "Users can update own profile" on public.profiles;
+drop policy if exists "Users can insert own profile" on public.profiles;
+drop policy if exists "Admins can view all profiles" on public.profiles;
 drop policy if exists "Admins can update all profiles" on public.profiles;
+
+create policy "Users can view own profile"
+  on public.profiles for select using (auth.uid() = id);
+
+create policy "Users can insert own profile"
+  on public.profiles for insert with check (auth.uid() = id);
+
+create policy "Users can update own profile"
+  on public.profiles for update using (auth.uid() = id);
+
+create policy "Admins can view all profiles"
+  on public.profiles for select using (
+    exists (
+      select 1 from public.profiles p
+      where p.id = auth.uid() and p.role = 'admin'::public.app_role
+    )
+  );
+
 create policy "Admins can update all profiles"
   on public.profiles for update
   using (
