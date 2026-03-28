@@ -106,9 +106,10 @@ export const AuthProvider = ({ children }) => {
 
   const updateProfile = async (updates) => {
     if (!user) throw new Error('Not authenticated');
+    const { role: _ignoredRole, ...safeUpdates } = updates;
     const { data, error } = await supabase
       .from('profiles')
-      .update({ ...updates, updated_at: new Date().toISOString() })
+      .update({ ...safeUpdates, updated_at: new Date().toISOString() })
       .eq('id', user.id)
       .select()
       .single();

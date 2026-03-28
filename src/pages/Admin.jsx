@@ -13,7 +13,7 @@ import { formatInTimeZone } from "date-fns-tz";
 import { Button } from "@/components/ui/button";
 
 export default function Admin() {
-  const { user } = useAuth();
+  const { user, fetchProfile } = useAuth();
   const navigate = useNavigate();
   const [isSyncing, setIsSyncing] = useState(false);
   const [syncResult, setSyncResult] = useState(null);
@@ -66,6 +66,35 @@ export default function Admin() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['allOrders'] });
+    },
+  });
+
+  const { data: profiles = [], isLoading: profilesLoading } = useQuery({
+    queryKey: ['adminProfiles'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('id, email, full_name, role, created_at')
+        .order('created_at', { ascending: false });
+      if (error) throw error;
+      return data ?? [];
+    },
+    enabled: !!user && user.role === 'admin',
+  });
+
+  const updateUserRoleMutation = useMutation({
+    mutationFn: async ({ profileId, role }) => {
+      const { error } = await supabase
+        .from('profiles')
+        .update({ role, updated_at: new Date().toISOString() })
+        .eq('id', profileId);
+      if (error) throw error;
+    },
+    onSuccess: async (_data, { profileId }) => {
+      queryClient.invalidateQueries({ queryKey: ['adminProfiles'] });
+      if (user?.id === profileId) {
+        await fetchProfile(profileId);
+      }
     },
   });
 
@@ -179,6 +208,77 @@ export default function Admin() {
             </CardContent>
           </Card>
         </div>
+
+        <Card className="mb-8">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Users className="w-5 h-5" />
+              Users &amp; roles
+            </CardTitle>
+            <p className="text-sm text-gray-500 font-normal">
+              Set each account to <strong>user</strong> (default) or <strong>admin</strong> (dashboard, products, orders).
+            </p>
+          </CardHeader>
+          <CardContent>
+            {profilesLoading ? (
+              <p className="text-center py-6 text-gray-500">Loading users…</p>
+            ) : profiles.length === 0 ? (
+              <p className="text-center py-6 text-gray-500">No profiles found.</p>
+            ) : (
+              <div className="overflow-x-auto border rounded-lg">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="bg-gray-50 border-b text-left">
+                      <th className="p-3 font-medium text-gray-700">Name</th>
+                      <th className="p-3 font-medium text-gray-700">Email</th>
+                      <th className="p-3 font-medium text-gray-700">Role</th>
+                      <th className="p-3 font-medium text-gray-700">Joined</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {profiles.map((p) => (
+                      <tr key={p.id} className="border-b last:border-0 hover:bg-gray-50/80">
+                        <td className="p-3 text-gray-900">{p.full_name || '—'}</td>
+                        <td className="p-3 text-gray-600">{p.email || '—'}</td>
+                        <td className="p-3">
+                          <Select
+                            value={p.role === 'admin' ? 'admin' : 'user'}
+                            onValueChange={(role) =>
+                              updateUserRoleMutation.mutate({ profileId: p.id, role })
+                            }
+                            disabled={updateUserRoleMutation.isPending}
+                          >
+                            <SelectTrigger className="w-36 h-9">
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="user">User</SelectItem>
+                              <SelectItem value="admin">Admin</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </td>
+                        <td className="p-3 text-gray-500 whitespace-nowrap">
+                          {p.created_at
+                            ? formatInTimeZone(
+                                new Date(p.created_at),
+                                'America/Vancouver',
+                                'MMM d, yyyy'
+                              )
+                            : '—'}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+            {updateUserRoleMutation.isError && (
+              <p className="text-sm text-red-600 mt-3">
+                {updateUserRoleMutation.error?.message || 'Could not update role.'}
+              </p>
+            )}
+          </CardContent>
+        </Card>
 
         {/* Orders Table */}
         <Card>
