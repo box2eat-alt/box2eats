@@ -37,7 +37,6 @@ export default function Layout({ children, currentPageName }) {
   });
 
   const isAdmin = user?.role === 'admin';
-  console.log('[Layout] user:', user, 'isAdmin:', isAdmin);
   const isAdminPage = location.pathname === createPageUrl("Admin") ||
   location.pathname === createPageUrl("AdminProducts") ||
   location.pathname === createPageUrl("MarysKitchen");

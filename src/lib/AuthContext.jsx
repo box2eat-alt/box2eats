@@ -19,7 +19,6 @@ export const AuthProvider = ({ children }) => {
     if (error) {
       console.error('Failed to fetch profile:', error);
     }
-    console.log('[AuthContext] profile fetched:', { data, error, userId });
     setProfile(data ?? null);
     return data;
   }, []);

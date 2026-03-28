@@ -27,12 +27,6 @@ export default function Login() {
     setError(null);
 
     try {
-      // Clear any stale session — race against 2s so it never blocks login
-      await Promise.race([
-        supabase.auth.signOut({ scope: 'local' }).catch(() => {}),
-        new Promise(resolve => setTimeout(resolve, 2000))
-      ]);
-
       const result = await Promise.race([
         isSignUp
           ? signup(formData.email, formData.password, formData.full_name)
