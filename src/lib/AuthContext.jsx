@@ -50,7 +50,7 @@ export const AuthProvider = ({ children }) => {
         if (session?.user) {
           setUser(session.user);
           setIsAuthenticated(true);
-          await fetchProfile(session.user.id);
+          void fetchProfile(session.user.id);
         }
       } catch (err) {
         if (!cancelled) {
