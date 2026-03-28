@@ -59,7 +59,7 @@ export default function Layout({ children, currentPageName }) {
         {/* Logo */}
         <div className="mb-6">
           <img
-            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f90f793f787388c51a7b32/38d0e5c81_boxtoeatslogo-sized.png"
+            src="/box2eats-logo.png"
             alt="Box2Eats Logo"
             className="w-32 mx-auto" />
 
@@ -240,7 +240,7 @@ export default function Layout({ children, currentPageName }) {
             </div>
           </button>
           <img
-            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68f90f793f787388c51a7b32/38d0e5c81_boxtoeatslogo-sized.png"
+            src="/box2eats-logo.png"
             alt="Box2Eats Logo"
             className="h-8" />
 
