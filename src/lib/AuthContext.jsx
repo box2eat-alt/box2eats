@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext, useEffect, useCallback } from 'react';
-import { supabase } from '@/lib/supabase';
+import { supabase, isSupabaseConfigured } from '@/lib/supabase';
 
 const AuthContext = createContext();
 
@@ -7,7 +7,8 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [profile, setProfile] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isLoadingAuth, setIsLoadingAuth] = useState(true);
+  // If env vars are missing (e.g. Vercel without VITE_*), never block the whole app on auth.
+  const [isLoadingAuth, setIsLoadingAuth] = useState(isSupabaseConfigured);
 
   const fetchProfile = useCallback(async (userId) => {
     const { data } = await supabase
@@ -20,8 +21,17 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
+    if (!isSupabaseConfigured) {
+      return;
+    }
+
     let cancelled = false;
-    const SESSION_INIT_MS = 12_000;
+    const SESSION_INIT_MS = 8_000;
+    const FAILSAFE_MS = 5_000;
+
+    const failSafeId = window.setTimeout(() => {
+      setIsLoadingAuth(false);
+    }, FAILSAFE_MS);
 
     (async () => {
       try {
@@ -43,6 +53,7 @@ export const AuthProvider = ({ children }) => {
           console.error('Auth init failed:', err);
         }
       } finally {
+        window.clearTimeout(failSafeId);
         if (!cancelled) {
           setIsLoadingAuth(false);
         }
@@ -65,6 +76,7 @@ export const AuthProvider = ({ children }) => {
 
     return () => {
       cancelled = true;
+      window.clearTimeout(failSafeId);
       subscription.unsubscribe();
     };
   }, [fetchProfile]);
