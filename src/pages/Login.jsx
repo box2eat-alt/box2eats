@@ -27,18 +27,30 @@ export default function Login() {
     setError(null);
 
     try {
+      const t0 = Date.now();
+      console.log('[Login] Starting sign-in...');
+
       const result = await Promise.race([
-        isSignUp
-          ? signup(formData.email, formData.password, formData.full_name)
-          : login(formData.email, formData.password),
+        (async () => {
+          const r = isSignUp
+            ? await signup(formData.email, formData.password, formData.full_name)
+            : await login(formData.email, formData.password);
+          console.log('[Login] Supabase responded in', Date.now() - t0, 'ms', r);
+          return r;
+        })(),
         new Promise((_, reject) =>
-          setTimeout(() => reject(new Error('Login timed out. Please try again.')), 30000)
+          setTimeout(() => {
+            console.error('[Login] Timed out after 30s');
+            reject(new Error('Login timed out. Please try again.'));
+          }, 30000)
         ),
       ]);
       if (result) {
+        console.log('[Login] Success — redirecting to /home');
         window.location.href = '/home';
       }
     } catch (err) {
+      console.error('[Login] Error:', err.message, err);
       setError(err.message);
     } finally {
       setLoading(false);

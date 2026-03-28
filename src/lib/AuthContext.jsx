@@ -31,33 +31,18 @@ export const AuthProvider = ({ children }) => {
     let cancelled = false;
     const FAILSAFE_MS = 10_000;
 
+    // Failsafe: if onAuthStateChange never fires, stop blocking the UI
     const failSafeId = window.setTimeout(() => {
+      console.warn('[Auth] Failsafe: no session event after 10s, unblocking UI');
       setIsLoadingAuth(false);
     }, FAILSAFE_MS);
 
-    (async () => {
-      try {
-        const { data: { session } } = await supabase.auth.getSession();
-        if (cancelled) return;
-        if (session?.user) {
-          setUser(session.user);
-          setIsAuthenticated(true);
-          void fetchProfile(session.user.id);
-        }
-      } catch (err) {
-        if (!cancelled) {
-          console.error('Auth init failed:', err);
-        }
-      } finally {
-        window.clearTimeout(failSafeId);
-        if (!cancelled) {
-          setIsLoadingAuth(false);
-        }
-      }
-    })();
-
+    // Use onAuthStateChange for everything — no separate getSession() call.
+    // getSession() acquires an internal lock that blocks signInWithPassword.
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (_event, session) => {
+      async (event, session) => {
+        console.log('[Auth] onAuthStateChange:', event, session?.user?.email ?? 'no user');
+
         if (session?.user) {
           setUser(session.user);
           setIsAuthenticated(true);
@@ -66,6 +51,12 @@ export const AuthProvider = ({ children }) => {
           setUser(null);
           setProfile(null);
           setIsAuthenticated(false);
+        }
+
+        // INITIAL_SESSION means we now know the auth state — stop loading
+        if (event === 'INITIAL_SESSION' && !cancelled) {
+          window.clearTimeout(failSafeId);
+          setIsLoadingAuth(false);
         }
       }
     );
