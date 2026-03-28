@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/lib/AuthContext";
+import { supabase } from "@/lib/supabase";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -26,6 +27,9 @@ export default function Login() {
     setError(null);
 
     try {
+      // Clear any stale session left from a previous hard-redirect logout
+      await supabase.auth.signOut({ scope: 'local' }).catch(() => {});
+
       const result = await Promise.race([
         isSignUp
           ? signup(formData.email, formData.password, formData.full_name)
