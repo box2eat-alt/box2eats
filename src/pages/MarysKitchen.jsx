@@ -31,7 +31,7 @@ export default function MarysKitchen() {
   const { data: products = [], isLoading } = useQuery({
     queryKey: ['allProducts'],
     queryFn: async () => {
-      const { data } = await supabase.from('products').select('*').order('updated_date', { ascending: false });
+      const { data } = await supabase.from('products').select('*').order('updated_at', { ascending: false });
       return data ?? [];
     },
     enabled: !!user,
