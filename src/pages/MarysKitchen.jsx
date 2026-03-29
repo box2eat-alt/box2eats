@@ -40,11 +40,11 @@ export default function MarysKitchen() {
   const handleSyncProducts = async () => {
     setIsSyncing(true);
     setSyncResult(null);
-    
+
     try {
-      // TODO: Replace with proper Supabase Edge Function or API call for syncShopifyProducts
-      // Previously: const response = await base44.functions.invoke('syncShopifyProducts', { updateOnly: true });
-      setSyncResult({ error: 'Shopify sync not yet connected to Supabase backend' });
+      const { data, error } = await supabase.functions.invoke('sync-shopify-products');
+      if (error) throw error;
+      setSyncResult(data);
       queryClient.invalidateQueries({ queryKey: ['allProducts'] });
     } catch (error) {
       setSyncResult({ error: error.message });
