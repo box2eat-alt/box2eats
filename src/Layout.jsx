@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { createPageUrl } from "@/utils";
-import { Home, UtensilsCrossed, ShoppingBag, Clock, X, Settings, LogOut, User as UserIcon, Shield, Heart, Info } from "lucide-react";
+import { Home, UtensilsCrossed, ShoppingBag, Clock, X, Settings, LogOut, User as UserIcon, Shield, Heart, Info, LayoutDashboard, Package, ChefHat, CreditCard, ArrowLeft } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { useAuth } from "@/lib/AuthContext";
 import { useQuery } from "@tanstack/react-query";
@@ -13,6 +13,12 @@ const navigationItems = [
 { title: "My Cart", url: createPageUrl("Cart"), icon: ShoppingBag },
 { title: "Order History", url: createPageUrl("Orders"), icon: Clock },
 { title: "How to Order", url: createPageUrl("HowToOrder"), icon: Info }];
+
+const adminNavigationItems = [
+{ title: "Dashboard", url: createPageUrl("Admin"), icon: LayoutDashboard },
+{ title: "Products", url: createPageUrl("AdminProducts"), icon: Package },
+{ title: "Shopify Products", url: createPageUrl("MarysKitchen"), icon: ChefHat },
+{ title: "Payments", url: createPageUrl("Payments"), icon: CreditCard }];
 
 
 export default function Layout({ children, currentPageName }) {
@@ -34,7 +40,8 @@ export default function Layout({ children, currentPageName }) {
   const isAdminPage = location.pathname === createPageUrl("AdminPanel") ||
   location.pathname === createPageUrl("Admin") ||
   location.pathname === createPageUrl("AdminProducts") ||
-  location.pathname === createPageUrl("MarysKitchen");
+  location.pathname === createPageUrl("MarysKitchen") ||
+  location.pathname === createPageUrl("Payments");
 
   return (
     <div className="min-h-screen bg-amber-50 relative">
@@ -62,22 +69,50 @@ export default function Layout({ children, currentPageName }) {
 
         <div className="flex flex-col" style={{ height: 'calc(100vh - 140px)' }}>
           <nav className="space-y-2 flex-1 overflow-y-auto pr-2 pb-4 min-h-0">
-            {navigationItems.map((item) =>
-            <Link
-              key={item.title}
-              to={item.url}
-              className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
-              location.pathname === item.url ?
-              'text-white' :
-              'text-gray-400 hover:bg-gray-800 hover:text-white'}`
-              }
-              style={location.pathname === item.url ? { backgroundColor: '#c0282d' } : {}}>
-
-                <item.icon className="w-5 h-5" />
-                <span className="font-medium">{item.title}</span>
-              </Link>
+            {isAdminPage && isAdmin ? (
+              <>
+                <button
+                  onClick={() => navigate(createPageUrl("Home"))}
+                  className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-gray-400 hover:bg-gray-800 hover:text-white transition-all mb-2"
+                >
+                  <ArrowLeft className="w-5 h-5" />
+                  <span className="font-medium">Back to App</span>
+                </button>
+                <div className="border-b border-gray-800 mb-2" />
+                <p className="px-4 py-1 text-xs font-semibold text-gray-500 uppercase tracking-wider">Admin</p>
+                {adminNavigationItems.map((item) =>
+                <Link
+                  key={item.title}
+                  to={item.url}
+                  className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
+                  location.pathname === item.url ?
+                  'text-white' :
+                  'text-gray-400 hover:bg-gray-800 hover:text-white'}`
+                  }
+                  style={location.pathname === item.url ? { backgroundColor: '#c0282d' } : {}}>
+                    <item.icon className="w-5 h-5" />
+                    <span className="font-medium">{item.title}</span>
+                  </Link>
+                )}
+              </>
+            ) : (
+              <>
+                {navigationItems.map((item) =>
+                <Link
+                  key={item.title}
+                  to={item.url}
+                  className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
+                  location.pathname === item.url ?
+                  'text-white' :
+                  'text-gray-400 hover:bg-gray-800 hover:text-white'}`
+                  }
+                  style={location.pathname === item.url ? { backgroundColor: '#c0282d' } : {}}>
+                    <item.icon className="w-5 h-5" />
+                    <span className="font-medium">{item.title}</span>
+                  </Link>
+                )}
+              </>
             )}
-
           </nav>
 
           <div className="shrink-0 pt-4 border-t border-gray-800 space-y-2">
@@ -98,15 +133,11 @@ export default function Layout({ children, currentPageName }) {
               </div>
             </div>
 
-            {isAdmin && (
+            {isAdmin && !isAdminPage && (
               <Link
                 to={createPageUrl("AdminPanel")}
-                className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
-                isAdminPage ?
-                'text-white' :
-                'text-gray-400 hover:bg-gray-800 hover:text-white'}`
-                }
-                style={isAdminPage ? { backgroundColor: '#c0282d' } : {}}>
+                className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-400 hover:bg-gray-800 hover:text-white transition-all"
+              >
                 <Shield className="w-5 h-5" />
                 <span className="font-medium">Admin Panel</span>
               </Link>
