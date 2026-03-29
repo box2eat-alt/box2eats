@@ -12,14 +12,13 @@ Deno.serve(async (req) => {
 
   try {
     const SHOPIFY_STORE_URL = Deno.env.get('SHOPIFY_STORE_URL')?.trim();
-    const SHOPIFY_API_KEY = Deno.env.get('SHOPIFY_API_KEY')?.trim();
-    const SHOPIFY_API_SECRET = Deno.env.get('SHOPIFY_API_SECRET')?.trim();
+    const SHOPIFY_ACCESS_TOKEN = Deno.env.get('SHOPIFY_ACCESS_TOKEN')?.trim();
     const SUPABASE_URL = Deno.env.get('SUPABASE_URL');
     const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
 
-    if (!SHOPIFY_STORE_URL || !SHOPIFY_API_KEY || !SHOPIFY_API_SECRET) {
+    if (!SHOPIFY_STORE_URL || !SHOPIFY_ACCESS_TOKEN) {
       return new Response(
-        JSON.stringify({ error: 'Missing Shopify credentials in secrets' }),
+        JSON.stringify({ error: 'Missing Shopify credentials in secrets (SHOPIFY_STORE_URL, SHOPIFY_ACCESS_TOKEN)' }),
         { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
@@ -33,10 +32,11 @@ Deno.serve(async (req) => {
 
     for (const status of ['active', 'draft', 'archived']) {
       const shopifyRes = await fetch(
-        `https://${SHOPIFY_API_KEY}:${SHOPIFY_API_SECRET}@${SHOPIFY_STORE_URL}/admin/api/2024-10/products.json?limit=250&status=${status}`,
+        `https://${SHOPIFY_STORE_URL}/admin/api/2024-10/products.json?limit=250&status=${status}`,
         {
           headers: {
             'Content-Type': 'application/json',
+            'X-Shopify-Access-Token': SHOPIFY_ACCESS_TOKEN,
           },
         }
       );
