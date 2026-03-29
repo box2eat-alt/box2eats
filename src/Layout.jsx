@@ -67,7 +67,7 @@ export default function Layout({ children, currentPageName }) {
 
         </div>
 
-        <div className="flex flex-col" style={{ height: 'calc(100vh - 160px)' }}>
+        <div className="flex flex-col" style={{ height: 'calc(100vh - 200px)' }}>
           <nav className="space-y-2 flex-1 overflow-y-auto pr-2 pb-4 min-h-0">
             {isAdminPage && isAdmin ? (
               <>
