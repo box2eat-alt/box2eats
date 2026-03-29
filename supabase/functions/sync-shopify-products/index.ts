@@ -11,12 +11,13 @@ Deno.serve(async (req) => {
   }
 
   try {
-    const SHOPIFY_STORE_URL = Deno.env.get('SHOPIFY_STORE_URL');
-    const SHOPIFY_ACCESS_TOKEN = Deno.env.get('SHOPIFY_ACCESS_TOKEN');
+    const SHOPIFY_STORE_URL = Deno.env.get('SHOPIFY_STORE_URL')?.trim();
+    const SHOPIFY_API_KEY = Deno.env.get('SHOPIFY_API_KEY')?.trim();
+    const SHOPIFY_API_SECRET = Deno.env.get('SHOPIFY_API_SECRET')?.trim();
     const SUPABASE_URL = Deno.env.get('SUPABASE_URL');
     const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
 
-    if (!SHOPIFY_STORE_URL || !SHOPIFY_ACCESS_TOKEN) {
+    if (!SHOPIFY_STORE_URL || !SHOPIFY_API_KEY || !SHOPIFY_API_SECRET) {
       return new Response(
         JSON.stringify({ error: 'Missing Shopify credentials in secrets' }),
         { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
@@ -25,29 +26,36 @@ Deno.serve(async (req) => {
 
     const supabase = createClient(SUPABASE_URL!, SUPABASE_SERVICE_ROLE_KEY!);
 
-    // Fetch all products from Shopify
+    // Fetch ALL products from Shopify (active + draft + archived)
+    // so we can detect when Mary deactivates meals
     console.log('Fetching products from Shopify...');
-    const shopifyRes = await fetch(
-      `https://${SHOPIFY_STORE_URL}/admin/api/2024-10/products.json?limit=250&status=active`,
-      {
-        headers: {
-          'X-Shopify-Access-Token': SHOPIFY_ACCESS_TOKEN,
-          'Content-Type': 'application/json',
-        },
-      }
-    );
+    const allProducts: any[] = [];
 
-    if (!shopifyRes.ok) {
-      const errText = await shopifyRes.text();
-      console.error('Shopify API error:', shopifyRes.status, errText);
-      return new Response(
-        JSON.stringify({ error: 'Failed to fetch Shopify products', details: errText, status: shopifyRes.status }),
-        { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+    for (const status of ['active', 'draft', 'archived']) {
+      const shopifyRes = await fetch(
+        `https://${SHOPIFY_API_KEY}:${SHOPIFY_API_SECRET}@${SHOPIFY_STORE_URL}/admin/api/2024-10/products.json?limit=250&status=${status}`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
       );
+
+      if (!shopifyRes.ok) {
+        const errText = await shopifyRes.text();
+        console.error(`Shopify API error (${status}):`, shopifyRes.status, errText);
+        return new Response(
+          JSON.stringify({ error: 'Failed to fetch Shopify products', details: errText, status: shopifyRes.status }),
+          { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        );
+      }
+
+      const { products: statusProducts } = await shopifyRes.json();
+      allProducts.push(...statusProducts);
     }
 
-    const { products } = await shopifyRes.json();
-    console.log(`Fetched ${products.length} products from Shopify`);
+    const products = allProducts;
+    console.log(`Fetched ${products.length} total products from Shopify`);
 
     let synced = 0;
     let failed = 0;
