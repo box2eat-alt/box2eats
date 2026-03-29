@@ -144,7 +144,7 @@ export default function Payments() {
                         <td className="py-3 px-4 text-sm">{order.order_number}</td>
                         <td className="py-3 px-4 text-sm">{order.customer_first_name} {order.customer_last_name}</td>
                         <td className="py-3 px-4 text-sm">
-                          {new Date(order.created_date).toLocaleDateString()}
+                          {new Date(order.created_at).toLocaleDateString()}
                         </td>
                         <td className="py-3 px-4 text-sm font-semibold">${breakdown.revenue.toFixed(2)}</td>
                         <td className="py-3 px-4 text-sm font-semibold text-orange-600">${breakdown.costToMary.toFixed(2)}</td>
