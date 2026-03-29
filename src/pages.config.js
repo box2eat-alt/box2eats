@@ -1,4 +1,5 @@
 import Admin from './pages/Admin';
+import AdminPanel from './pages/AdminPanel';
 import AdminProducts from './pages/AdminProducts';
 import Cart from './pages/Cart';
 import Favorites from './pages/Favorites';
@@ -16,6 +17,7 @@ import __Layout from './Layout.jsx';
 
 export const PAGES = {
     "Admin": Admin,
+    "AdminPanel": AdminPanel,
     "AdminProducts": AdminProducts,
     "Cart": Cart,
     "Favorites": Favorites,

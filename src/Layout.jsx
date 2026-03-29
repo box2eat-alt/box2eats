@@ -1,16 +1,10 @@
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { createPageUrl } from "@/utils";
-import { Home, UtensilsCrossed, ShoppingBag, Clock, X, Settings, LogOut, User as UserIcon, Shield, ChevronDown, LayoutDashboard, Package, ChefHat, Heart, Info } from "lucide-react";
+import { Home, UtensilsCrossed, ShoppingBag, Clock, X, Settings, LogOut, User as UserIcon, Shield, Heart, Info } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { useAuth } from "@/lib/AuthContext";
 import { useQuery } from "@tanstack/react-query";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger } from
-"@/components/ui/dropdown-menu";
 
 const navigationItems = [
 { title: "Home", url: createPageUrl("Home"), icon: Home },
@@ -37,7 +31,8 @@ export default function Layout({ children, currentPageName }) {
   });
 
   const isAdmin = user?.role === 'admin';
-  const isAdminPage = location.pathname === createPageUrl("Admin") ||
+  const isAdminPage = location.pathname === createPageUrl("AdminPanel") ||
+  location.pathname === createPageUrl("Admin") ||
   location.pathname === createPageUrl("AdminProducts") ||
   location.pathname === createPageUrl("MarysKitchen");
 
@@ -83,90 +78,6 @@ export default function Layout({ children, currentPageName }) {
               </Link>
             )}
 
-            {/* Admin Panel Dropdown - Only visible to admins */}
-            {isAdmin &&
-            <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <button
-                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
-                  isAdminPage ?
-                  'text-white' :
-                  'text-gray-400 hover:bg-gray-800 hover:text-white'}`
-                  }
-                  style={isAdminPage ? { backgroundColor: '#c0282d' } : {}}>
-
-                    <Shield className="w-5 h-5" />
-                    <span className="font-medium flex-1 text-left">Admin Panel</span>
-                    <ChevronDown className="w-4 h-4" />
-                  </button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent
-                className="w-56 bg-gray-800 border-gray-700"
-                side="bottom"
-                align="start">
-
-                  <DropdownMenuItem asChild>
-                    <Link
-                    to={createPageUrl("Admin")}
-                    className={`flex items-center gap-3 px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-700 cursor-pointer ${
-                    location.pathname === createPageUrl("Admin") ? 'bg-gray-700 text-white' : ''}`
-                    }>
-
-                      <LayoutDashboard className="w-4 h-4" />
-                      Dashboard
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <Link
-                    to={createPageUrl("AdminProducts")}
-                    className={`flex items-center gap-3 px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-700 cursor-pointer ${
-                    location.pathname === createPageUrl("AdminProducts") ? 'bg-gray-700 text-white' : ''}`
-                    }>
-
-                      <Package className="w-4 h-4" />
-                      Products
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <div
-                        className={`flex items-center justify-between gap-3 px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-700 cursor-pointer ${
-                        location.pathname === createPageUrl("MarysKitchen") ? 'bg-gray-700 text-white' : ''}`
-                        }>
-                        <div className="flex items-center gap-3">
-                          <ChefHat className="w-4 h-4" />
-                          <span>Mary's Kitchen</span>
-                        </div>
-                        <ChevronDown className="w-3 h-3" />
-                      </div>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent
-                      className="w-56 bg-gray-800 border-gray-700"
-                      side="bottom"
-                      align="start">
-                      <DropdownMenuItem asChild>
-                        <Link
-                          to={createPageUrl("MarysKitchen")}
-                          className={`flex items-center gap-3 px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-700 cursor-pointer ${
-                          location.pathname === createPageUrl("MarysKitchen") ? 'bg-gray-700 text-white' : ''}`
-                          }>
-                          Shopify Products
-                        </Link>
-                      </DropdownMenuItem>
-                      <DropdownMenuItem asChild>
-                        <Link
-                          to={createPageUrl("Payments")}
-                          className={`flex items-center gap-3 px-3 py-2 text-gray-300 hover:text-white hover:bg-gray-700 cursor-pointer ${
-                          location.pathname === createPageUrl("Payments") ? 'bg-gray-700 text-white' : ''}`
-                          }>
-                          Payments
-                        </Link>
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            }
           </nav>
 
           <div className="shrink-0 pt-4 border-t border-gray-800 space-y-2">
@@ -186,6 +97,20 @@ export default function Layout({ children, currentPageName }) {
                 </div>
               </div>
             </div>
+
+            {isAdmin && (
+              <Link
+                to={createPageUrl("AdminPanel")}
+                className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
+                isAdminPage ?
+                'text-white' :
+                'text-gray-400 hover:bg-gray-800 hover:text-white'}`
+                }
+                style={isAdminPage ? { backgroundColor: '#c0282d' } : {}}>
+                <Shield className="w-5 h-5" />
+                <span className="font-medium">Admin Panel</span>
+              </Link>
+            )}
 
             <Link
               to={createPageUrl("Profile")}
