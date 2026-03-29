@@ -43,10 +43,15 @@ export default function MarysKitchen() {
 
     try {
       const { data, error } = await supabase.functions.invoke('sync-shopify-products');
-      if (error) throw error;
+      console.log('[Sync] response data:', data, 'error:', error);
+      if (error) {
+        setSyncResult({ error: `${error.message} — ${JSON.stringify(error)}` });
+        return;
+      }
       setSyncResult(data);
       queryClient.invalidateQueries({ queryKey: ['allProducts'] });
     } catch (error) {
+      console.error('[Sync] caught error:', error);
       setSyncResult({ error: error.message });
     } finally {
       setIsSyncing(false);
