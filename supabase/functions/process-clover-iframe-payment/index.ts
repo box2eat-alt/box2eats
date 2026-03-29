@@ -134,6 +134,66 @@ Deno.serve(async (req) => {
       );
     }
 
+    // Send order to Mary's Shopify store
+    const shopifyStore = Deno.env.get("SHOPIFY_STORE_URL")?.trim();
+    const shopifyToken = Deno.env.get("SHOPIFY_ACCESS_TOKEN")?.trim();
+
+    if (shopifyStore && shopifyToken) {
+      try {
+        const lineItems = (order_data.items as any[]).map((item: any) => {
+          if (item.shopify_variant_id) {
+            return { variant_id: Number(item.shopify_variant_id), quantity: item.quantity };
+          }
+          return { title: item.product_name, quantity: item.quantity, price: String(item.price) };
+        });
+
+        const shopifyOrder = {
+          order: {
+            line_items: lineItems,
+            financial_status: "paid",
+            note: `Box2Eats Order ${orderNumber} | Clover Charge: ${charge.id}`,
+            email: order_data.email || user.email || "",
+            phone: order_data.phone_number || "",
+            shipping_address: order_data.order_type === "delivery" && order_data.delivery_address
+              ? {
+                  address1: order_data.delivery_address,
+                  first_name: order_data.first_name || "",
+                  last_name: order_data.last_name || "",
+                }
+              : undefined,
+            tags: `box2eats,${order_data.order_type || "pickup"}`,
+            note_attributes: [
+              { name: "order_type", value: order_data.order_type || "pickup" },
+              { name: "pickup_location", value: order_data.pickup_address || "" },
+              { name: "delivery_instructions", value: order_data.delivery_instructions || "" },
+            ],
+          },
+        };
+
+        const shopifyRes = await fetch(
+          `https://${shopifyStore}/admin/api/2024-10/orders.json`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "X-Shopify-Access-Token": shopifyToken,
+            },
+            body: JSON.stringify(shopifyOrder),
+          },
+        );
+
+        if (!shopifyRes.ok) {
+          const errText = await shopifyRes.text();
+          console.error("Shopify order creation failed:", shopifyRes.status, errText);
+        } else {
+          const shopifyData = await shopifyRes.json();
+          console.log("Shopify order created:", shopifyData.order?.id);
+        }
+      } catch (shopifyErr) {
+        console.error("Shopify order error (non-blocking):", shopifyErr);
+      }
+    }
+
     return Response.json(
       {
         success: true,

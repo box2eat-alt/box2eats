@@ -124,7 +124,7 @@ export default function CheckoutForm({ total, onBack, onSubmit, isProcessing }) 
               el.mount(id);
               el.addEventListener('change', (event) => {
                 setFieldErrors(prev => ({ ...prev, [key]: event.error?.message || null }));
-                setFieldValid(prev => ({ ...prev, [key]: !event.error && event.touched }));
+                setFieldValid(prev => ({ ...prev, [key]: !event.error }));
               });
             });
 
