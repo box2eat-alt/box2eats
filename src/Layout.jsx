@@ -115,7 +115,7 @@ export default function Layout({ children, currentPageName }) {
             )}
           </nav>
 
-          <div className="shrink-0 pt-4 border-t border-gray-800 space-y-2">
+          <div className="shrink-0 pt-4 pb-4 border-t border-gray-800 space-y-2">
             {/* User Profile */}
             <div className="mb-2">
               <div className="flex items-center gap-3 bg-gray-800 rounded-2xl p-3">
