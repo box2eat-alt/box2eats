@@ -135,7 +135,7 @@ export default function Layout({ children, currentPageName }) {
 
             {isAdmin && !isAdminPage && (
               <Link
-                to={createPageUrl("AdminPanel")}
+                to={createPageUrl("Admin")}
                 className="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-400 hover:bg-gray-800 hover:text-white transition-all"
               >
                 <Shield className="w-5 h-5" />
