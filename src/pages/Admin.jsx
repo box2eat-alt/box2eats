@@ -103,7 +103,7 @@ export default function Admin() {
   }
 
   const todayOrders = orders.filter(order => {
-    const orderDateVancouver = formatInTimeZone(new Date(order.created_date), "America/Vancouver", "yyyy-MM-dd");
+    const orderDateVancouver = formatInTimeZone(new Date(order.created_at), "America/Vancouver", "yyyy-MM-dd");
     const todayVancouver = formatInTimeZone(new Date(), "America/Vancouver", "yyyy-MM-dd");
     return orderDateVancouver === todayVancouver;
   });
@@ -306,7 +306,7 @@ export default function Admin() {
                           <p className="font-semibold text-gray-900">{order.order_number}</p>
                           <p className="text-sm text-gray-600">{order.user_email}</p>
                           <p className="text-xs text-gray-500">
-                            {formatInTimeZone(new Date(order.created_date), "America/Vancouver", "MMM d, yyyy 'at' h:mm a")}
+                            {formatInTimeZone(new Date(order.created_at), "America/Vancouver", "MMM d, yyyy 'at' h:mm a")}
                           </p>
                         </div>
                         <div className="text-right">
@@ -358,7 +358,7 @@ export default function Admin() {
                           <p className="font-semibold text-gray-900">{order.order_number}</p>
                           <p className="text-sm text-gray-600">{order.user_email}</p>
                           <p className="text-xs text-gray-500">
-                            {formatInTimeZone(new Date(order.created_date), "America/Vancouver", "MMM d, yyyy 'at' h:mm a")}
+                            {formatInTimeZone(new Date(order.created_at), "America/Vancouver", "MMM d, yyyy 'at' h:mm a")}
                           </p>
                         </div>
                         <div className="text-right">
@@ -410,7 +410,7 @@ export default function Admin() {
                           <p className="font-semibold text-gray-900">{order.order_number}</p>
                           <p className="text-sm text-gray-600">{order.user_email}</p>
                           <p className="text-xs text-gray-500">
-                            {formatInTimeZone(new Date(order.created_date), "America/Vancouver", "MMM d, yyyy 'at' h:mm a")}
+                            {formatInTimeZone(new Date(order.created_at), "America/Vancouver", "MMM d, yyyy 'at' h:mm a")}
                           </p>
                         </div>
                         <div className="text-right">
