@@ -69,11 +69,6 @@ export default function ProductDetails() {
 
   const addToCartMutation = useMutation({
     mutationFn: async () => {
-      if (!user) {
-        navigate('/login');
-        return;
-      }
-
       const currentPrice = getCurrentPrice();
       let productName = product.name;
       if (selectedVariant) {
@@ -301,7 +296,10 @@ export default function ProductDetails() {
 
             {/* Add to Cart Button */}
             <Button
-              onClick={() => addToCartMutation.mutate()}
+              onClick={() => {
+                if (!user) { navigate('/login'); return; }
+                addToCartMutation.mutate();
+              }}
               disabled={addToCartMutation.isPending}
               className="w-full h-16 bg-[#c0282d] hover:bg-[#a02125] text-white rounded-2xl text-lg font-semibold"
             >
