@@ -4,7 +4,7 @@ import { useAuth } from "@/lib/AuthContext";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { ShoppingBag, ArrowRight, ArrowLeft } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import CartItemCard from "../components/cart/CartItemCard";
 import CheckoutForm from "../components/cart/CheckoutForm";
@@ -16,8 +16,7 @@ export default function Cart() {
   const [showCheckout, setShowCheckout] = useState(false);
 
   if (!isAuthenticated) {
-    navigate('/login');
-    return null;
+    return <Navigate to="/login" replace />;
   }
 
   const { data: cartItems = [], isLoading } = useQuery({
