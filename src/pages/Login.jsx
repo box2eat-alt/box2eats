@@ -63,7 +63,7 @@ export default function Login() {
       ]);
       if (result) {
         console.log('[Login] Success — redirecting to /home');
-        window.location.href = '/home';
+        navigate('/home', { replace: true });
       }
     } catch (err) {
       console.error('[Login] Error:', err.message, err);
