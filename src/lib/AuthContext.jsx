@@ -101,7 +101,6 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
     setProfile(null);
     setIsAuthenticated(false);
-    window.location.href = '/login';
   };
 
   const updateProfile = async (updates) => {

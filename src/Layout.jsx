@@ -159,10 +159,7 @@ export default function Layout({ children, currentPageName }) {
             {user ? (
               <button
                 type="button"
-                onClick={() => {
-                  supabase.auth.signOut().catch(() => {});
-                  window.location.replace('/login');
-                }}
+                onClick={() => { logout(); }}
                 className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-gray-400 hover:bg-gray-800 hover:text-white transition-all cursor-pointer z-50"
               >
                 <LogOut className="w-5 h-5" />
