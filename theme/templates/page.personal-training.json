@@ -1,0 +1,337 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_banner_EErXMp": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_96HiJA": {
+          "type": "heading",
+          "settings": {
+            "heading": "Personal Training",
+            "heading_size": "h1"
+          }
+        },
+        "text_7wYikG": {
+          "type": "text",
+          "settings": {
+            "text": "",
+            "text_style": "body"
+          }
+        },
+        "buttons_jgtB3g": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "JOIN NOW",
+            "button_link_1": "shopify://pages/join-now",
+            "button_style_secondary_1": false,
+            "button_label_2": "VIEW SCHEDULE",
+            "button_link_2": "shopify://pages/our-schedule",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_96HiJA",
+        "text_7wYikG",
+        "buttons_jgtB3g"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/97351534-c411-49ce-93b6-04775c38f413_copy.png",
+        "image_overlay_opacity": 40,
+        "image_height": "medium",
+        "adapt_height_first_image": false,
+        "desktop_content_position": "middle-center",
+        "show_text_box": true,
+        "desktop_content_alignment": "center",
+        "color_scheme": "background-1",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": true,
+        "show_text_below": false
+      }
+    },
+    "rich_text_nXQgpm": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_qQVgTM": {
+          "type": "heading",
+          "settings": {
+            "heading": "Built Around Your Goals",
+            "heading_size": "h1"
+          }
+        },
+        "text_XydCQW": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Our Personal Training program delivers customized, one-on-one or small-group coaching designed to help you reach your specific fitness goals efficiently and safely. Each session combines boxing-based training, strength work, and conditioning, guided by experienced coaches who focus on proper technique, progression, and accountability. Whether your goal is fat loss, strength, endurance, or overall fitness, Personal Training at Box2Fit helps you train smarter, stay consistent, and achieve real, lasting results.</p>"
+          }
+        },
+        "button_W6r8De": {
+          "type": "button",
+          "settings": {
+            "button_label": "JOIN NOW",
+            "button_link": "shopify://pages/join-now",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_qQVgTM",
+        "text_XydCQW",
+        "button_W6r8De"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "color_scheme": "background-1",
+        "full_width": true,
+        "padding_top": 72,
+        "padding_bottom": 52
+      }
+    },
+    "blocks_7pbgD7": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_cc660b5_MkNfrG": {
+          "type": "ai_gen_block_cc660b5",
+          "settings": {
+            "image": "shopify://shop_images/97351534-c411-49ce-93b6-04775c38f413_copy_913f72c9-0e83-43e3-97cf-78e39451c9d0.png",
+            "image_fit": "cover",
+            "height": 200,
+            "mobile_height": 150
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_cc660b5_MkNfrG"
+      ],
+      "name": "Image banner",
+      "settings": {}
+    },
+    "1768856240f2afbda6": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_2c51ba0_brEGJU": {
+          "type": "ai_gen_block_2c51ba0",
+          "settings": {
+            "heading": "Photo gallery",
+            "heading_color": "#ffffff",
+            "heading_size": 32,
+            "heading_alignment": "center",
+            "heading_spacing": 32,
+            "columns_desktop": 4,
+            "gap": 16,
+            "container_width": 1100,
+            "section_padding": 56,
+            "aspect_ratio": "1 / 1",
+            "image_border_radius": 0,
+            "hover_zoom": 1.1,
+            "image_1": "shopify://shop_images/hf_20260119_014526_3c829a12-3f9d-48c8-9ddd-11b69f71d435.png",
+            "image_2": "shopify://shop_images/hf_20260119_211229_55523536-0b07-4a51-bcb3-f168e17aeb37.png",
+            "image_3": "shopify://shop_images/hf_20260119_211242_8c2438d3-dfff-4be6-9e92-d324b6233780.png",
+            "image_4": "shopify://shop_images/hf_20260119_211342_664bb3ad-56d7-43d8-809a-9484679523bd-2.png"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_2c51ba0_brEGJU"
+      ],
+      "settings": {}
+    },
+    "multicolumn_RYVUNd": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_EKYB4E": {
+          "type": "column",
+          "settings": {
+            "title": "CUSTOMIZED TRAINING",
+            "text": "<p>Personal Training delivers tailored workouts built around your goals, combining boxing, strength training, and conditioning to improve strength, endurance, and overall fitness.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_VT6CrG": {
+          "type": "column",
+          "settings": {
+            "title": "TECHNIQUE & PROGRESSION",
+            "text": "<p>Sessions focus on proper form, movement, and progressive training to help you build strength safely, improve performance, and avoid plateaus.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_mKGjtL": {
+          "type": "column",
+          "settings": {
+            "title": "COACH-LED ACCOUNTABILITY",
+            "text": "<p>Work one-on-one or in small groups with experienced coaches who keep you motivated, accountable, and progressing with every session.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_EKYB4E",
+        "column_VT6CrG",
+        "column_mKGjtL"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "primary",
+        "button_label": "JOIN NOW",
+        "button_link": "shopify://pages/join-now",
+        "color_scheme": "background-1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 52,
+        "padding_bottom": 72
+      }
+    },
+    "collapsible_content_hYiyqG": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_gRMkXx": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Who is Personal Training for?",
+            "icon": "check_mark",
+            "row_content": "<p>Personal Training is ideal for anyone looking for customized guidance and faster results. Whether you’re new to training, returning after time off, or working toward specific fitness goals, sessions are tailored to your needs and experience level.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_cErQga": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What can I expect in a Personal Training session?",
+            "icon": "check_mark",
+            "row_content": "<p>Each session is customized to your goals and may include boxing-based training, strength work, conditioning, and mobility. Your coach will focus on proper technique, progression, and accountability to help you train efficiently and safely.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_VdCTGt": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Do I need boxing or fitness experience to start?",
+            "icon": "check_mark",
+            "row_content": "<p>No experience is required. Our coaches meet you where you are, provide clear instruction, and adjust each workout to match your ability and comfort level.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_hCBJXB": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What should I bring to Personal Training?",
+            "icon": "check_mark",
+            "row_content": "<p>Wear comfortable athletic clothing and bring indoor training shoes and a water bottle. All boxing equipment can be provided if needed.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_gRMkXx",
+        "collapsible_row_cErQga",
+        "collapsible_row_VdCTGt",
+        "collapsible_row_hCBJXB"
+      ],
+      "name": "t:sections.collapsible_content.presets.name",
+      "settings": {
+        "caption": "",
+        "heading": "PERSONAL TRAINING DETAILS",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "layout": "none",
+        "color_scheme": "background-1",
+        "container_color_scheme": "background-2",
+        "open_first_collapsible_row": false,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
+    "1648592464d59719aa": {
+      "type": "image-banner",
+      "blocks": {
+        "1648592464bd9bb1c7-0": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "heading": "Image banner",
+            "heading_size": "h1"
+          }
+        },
+        "1648592464bd9bb1c7-1": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "Give customers details about the banner image(s) or content on the template.",
+            "text_style": "body"
+          }
+        },
+        "1648592464bd9bb1c7-2": {
+          "type": "buttons",
+          "disabled": true,
+          "settings": {
+            "button_label_1": "Button label",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "Button label",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "1648592464bd9bb1c7-0",
+        "1648592464bd9bb1c7-1",
+        "1648592464bd9bb1c7-2"
+      ],
+      "disabled": true,
+      "settings": {
+        "image": "shopify://shop_images/CONTACT_BANNER-new.png",
+        "image_overlay_opacity": 0,
+        "image_height": "small",
+        "adapt_height_first_image": false,
+        "desktop_content_position": "middle-center",
+        "show_text_box": false,
+        "desktop_content_alignment": "center",
+        "color_scheme": "background-1",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": false,
+        "show_text_below": false
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    }
+  },
+  "order": [
+    "image_banner_EErXMp",
+    "rich_text_nXQgpm",
+    "blocks_7pbgD7",
+    "1768856240f2afbda6",
+    "multicolumn_RYVUNd",
+    "collapsible_content_hYiyqG",
+    "1648592464d59719aa",
+    "main"
+  ]
+}

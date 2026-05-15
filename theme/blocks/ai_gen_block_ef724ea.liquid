@@ -1,0 +1,621 @@
+{% doc %}
+  @prompt
+    I want a section where I can have the image on the right or left, it has a mini title, header, description on the opposite side. and well as two buttons that are horizontal or can stack on top of each other , make it so I can align the content, right, centre, or left, make it so I can align it, separately  for desktop and mobile 
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-image-text-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    background-color: {{ block.settings.background_color }};
+    padding: {{ block.settings.section_padding }}px 0;
+  }
+
+  .ai-image-text__container-{{ ai_gen_id }} {
+    max-width: {{ block.settings.container_width }}px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .ai-image-text__wrapper-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: {{ block.settings.content_gap }}px;
+    {% if block.settings.image_position == 'right' %}
+      flex-direction: row-reverse;
+    {% endif %}
+  }
+
+  .ai-image-text__image-column-{{ ai_gen_id }} {
+    flex: 0 0 {{ block.settings.image_width }}%;
+  }
+
+  .ai-image-text__image-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: {{ block.settings.image_border_radius }}px;
+  }
+
+  .ai-image-text__image-wrapper-{{ ai_gen_id }} img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .ai-image-text__image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: {{ block.settings.image_border_radius }}px;
+  }
+
+  .ai-image-text__image-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-image-text__content-column-{{ ai_gen_id }} {
+    flex: 1;
+  }
+
+  .ai-image-text__content-{{ ai_gen_id }} {
+    max-width: 600px;
+    text-align: {{ block.settings.content_alignment_desktop }};
+    {% if block.settings.content_alignment_desktop == 'left' %}
+      {% if block.settings.image_position == 'right' %}
+        margin-right: auto;
+      {% else %}
+        margin-left: auto;
+      {% endif %}
+    {% elsif block.settings.content_alignment_desktop == 'center' %}
+      margin-left: auto;
+      margin-right: auto;
+    {% elsif block.settings.content_alignment_desktop == 'right' %}
+      {% if block.settings.image_position == 'right' %}
+        margin-left: auto;
+      {% else %}
+        margin-right: auto;
+      {% endif %}
+    {% endif %}
+  }
+
+  .ai-image-text__mini-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.mini_title_size }}px;
+    color: {{ block.settings.mini_title_color }};
+    margin: 0 0 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+  }
+
+  .ai-image-text__heading-{{ ai_gen_id }} {
+    font-size: {{ block.settings.heading_size }}px;
+    color: {{ block.settings.heading_color }};
+    margin: 0 0 16px;
+    line-height: 1.2;
+  }
+
+  .ai-image-text__description-{{ ai_gen_id }} {
+    font-size: {{ block.settings.description_size }}px;
+    color: {{ block.settings.description_color }};
+    line-height: 1.6;
+    margin: 0 0 24px;
+  }
+
+  .ai-image-text__buttons-{{ ai_gen_id }} {
+    display: flex;
+    gap: 12px;
+    {% if block.settings.content_alignment_desktop == 'left' %}
+      justify-content: flex-start;
+    {% elsif block.settings.content_alignment_desktop == 'center' %}
+      justify-content: center;
+    {% elsif block.settings.content_alignment_desktop == 'right' %}
+      justify-content: flex-end;
+    {% endif %}
+    {% if block.settings.button_layout == 'stacked' %}
+      flex-direction: column;
+      {% if block.settings.content_alignment_desktop == 'left' %}
+        align-items: flex-start;
+      {% elsif block.settings.content_alignment_desktop == 'center' %}
+        align-items: center;
+      {% elsif block.settings.content_alignment_desktop == 'right' %}
+        align-items: flex-end;
+      {% endif %}
+    {% else %}
+      flex-direction: row;
+      flex-wrap: wrap;
+    {% endif %}
+  }
+
+  .ai-image-text__button-{{ ai_gen_id }} {
+    display: inline-block;
+    padding: 14px 28px;
+    text-decoration: none;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    font-size: {{ block.settings.button_font_size }}px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-align: center;
+    border: 2px solid transparent;
+    {% if block.settings.button_layout == 'stacked' %}
+      width: 100%;
+      max-width: 300px;
+    {% endif %}
+  }
+
+  .ai-image-text__button--primary-{{ ai_gen_id }} {
+    background-color: {{ block.settings.button_primary_bg }};
+    color: {{ block.settings.button_primary_text_color }};
+    border-color: {{ block.settings.button_primary_bg }};
+  }
+
+  .ai-image-text__button--primary-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_primary_hover_bg }};
+    border-color: {{ block.settings.button_primary_hover_bg }};
+  }
+
+  .ai-image-text__button--secondary-{{ ai_gen_id }} {
+    background-color: {{ block.settings.button_secondary_bg }};
+    color: {{ block.settings.button_secondary_text_color }};
+    border-color: {{ block.settings.button_secondary_border }};
+  }
+
+  .ai-image-text__button--secondary-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_secondary_hover_bg }};
+    border-color: {{ block.settings.button_secondary_hover_border }};
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-image-text__wrapper-{{ ai_gen_id }} {
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .ai-image-text__image-column-{{ ai_gen_id }} {
+      flex: 0 0 100%;
+    }
+
+    .ai-image-text__content-{{ ai_gen_id }} {
+      text-align: {{ block.settings.content_alignment_mobile }};
+      {% if block.settings.content_alignment_mobile == 'left' %}
+        margin-left: 0;
+        margin-right: auto;
+      {% elsif block.settings.content_alignment_mobile == 'center' %}
+        margin-left: auto;
+        margin-right: auto;
+      {% elsif block.settings.content_alignment_mobile == 'right' %}
+        margin-left: auto;
+        margin-right: 0;
+      {% endif %}
+    }
+
+    .ai-image-text__buttons-{{ ai_gen_id }} {
+      flex-direction: column;
+      {% if block.settings.content_alignment_mobile == 'left' %}
+        justify-content: flex-start;
+        align-items: flex-start;
+      {% elsif block.settings.content_alignment_mobile == 'center' %}
+        justify-content: center;
+        align-items: center;
+      {% elsif block.settings.content_alignment_mobile == 'right' %}
+        justify-content: flex-end;
+        align-items: flex-end;
+      {% endif %}
+    }
+
+    .ai-image-text__button-{{ ai_gen_id }} {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+{% endstyle %}
+
+<image-text-block-{{ ai_gen_id }} class="ai-image-text-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-image-text__container-{{ ai_gen_id }}">
+    <div class="ai-image-text__wrapper-{{ ai_gen_id }}">
+      <div class="ai-image-text__image-column-{{ ai_gen_id }}">
+        <div class="ai-image-text__image-wrapper-{{ ai_gen_id }}">
+          {% if block.settings.image %}
+            <img
+              src="{{ block.settings.image | image_url: width: 1200 }}"
+              alt="{{ block.settings.image.alt | escape }}"
+              loading="lazy"
+              width="{{ block.settings.image.width }}"
+              height="{{ block.settings.image.height }}"
+            >
+          {% else %}
+            <div class="ai-image-text__image-placeholder-{{ ai_gen_id }}">
+              {{ 'image' | placeholder_svg_tag }}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="ai-image-text__content-column-{{ ai_gen_id }}">
+        <div class="ai-image-text__content-{{ ai_gen_id }}">
+          {% if block.settings.mini_title != blank %}
+            <div class="ai-image-text__mini-title-{{ ai_gen_id }}">
+              {{ block.settings.mini_title }}
+            </div>
+          {% endif %}
+
+          {% if block.settings.heading != blank %}
+            <h2 class="ai-image-text__heading-{{ ai_gen_id }}">
+              {{ block.settings.heading }}
+            </h2>
+          {% endif %}
+
+          {% if block.settings.description != blank %}
+            <div class="ai-image-text__description-{{ ai_gen_id }}">
+              {{ block.settings.description }}
+            </div>
+          {% endif %}
+
+          <div class="ai-image-text__buttons-{{ ai_gen_id }}">
+            {% if block.settings.button_primary_label != blank %}
+              <a
+                href="{{ block.settings.button_primary_link }}"
+                class="ai-image-text__button-{{ ai_gen_id }} ai-image-text__button--primary-{{ ai_gen_id }}"
+              >
+                {{ block.settings.button_primary_label }}
+              </a>
+            {% endif %}
+
+            {% if block.settings.button_secondary_label != blank %}
+              <a
+                href="{{ block.settings.button_secondary_link }}"
+                class="ai-image-text__button-{{ ai_gen_id }} ai-image-text__button--secondary-{{ ai_gen_id }}"
+              >
+                {{ block.settings.button_secondary_label }}
+              </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</image-text-block-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class ImageTextBlock{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+    }
+    customElements.define('image-text-block-{{ ai_gen_id }}', ImageTextBlock{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Image with text",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "select",
+      "id": "content_alignment_desktop",
+      "label": "Content alignment (desktop)",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "select",
+      "id": "content_alignment_mobile",
+      "label": "Content alignment (mobile)",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "image_width",
+      "min": 30,
+      "max": 60,
+      "step": 5,
+      "unit": "%",
+      "label": "Image width",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "min": 1000,
+      "max": 1600,
+      "step": 100,
+      "unit": "px",
+      "label": "Container width",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "content_gap",
+      "min": 20,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "label": "Content gap",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "label": "Section padding",
+      "default": 60
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "mini_title",
+      "label": "Mini title",
+      "default": "Featured"
+    },
+    {
+      "type": "range",
+      "id": "mini_title_size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Mini title size",
+      "default": 12
+    },
+    {
+      "type": "color",
+      "id": "mini_title_color",
+      "label": "Mini title color",
+      "default": "#c0272d"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Transform your fitness journey"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading size",
+      "default": 40
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Join our community and discover the perfect workout routine tailored to your goals. Expert trainers, state-of-the-art equipment, and a supportive environment await you."
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Description size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Buttons"
+    },
+    {
+      "type": "select",
+      "id": "button_layout",
+      "label": "Button layout",
+      "options": [
+        {
+          "value": "horizontal",
+          "label": "Horizontal"
+        },
+        {
+          "value": "stacked",
+          "label": "Stacked"
+        }
+      ],
+      "default": "horizontal"
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Primary button"
+    },
+    {
+      "type": "text",
+      "id": "button_primary_label",
+      "label": "Label",
+      "default": "Get started"
+    },
+    {
+      "type": "url",
+      "id": "button_primary_link",
+      "label": "Link"
+    },
+    {
+      "type": "color",
+      "id": "button_primary_bg",
+      "label": "Background color",
+      "default": "#c0272d"
+    },
+    {
+      "type": "color",
+      "id": "button_primary_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_primary_hover_bg",
+      "label": "Hover background",
+      "default": "#a01f24"
+    },
+    {
+      "type": "header",
+      "content": "Secondary button"
+    },
+    {
+      "type": "text",
+      "id": "button_secondary_label",
+      "label": "Label",
+      "default": "Learn more"
+    },
+    {
+      "type": "url",
+      "id": "button_secondary_link",
+      "label": "Link"
+    },
+    {
+      "type": "color",
+      "id": "button_secondary_bg",
+      "label": "Background color",
+      "default": "transparent"
+    },
+    {
+      "type": "color",
+      "id": "button_secondary_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_secondary_border",
+      "label": "Border color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_secondary_hover_bg",
+      "label": "Hover background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_secondary_hover_border",
+      "label": "Hover border",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image with text"
+    }
+  ]
+}
+{% endschema %}

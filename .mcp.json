@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "playwright-box2fit": {
+      "type": "stdio",
+      "command": "playwright-mcp",
+      "args": ["--user-data-dir", "/Users/jmoney/Desktop/Claude/Playwright/browser-profiles/box2fit"],
+      "env": {}
+    }
+  }
+}

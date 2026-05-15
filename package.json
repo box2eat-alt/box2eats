@@ -11,7 +11,12 @@
     "db:link": "supabase link --project-ref opbljeqvphjmnbkgoppt",
     "db:push": "supabase db push",
     "functions:deploy": "supabase functions deploy initialize-clover-payment && supabase functions deploy process-clover-iframe-payment",
-    "functions:serve": "supabase functions serve"
+    "functions:serve": "supabase functions serve",
+    "shopify": "dotenv -- shopify",
+    "theme:dev": "dotenv -- shopify theme dev --store punch-out-parkinson --path theme",
+    "theme:push": "dotenv -- shopify theme push --store punch-out-parkinson --path theme --live --allow-live",
+    "theme:pull": "dotenv -- shopify theme pull --store punch-out-parkinson --path theme --live",
+    "theme:list": "dotenv -- shopify theme list --store punch-out-parkinson"
   },
   "dependencies": {
     "@hello-pangea/dnd": "^17.0.0",
@@ -76,11 +81,13 @@
   "devDependencies": {
     "@eslint/js": "^9.19.0",
     "@flydotio/dockerfile": "^0.7.8",
+    "@shopify/cli": "^3.94.3",
     "@types/node": "^22.13.5",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.20",
+    "dotenv-cli": "^11.0.0",
     "eslint": "^9.19.0",
     "eslint-plugin-react": "^7.37.4",
     "eslint-plugin-react-hooks": "^5.0.0",

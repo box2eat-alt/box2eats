@@ -1,0 +1,726 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "17677408256b57cb4b": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_8ddf601_p4mBka": {
+          "type": "ai_gen_block_8ddf601",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/s/files/1/0191/0977/3378/files/ezgif.com-crop.mp4?v=1648594632",
+            "section_height": 80,
+            "overlay_color": "#000000",
+            "overlay_opacity": 65,
+            "heading": "<strong>Box2Fit Training Studio</strong>",
+            "heading_size": 48,
+            "heading_width": 800,
+            "heading_spacing": 16,
+            "description": "<p>High-energy boxing and performance training for all levels. Step in, put in the work, and level up.</p>",
+            "description_size": 18,
+            "description_width": 600,
+            "description_spacing": 32,
+            "text_color": "#ffffff",
+            "button_layout": "inline",
+            "buttons_width": 500,
+            "button_spacing": 16,
+            "button_primary_label": "Free Trial",
+            "button_primary_link": "shopify://pages/forms",
+            "button_primary_bg": "#c0272d",
+            "button_primary_text_color": "#ffffff",
+            "button_primary_hover_bg": "#a01f24",
+            "button_secondary_label": "Join Now",
+            "button_secondary_link": "https://start.mylty.co/?id=18335&plan_id=13242",
+            "button_secondary_bg": "#ffffff",
+            "button_secondary_text_color": "#000000",
+            "button_secondary_border": "#ffffff",
+            "button_secondary_hover_bg": "#ffffff",
+            "button_secondary_hover_border": "#ffffff",
+            "button_font_size": 16,
+            "button_padding_vertical": 14,
+            "button_padding_horizontal": 32,
+            "button_border_radius": 10,
+            "button_border_width": 1
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_470f33a_6fr34x": {
+          "type": "ai_gen_block_470f33a",
+          "settings": {
+            "section_mini_title": "MORE THAN A GYM",
+            "section_header": "Everything BOX2FIT. One Place.",
+            "section_subtitle": "No contracts. Three locations. Training, fuel, and gear in one place.",
+            "header_text_alignment": "center",
+            "card_1_image": "shopify://shop_images/0d799611-8ebf-4c00-b99e-fedc98273395.png",
+            "card_1_mini_title": "TRAIN YOUR WAY",
+            "card_1_header": "CLASSES",
+            "card_1_subtitle": "Boxing, strength, and conditioning programs designed for all levels, goals, and training styles.",
+            "card_1_button_text": "Learn more",
+            "card_1_button_link": "shopify://pages/all-classes",
+            "card_2_image": "shopify://shop_images/hf_20260119_011453_3a85ff39-1483-4d47-8898-7c14acf3cab3.png",
+            "card_2_mini_title": "Three Locations. One Membership.",
+            "card_2_header": "LOCATIONS",
+            "card_2_subtitle": "Three locations delivering the Box2Fit experience, with consistent training, coaching, and community at each gym.",
+            "card_2_button_text": "Learn more",
+            "card_2_button_link": "shopify://pages/contact-us",
+            "card_3_image": "shopify://shop_images/box2eats_-_pic_1.jpg",
+            "card_3_mini_title": "FUEL TO PERFORM",
+            "card_3_header": "BOX2EATS",
+            "card_3_subtitle": "Fresh, performance-focused meals created to support training intensity, recovery, and long-term results.",
+            "card_3_button_text": "Learn more",
+            "card_3_button_link": "shopify://pages/box2fit-training-programs",
+            "card_4_image": "shopify://shop_images/box2fit_-_shirt_1.jpg",
+            "card_4_mini_title": "REP THE GRIND",
+            "card_4_header": "SHOP",
+            "card_4_subtitle": "Box2Fit apparel and training gear built for performance, comfort, and everyday wear.",
+            "card_4_button_text": "Learn more",
+            "card_4_button_link": "shopify://collections",
+            "text_alignment": "center",
+            "section_padding_top": 72,
+            "section_padding_bottom": 72,
+            "section_padding_left": 20,
+            "section_padding_right": 20,
+            "content_padding_top": 24,
+            "content_padding_bottom": 24,
+            "content_padding_left": 24,
+            "content_padding_right": 24,
+            "border_radius": 12,
+            "content_bg_color": "#0a0a0a",
+            "section_mini_title_size": 14,
+            "section_mini_title_color": "#c0272d",
+            "section_header_size": 40,
+            "section_header_color": "#ffffff",
+            "section_subtitle_size": 16,
+            "section_subtitle_color": "#cccccc",
+            "mini_title_size": 12,
+            "mini_title_color": "#c0272d",
+            "header_size": 24,
+            "header_color": "#ffffff",
+            "subtitle_size": 14,
+            "subtitle_color": "#cccccc",
+            "button_bg_color": "#c0272d",
+            "button_hover_bg_color": "#a02127",
+            "button_text_color": "#ffffff",
+            "button_border_radius": 4
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_8ddf601_p4mBka",
+        "ai_gen_block_470f33a_6fr34x"
+      ],
+      "custom_css": [],
+      "settings": {}
+    },
+    "1768338405d5e8e811": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_70979c0_HnQVQ7": {
+          "type": "ai_gen_block_70979c0",
+          "settings": {
+            "image": "shopify://shop_images/Personal_Training_-_Bg2.jpg",
+            "desktop_height": 60,
+            "mobile_height": 70,
+            "show_overlay": true,
+            "overlay_color": "#000000",
+            "overlay_opacity": 40,
+            "logo": "shopify://shop_images/BOX2FIT_-_PNG.png",
+            "logo_width": 300,
+            "logo_spacing": 0,
+            "mini_title": "Train Smarter. Get Results.",
+            "mini_title_color": "#ffffff",
+            "mini_title_size": 14,
+            "mini_title_spacing": 15,
+            "heading": "PERSONAL TRAINING",
+            "heading_color": "#ffffff",
+            "heading_size": 48,
+            "heading_spacing": 20,
+            "description": "One-on-one coaching that combines boxing and strength training to help you lose weight, build muscle, improve endurance, and gain confidence with a program tailored specifically to you.",
+            "description_color": "#ffffff",
+            "description_size": 14,
+            "description_spacing": 30,
+            "text_alignment": "center",
+            "content_max_width": 700,
+            "button_layout": "stacked",
+            "button_alignment": "center",
+            "button_left_label": "MORE INFO",
+            "button_left_link": "shopify://pages/personal-training",
+            "button_left_bg": "#c0272d",
+            "button_left_text_color": "#ffffff",
+            "button_left_border": "#c0272d",
+            "button_left_hover_bg": "#a01f24",
+            "button_left_hover_text": "#ffffff",
+            "button_left_hover_border": "#a01f24",
+            "button_right_label": "PERSONAL TRAINING - JOIN NOW",
+            "button_right_link": "shopify://pages/join-now",
+            "button_right_bg": "rgba(0,0,0,0)",
+            "button_right_text_color": "#ffffff",
+            "button_right_border": "#ffffff",
+            "button_right_hover_bg": "#ffffff",
+            "button_right_hover_text": "#000000",
+            "button_right_hover_border": "#ffffff",
+            "button_font_size": 16,
+            "button_padding_vertical": 14,
+            "button_padding_horizontal": 32,
+            "button_border_radius": 0,
+            "button_border_width": 2,
+            "button_gap": 16,
+            "button_min_width_desktop": 180,
+            "button_max_width_desktop": 400,
+            "button_max_width_mobile": 400
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_70979c0_pjgw3R": {
+          "type": "ai_gen_block_70979c0",
+          "settings": {
+            "image": "shopify://shop_images/sdf.jpg",
+            "desktop_height": 60,
+            "mobile_height": 70,
+            "show_overlay": true,
+            "overlay_color": "#000000",
+            "overlay_opacity": 40,
+            "logo": "shopify://shop_images/BOX2FIT_-_PNG.png",
+            "logo_width": 300,
+            "logo_spacing": 0,
+            "mini_title": "Train Smarter. Get Results.",
+            "mini_title_color": "#ffffff",
+            "mini_title_size": 14,
+            "mini_title_spacing": 15,
+            "heading": "YOUTH TRAINING",
+            "heading_color": "#ffffff",
+            "heading_size": 48,
+            "heading_spacing": 20,
+            "description": "Structured boxing and fitness training that helps youth build strength, coordination, discipline, and confidence in a safe, supportive environment.",
+            "description_color": "#ffffff",
+            "description_size": 14,
+            "description_spacing": 30,
+            "text_alignment": "center",
+            "content_max_width": 700,
+            "button_layout": "stacked",
+            "button_alignment": "center",
+            "button_left_label": "MORE INFO",
+            "button_left_link": "shopify://pages/youth-boxing-at-box2fit",
+            "button_left_bg": "#c0272d",
+            "button_left_text_color": "#ffffff",
+            "button_left_border": "#c0272d",
+            "button_left_hover_bg": "#a01f24",
+            "button_left_hover_text": "#ffffff",
+            "button_left_hover_border": "#a01f24",
+            "button_right_label": "YOUTH TRAINING - JOIN NOW",
+            "button_right_link": "shopify://pages/join-now",
+            "button_right_bg": "rgba(0,0,0,0)",
+            "button_right_text_color": "#ffffff",
+            "button_right_border": "#ffffff",
+            "button_right_hover_bg": "#ffffff",
+            "button_right_hover_text": "#000000",
+            "button_right_hover_border": "#ffffff",
+            "button_font_size": 16,
+            "button_padding_vertical": 14,
+            "button_padding_horizontal": 32,
+            "button_border_radius": 0,
+            "button_border_width": 2,
+            "button_gap": 16,
+            "button_min_width_desktop": 180,
+            "button_max_width_desktop": 400,
+            "button_max_width_mobile": 400
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_70979c0_AJjPBT": {
+          "type": "ai_gen_block_70979c0",
+          "settings": {
+            "image": "shopify://shop_images/sdcds.jpg",
+            "desktop_height": 60,
+            "mobile_height": 70,
+            "show_overlay": true,
+            "overlay_color": "#000000",
+            "overlay_opacity": 40,
+            "logo": "shopify://shop_images/BOX2FIT_-_PNG.png",
+            "logo_width": 300,
+            "logo_spacing": 0,
+            "mini_title": "STRONGER TOGETHER. MORE CONFIDENT EVERY SESSION.",
+            "mini_title_color": "#ffffff",
+            "mini_title_size": 14,
+            "mini_title_spacing": 15,
+            "heading": "SHE HITS",
+            "heading_color": "#ffffff",
+            "heading_size": 48,
+            "heading_spacing": 20,
+            "description": "A women-only boxing program designed to build real skill, real strength, and real confidence. Train in a supportive, ego-free environment where you’ll learn proper technique, practical self-defense foundations, and powerful conditioning — all while surrounded by women who push and support each other.",
+            "description_color": "#ffffff",
+            "description_size": 14,
+            "description_spacing": 30,
+            "text_alignment": "center",
+            "content_max_width": 700,
+            "button_layout": "stacked",
+            "button_alignment": "center",
+            "button_left_label": "MORE INFO",
+            "button_left_link": "shopify://pages/she-hits-womens-boxing",
+            "button_left_bg": "#c0272d",
+            "button_left_text_color": "#ffffff",
+            "button_left_border": "#c0272d",
+            "button_left_hover_bg": "#a01f24",
+            "button_left_hover_text": "#ffffff",
+            "button_left_hover_border": "#a01f24",
+            "button_right_label": "JOIN SHE HITS",
+            "button_right_link": "shopify://pages/join-now",
+            "button_right_bg": "rgba(0,0,0,0)",
+            "button_right_text_color": "#ffffff",
+            "button_right_border": "#ffffff",
+            "button_right_hover_bg": "#ffffff",
+            "button_right_hover_text": "#000000",
+            "button_right_hover_border": "#ffffff",
+            "button_font_size": 16,
+            "button_padding_vertical": 14,
+            "button_padding_horizontal": 32,
+            "button_border_radius": 0,
+            "button_border_width": 2,
+            "button_gap": 16,
+            "button_min_width_desktop": 180,
+            "button_max_width_desktop": 400,
+            "button_max_width_mobile": 400
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_70979c0_HnQVQ7",
+        "ai_gen_block_70979c0_pjgw3R",
+        "ai_gen_block_70979c0_AJjPBT"
+      ],
+      "settings": {}
+    },
+    "blocks_ttx7Nr": {
+      "type": "_blocks",
+      "name": "Fence - Banner",
+      "settings": {}
+    },
+    "164860780232ced13c": {
+      "type": "rich-text",
+      "blocks": {
+        "164860780205940256-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "‎‎‎",
+            "heading_size": "h1"
+          }
+        },
+        "164860780205940256-2": {
+          "type": "button",
+          "settings": {
+            "button_label": "Join BOX 2 FIT",
+            "button_link": "shopify://pages/join-now",
+            "button_style_secondary": true
+          }
+        }
+      },
+      "block_order": [
+        "164860780205940256-0",
+        "164860780205940256-2"
+      ],
+      "disabled": true,
+      "settings": {
+        "color_scheme": "background-2",
+        "full_width": true,
+        "padding_top": 100,
+        "padding_bottom": 100
+      }
+    },
+    "1648589399232cb907": {
+      "type": "video-background",
+      "disabled": true,
+      "settings": {
+        "heading": "",
+        "video_url": "https://cdn.shopify.com/s/files/1/0191/0977/3378/files/ezgif.com-crop.mp4?v=1648594632",
+        "blur": 2.1,
+        "opacity": 0.5
+      }
+    },
+    "image_with_text_iqVmWM": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_mLA6Wj": {
+          "type": "heading",
+          "settings": {
+            "heading": "Punching Back Against Parkinson’s",
+            "heading_size": "h1"
+          }
+        },
+        "text_BKke99": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Punch Out Parkinson’s supports people living with Parkinson’s disease through non contact boxing, movement, and community. Our program uses exercise to help manage symptoms, improve balance, strength, coordination, and support overall quality of life in a safe and motivating environment. Designed for all fitness levels and stages of diagnosis, classes are adaptable and welcoming. Beyond physical benefits, Punch Out Parkinson’s builds confidence, connection, and resilience, helping participants move forward together with strength and purpose.</p>",
+            "text_style": "body"
+          }
+        },
+        "button_dncxRq": {
+          "type": "button",
+          "settings": {
+            "button_label": "LEARN MORE",
+            "button_link": "https://www.punchoutparkinsons.ca"
+          }
+        }
+      },
+      "block_order": [
+        "heading_mLA6Wj",
+        "text_BKke99",
+        "button_dncxRq"
+      ],
+      "name": "Punch Past It",
+      "settings": {
+        "image": "shopify://shop_images/IMG_0289_jpg.avif",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "color_scheme": "background-1",
+        "mobile_content_alignment": "center",
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
+    "17677629132a6032d3": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_70979c0_xhNrhR": {
+          "type": "ai_gen_block_70979c0",
+          "settings": {
+            "image": "shopify://shop_images/Banner_-_Beast_camp_3.jpg",
+            "desktop_height": 70,
+            "mobile_height": 75,
+            "show_overlay": true,
+            "overlay_color": "#000000",
+            "overlay_opacity": 40,
+            "logo": "shopify://shop_images/beast_Camp_-_png_logo.png",
+            "logo_width": 170,
+            "logo_spacing": 0,
+            "mini_title": "Get Strong. Get Fit. Get Results.",
+            "mini_title_color": "#ffffff",
+            "mini_title_size": 14,
+            "mini_title_spacing": 15,
+            "heading": "BEAST CAMP",
+            "heading_color": "#ffffff",
+            "heading_size": 48,
+            "heading_spacing": 20,
+            "description": "This isn’t just another boot camp. This is Box2Fit Beast Camp, our most intense and most popular program combining boxing, strength training, and calisthenics to deliver real results. Designed to push you past your limits, Beast Camp helps you burn fat, build muscle, and improve overall conditioning in a high-energy environment. Built for all levels, it’s for anyone ready to put in the work.",
+            "description_color": "#ffffff",
+            "description_size": 14,
+            "description_spacing": 30,
+            "text_alignment": "center",
+            "content_max_width": 700,
+            "button_layout": "stacked",
+            "button_alignment": "center",
+            "button_left_label": "MORE INFO",
+            "button_left_link": "shopify://pages/beast-camp",
+            "button_left_bg": "#c0272d",
+            "button_left_text_color": "#ffffff",
+            "button_left_border": "#c0272d",
+            "button_left_hover_bg": "#a01f24",
+            "button_left_hover_text": "#ffffff",
+            "button_left_hover_border": "#a01f24",
+            "button_right_label": "Month 2 Month Boot Camp - ON NOW!",
+            "button_right_link": "shopify://pages/beast-camp",
+            "button_right_bg": "rgba(0,0,0,0)",
+            "button_right_text_color": "#ffffff",
+            "button_right_border": "#ffffff",
+            "button_right_hover_bg": "#ffffff",
+            "button_right_hover_text": "#000000",
+            "button_right_hover_border": "#ffffff",
+            "button_font_size": 16,
+            "button_padding_vertical": 14,
+            "button_padding_horizontal": 32,
+            "button_border_radius": 0,
+            "button_border_width": 2,
+            "button_gap": 16,
+            "button_min_width_desktop": 180,
+            "button_max_width_desktop": 400,
+            "button_max_width_mobile": 400
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_70979c0_xhNrhR"
+      ],
+      "settings": {}
+    },
+    "image_with_text_3KGpzf": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_PLcqRc": {
+          "type": "heading",
+          "settings": {
+            "heading": "ABOUT BOX2FIT",
+            "heading_size": "h1"
+          }
+        },
+        "text_tky6gV": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Box2Fit is more than a boxing gym. It’s a family-driven boxing community built on passion, hard work, and growth. What started over ten years ago as a father and daughter training together in a park has grown into three thriving boxing clubs rooted in a love for the sport. Today, our team of dedicated coaches combines world-class training with that same family-first foundation, helping men, women, and children build strength, confidence, and skill in a supportive, high-energy environment.</p>",
+            "text_style": "body"
+          }
+        },
+        "button_tfiNjE": {
+          "type": "button",
+          "settings": {
+            "button_label": "LEARN MORE",
+            "button_link": "shopify://pages/contact-us"
+          }
+        }
+      },
+      "block_order": [
+        "heading_PLcqRc",
+        "text_tky6gV",
+        "button_tfiNjE"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/IMG_6632.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "color_scheme": "background-1",
+        "mobile_content_alignment": "center",
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
+    "blocks_LriBRH": {
+      "type": "_blocks",
+      "settings": {}
+    },
+    "165549532676260bc0": {
+      "type": "image-banner",
+      "blocks": {
+        "1655495326b364d930-1": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "Weights / Boxing / Nutrition Plan with weekly check ups and support. This is personal training in a group setting",
+            "text_style": "body"
+          }
+        },
+        "1655495326b364d930-2": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "6 Week Boot Camp - ON NOW!",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "More Info",
+            "button_link_2": "shopify://pages/join-now",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "1655495326b364d930-1",
+        "1655495326b364d930-2"
+      ],
+      "disabled": true,
+      "settings": {
+        "image": "shopify://shop_images/fit_family_ad.png",
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "adapt_height_first_image": true,
+        "desktop_content_position": "middle-center",
+        "show_text_box": false,
+        "desktop_content_alignment": "center",
+        "color_scheme": "background-1",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": true,
+        "show_text_below": true
+      }
+    },
+    "1648068360b9842826": {
+      "type": "image-with-text",
+      "blocks": {
+        "1648068360eff6a74c-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "COACH FRANCO",
+            "heading_size": "h1"
+          }
+        },
+        "1648068360eff6a74c-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>With more than 25 years experience in the sport of boxing Franco has created a program geared more towards fitness rather then fighting allowing non fighters to train like one. Box2Fit also caters to teams, fighters, weight loss , Women and Children that will also benefit from a program that brings self confidence and results.</p><p>Franco will lead you through a high intensity full body workout that will leave you feeling like a fighter. Franco has also created a program designed specifically for people with Parkinson's Disease called PUNCH OUT PARKINSONS. For more information regarding Box2Fit programs please feel free to contact us.</p>",
+            "text_style": "body"
+          }
+        },
+        "1648068360eff6a74c-2": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "1648068360eff6a74c-0",
+        "1648068360eff6a74c-1",
+        "1648068360eff6a74c-2"
+      ],
+      "disabled": true,
+      "settings": {
+        "image": "shopify://shop_images/cc491683-0a0f-4d5c-87ca-b58554ed5ed4.JPG",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "content_layout": "no-overlap",
+        "color_scheme": "background-1",
+        "mobile_content_alignment": "left",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "blocks_tR6RGe": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_cc660b5_BPczYp": {
+          "type": "ai_gen_block_cc660b5",
+          "settings": {
+            "image": "shopify://shop_images/97351534-c411-49ce-93b6-04775c38f413_copy_913f72c9-0e83-43e3-97cf-78e39451c9d0.png",
+            "image_fit": "cover",
+            "height": 200,
+            "mobile_height": 150
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_cc660b5_BPczYp"
+      ],
+      "name": "Image banner",
+      "settings": {}
+    },
+    "1648617404cfa1bace": {
+      "type": "multicolumn",
+      "blocks": {
+        "164861740427f0b61a-0": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Screen_Shot_2022-03-29_at_10.24.42_PM.png",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "164861740427f0b61a-1": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Screen_Shot_2022-03-29_at_10.24.13_PM.png",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "164861740427f0b61a-2": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Screen_Shot_2022-03-29_at_10.21.29_PM.png",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "f1d63138-21e5-4da7-a76f-3de4e2b9c2e3": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Screen_Shot_2022-03-29_at_10.21.18_PM_f75ab96a-16bd-41f8-a00b-019cb8c62825.png",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "a54572c2-4aef-4fff-b8a1-3d85a4315a1a": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Screen_Shot_2022-03-29_at_10.30.20_PM_76aaaafc-e796-404c-9c53-37913b9da1d3.png",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "1ea1fbac-342d-4032-9bac-8228d82f4199": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Screen_Shot_2022-03-29_at_10.30.34_PM.png",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "164861740427f0b61a-0",
+        "164861740427f0b61a-1",
+        "164861740427f0b61a-2",
+        "f1d63138-21e5-4da7-a76f-3de4e2b9c2e3",
+        "a54572c2-4aef-4fff-b8a1-3d85a4315a1a",
+        "1ea1fbac-342d-4032-9bac-8228d82f4199"
+      ],
+      "settings": {
+        "title": "INSTAGRAM",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "none",
+        "button_label": "FOLLOW US",
+        "button_link": "https://www.instagram.com/box_2_fit/?hl=en",
+        "color_scheme": "background-1",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
+    "blocks_BxtWQ7": {
+      "type": "_blocks",
+      "name": "Fence - Banner",
+      "settings": {}
+    }
+  },
+  "order": [
+    "17677408256b57cb4b",
+    "1768338405d5e8e811",
+    "blocks_ttx7Nr",
+    "164860780232ced13c",
+    "1648589399232cb907",
+    "image_with_text_iqVmWM",
+    "17677629132a6032d3",
+    "image_with_text_3KGpzf",
+    "blocks_LriBRH",
+    "165549532676260bc0",
+    "1648068360b9842826",
+    "blocks_tR6RGe",
+    "1648617404cfa1bace",
+    "blocks_BxtWQ7"
+  ]
+}

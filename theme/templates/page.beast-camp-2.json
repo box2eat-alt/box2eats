@@ -1,0 +1,337 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_banner_EErXMp": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_96HiJA": {
+          "type": "heading",
+          "settings": {
+            "heading": "BEAST CAMP",
+            "heading_size": "h1"
+          }
+        },
+        "text_7wYikG": {
+          "type": "text",
+          "settings": {
+            "text": "",
+            "text_style": "body"
+          }
+        },
+        "buttons_jgtB3g": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "JOIN NOW",
+            "button_link_1": "shopify://pages/join-now",
+            "button_style_secondary_1": false,
+            "button_label_2": "VIEW SCHEDULE",
+            "button_link_2": "shopify://pages/our-schedule",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_96HiJA",
+        "text_7wYikG",
+        "buttons_jgtB3g"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/97351534-c411-49ce-93b6-04775c38f413_copy.png",
+        "image_overlay_opacity": 40,
+        "image_height": "medium",
+        "adapt_height_first_image": false,
+        "desktop_content_position": "middle-center",
+        "show_text_box": true,
+        "desktop_content_alignment": "center",
+        "color_scheme": "background-1",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": true,
+        "show_text_below": false
+      }
+    },
+    "rich_text_nXQgpm": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_qQVgTM": {
+          "type": "heading",
+          "settings": {
+            "heading": "Built to Push Your Limits",
+            "heading_size": "h1"
+          }
+        },
+        "text_XydCQW": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Beast Camp is a high-intensity, month-to-month training program designed to challenge your strength, conditioning, and mental toughness. Each session combines boxing, functional strength training, and conditioning circuits to deliver a demanding full-body workout. Led by experienced coaches, classes focus on power, endurance, and accountability in a fast-paced, team-driven environment. Beast Camp is built for those who want to train harder, stay committed, and see real results through consistent effort and structured progression.</p>"
+          }
+        },
+        "button_W6r8De": {
+          "type": "button",
+          "settings": {
+            "button_label": "JOIN NOW",
+            "button_link": "shopify://pages/join-now",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_qQVgTM",
+        "text_XydCQW",
+        "button_W6r8De"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "color_scheme": "background-1",
+        "full_width": true,
+        "padding_top": 72,
+        "padding_bottom": 52
+      }
+    },
+    "blocks_7pbgD7": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_cc660b5_MkNfrG": {
+          "type": "ai_gen_block_cc660b5",
+          "settings": {
+            "image": "shopify://shop_images/97351534-c411-49ce-93b6-04775c38f413_copy_913f72c9-0e83-43e3-97cf-78e39451c9d0.png",
+            "image_fit": "cover",
+            "height": 200,
+            "mobile_height": 150
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_cc660b5_MkNfrG"
+      ],
+      "name": "Image banner",
+      "settings": {}
+    },
+    "1768856240f2afbda6": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_2c51ba0_brEGJU": {
+          "type": "ai_gen_block_2c51ba0",
+          "settings": {
+            "heading": "Photo gallery",
+            "heading_color": "#ffffff",
+            "heading_size": 32,
+            "heading_alignment": "center",
+            "heading_spacing": 32,
+            "columns_desktop": 4,
+            "gap": 16,
+            "container_width": 1100,
+            "section_padding": 56,
+            "aspect_ratio": "1 / 1",
+            "image_border_radius": 0,
+            "hover_zoom": 1.1,
+            "image_1": "shopify://shop_images/hf_20260119_195222_15de4894-a3d3-4cc7-ab58-8866526743fc.png",
+            "image_2": "shopify://shop_images/hf_20260120_011236_74c6b7bd-f4a7-42ab-94e3-ac7db5300772.png",
+            "image_3": "shopify://shop_images/hf_20260120_011223_ed08de6d-edc0-4533-825c-50bfb6e9e8e9.png",
+            "image_4": "shopify://shop_images/hf_20260120_012011_10ced26b-ff70-4f4d-817d-dde535c5ecda.png"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_2c51ba0_brEGJU"
+      ],
+      "settings": {}
+    },
+    "multicolumn_RYVUNd": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_EKYB4E": {
+          "type": "column",
+          "settings": {
+            "title": "HIGH-INTENSITY CONDITIONING",
+            "text": "<p>Beast Camp delivers demanding, full-body workouts built to push strength, endurance, and conditioning through boxing, functional training, and high-output circuits.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_VT6CrG": {
+          "type": "column",
+          "settings": {
+            "title": "POWER & PERFORMANCE",
+            "text": "<p>Each session focuses on explosive movement, controlled technique, and efficient training to improve stamina, agility, and overall athletic performance.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_mKGjtL": {
+          "type": "column",
+          "settings": {
+            "title": "COACH-LED & ACCOUNTABLE",
+            "text": "<p>Led by experienced coaches, Beast Camp provides a high-energy, no-excuses environment that keeps you motivated, consistent, and committed to real results.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_EKYB4E",
+        "column_VT6CrG",
+        "column_mKGjtL"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "primary",
+        "button_label": "JOIN NOW",
+        "button_link": "shopify://pages/join-now",
+        "color_scheme": "background-1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 52,
+        "padding_bottom": 72
+      }
+    },
+    "collapsible_content_hYiyqG": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_gRMkXx": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Who is Beast Camp for?",
+            "icon": "check_mark",
+            "row_content": "<p>Beast Camp is for anyone looking to push their limits, build serious conditioning, and stay consistent with structured, high-intensity training. It’s ideal for adults of all fitness levels who want results without long-term contracts.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_cErQga": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What can I expect in a Beast Camp class?",
+            "icon": "check_mark",
+            "row_content": "<p>Expect a fast-paced, full-body workout that combines boxing drills, strength training, conditioning circuits, and cardio. Each class is designed to challenge endurance, improve strength, and keep energy high from start to finish.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_VdCTGt": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Do I need boxing or fitness experience to join?",
+            "icon": "check_mark",
+            "row_content": "<p>No experience is required. Exercises can be modified to match your ability, and coaches guide you through proper technique so you can progress safely while still being challenged.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_hCBJXB": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What should I bring to Beast Camp?",
+            "icon": "check_mark",
+            "row_content": "<p>Bring comfortable workout clothes, athletic shoes, water, and a towel. Boxing gloves are recommended but not required for your first class.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_gRMkXx",
+        "collapsible_row_cErQga",
+        "collapsible_row_VdCTGt",
+        "collapsible_row_hCBJXB"
+      ],
+      "name": "t:sections.collapsible_content.presets.name",
+      "settings": {
+        "caption": "",
+        "heading": "BEAST CAMP DETAILS",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "layout": "none",
+        "color_scheme": "background-1",
+        "container_color_scheme": "background-2",
+        "open_first_collapsible_row": false,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
+    "1648592464d59719aa": {
+      "type": "image-banner",
+      "blocks": {
+        "1648592464bd9bb1c7-0": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "heading": "Image banner",
+            "heading_size": "h1"
+          }
+        },
+        "1648592464bd9bb1c7-1": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "Give customers details about the banner image(s) or content on the template.",
+            "text_style": "body"
+          }
+        },
+        "1648592464bd9bb1c7-2": {
+          "type": "buttons",
+          "disabled": true,
+          "settings": {
+            "button_label_1": "Button label",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "Button label",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "1648592464bd9bb1c7-0",
+        "1648592464bd9bb1c7-1",
+        "1648592464bd9bb1c7-2"
+      ],
+      "disabled": true,
+      "settings": {
+        "image": "shopify://shop_images/CONTACT_BANNER-new.png",
+        "image_overlay_opacity": 0,
+        "image_height": "small",
+        "adapt_height_first_image": false,
+        "desktop_content_position": "middle-center",
+        "show_text_box": false,
+        "desktop_content_alignment": "center",
+        "color_scheme": "background-1",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": false,
+        "show_text_below": false
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    }
+  },
+  "order": [
+    "image_banner_EErXMp",
+    "rich_text_nXQgpm",
+    "blocks_7pbgD7",
+    "1768856240f2afbda6",
+    "multicolumn_RYVUNd",
+    "collapsible_content_hYiyqG",
+    "1648592464d59719aa",
+    "main"
+  ]
+}

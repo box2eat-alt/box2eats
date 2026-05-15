@@ -1,0 +1,1198 @@
+{% doc %}
+  @prompt
+    Create a weekly schedule section that displays a 7-day schedule with customizable time slots and activities for each day. The section should include:
+    
+    LAYOUT & STRUCTURE:
+    - Header with title, subtitle, and description text
+    - Grid layout showing all 7 days (Monday-Sunday) as individual cards
+    - Each day card shows the day name, multiple time slots, and activities
+    - Responsive columns that adapt for mobile and desktop
+    - Optional image banner block
+    
+    CUSTOMIZATION SETTINGS:
+    - Section anchor ID field (text input) for deep linking
+    - Header: title, subtitle, description, text alignment
+    - Layout: max width, padding (top/bottom), number of columns, gap spacing
+    - Day card styling: padding, border width, border radius
+    - Closed message: custom text for days marked as closed
+    
+    COLORS:
+    - Background color
+    - Title, subtitle, and description text colors
+    - Day card background and text colors
+    - Day name text color
+    - Time and activity text colors
+    - Border color for day cards
+    
+    TYPOGRAPHY:
+    - Font sizes for: title, subtitle, day names, times, activities
+    
+    DAY-SPECIFIC SETTINGS (for each day Monday-Sunday):
+    - Toggle to mark day as closed
+    - Multiple time slot inputs (at least 3-4 slots per day)
+    - Activity/class name for each time slot
+    - If closed, display the closed message instead
+    
+    VISUAL STYLE:
+    - Clean card-based design with subtle borders
+    - Organized grid layout
+    - Clear hierarchy between day names, times, and activities
+    - Professional spacing and padding throughout
+    
+    Make sure the anchor ID setting outputs as an HTML id attribute on the main section wrapper so links like #schedule will work., I need them to have 8 activitys and 8 time slots. , I want the outlines of the boxes to be our red colour 
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-schedule-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    background-color: {{ block.settings.background_color }};
+    padding: {{ block.settings.padding_top }}px 20px {{ block.settings.padding_bottom }}px;
+  }
+
+  .ai-schedule-container-{{ ai_gen_id }} {
+    max-width: {{ block.settings.max_width }}px;
+    margin: 0 auto;
+  }
+
+  .ai-schedule-header-{{ ai_gen_id }} {
+    text-align: {{ block.settings.text_alignment }};
+    margin-bottom: 40px;
+  }
+
+  .ai-schedule-subtitle-{{ ai_gen_id }} {
+    font-size: {{ block.settings.subtitle_size }}px;
+    color: {{ block.settings.subtitle_color }};
+    margin: 0 0 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .ai-schedule-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.title_size }}px;
+    color: {{ block.settings.title_color }};
+    margin: 0 0 16px;
+    font-weight: 700;
+  }
+
+  .ai-schedule-description-{{ ai_gen_id }} {
+    color: {{ block.settings.description_color }};
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .ai-schedule-grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat({{ block.settings.columns_desktop }}, 1fr);
+    gap: {{ block.settings.gap }}px;
+    margin-bottom: 20px;
+  }
+
+  .ai-schedule-day-{{ ai_gen_id }} {
+    background-color: {{ block.settings.card_background }};
+    color: {{ block.settings.card_text_color }};
+    border: {{ block.settings.card_border_width }}px solid {{ block.settings.card_border_color }};
+    border-radius: {{ block.settings.card_border_radius }}px;
+    padding: {{ block.settings.card_padding }}px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .ai-schedule-day-name-{{ ai_gen_id }} {
+    font-size: {{ block.settings.day_name_size }}px;
+    font-weight: 700;
+    color: {{ block.settings.day_name_color }};
+    margin: 0;
+    padding-bottom: 12px;
+    border-bottom: 2px solid {{ block.settings.card_border_color }};
+  }
+
+  .ai-schedule-slots-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .ai-schedule-slot-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .ai-schedule-time-{{ ai_gen_id }} {
+    font-size: {{ block.settings.time_size }}px;
+    color: {{ block.settings.time_color }};
+    font-weight: 600;
+  }
+
+  .ai-schedule-activity-{{ ai_gen_id }} {
+    font-size: {{ block.settings.activity_size }}px;
+    color: {{ block.settings.activity_color }};
+    line-height: 1.4;
+  }
+
+  .ai-schedule-closed-{{ ai_gen_id }} {
+    font-size: {{ block.settings.activity_size }}px;
+    color: {{ block.settings.activity_color }};
+    font-style: italic;
+    opacity: 0.7;
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  @media screen and (max-width: 989px) {
+    .ai-schedule-grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-schedule-grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat({{ block.settings.columns_mobile }}, 1fr);
+    }
+
+    .ai-schedule-title-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.title_size }}px * 0.8);
+    }
+
+    .ai-schedule-subtitle-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.subtitle_size }}px * 0.9);
+    }
+  }
+{% endstyle %}
+
+<weekly-schedule-{{ ai_gen_id }}
+  class="ai-schedule-{{ ai_gen_id }}"
+  {% if block.settings.anchor_id != blank %}id="{{ block.settings.anchor_id }}"{% endif %}
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-schedule-container-{{ ai_gen_id }}">
+    {% if block.settings.title != blank or block.settings.subtitle != blank or block.settings.description != blank %}
+      <div class="ai-schedule-header-{{ ai_gen_id }}">
+        {% if block.settings.subtitle != blank %}
+          <p class="ai-schedule-subtitle-{{ ai_gen_id }}">{{ block.settings.subtitle }}</p>
+        {% endif %}
+        {% if block.settings.title != blank %}
+          <h2 class="ai-schedule-title-{{ ai_gen_id }}">{{ block.settings.title }}</h2>
+        {% endif %}
+        {% if block.settings.description != blank %}
+          <div class="ai-schedule-description-{{ ai_gen_id }}">{{ block.settings.description }}</div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="ai-schedule-grid-{{ ai_gen_id }}">
+      {% assign days = 'monday,tuesday,wednesday,thursday,friday,saturday,sunday' | split: ',' %}
+      {% assign day_names = 'Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday' | split: ',' %}
+
+      {% for day in days %}
+        {% assign day_closed_key = day | append: '_closed' %}
+        {% assign is_closed = block.settings[day_closed_key] %}
+
+        <div class="ai-schedule-day-{{ ai_gen_id }}">
+          <h3 class="ai-schedule-day-name-{{ ai_gen_id }}">{{ day_names[forloop.index0] }}</h3>
+
+          {% if is_closed %}
+            <div class="ai-schedule-closed-{{ ai_gen_id }}">
+              {{ block.settings.closed_message }}
+            </div>
+          {% else %}
+            <div class="ai-schedule-slots-{{ ai_gen_id }}">
+              {% for i in (1..8) %}
+                {% assign time_key = day | append: '_time_' | append: i %}
+                {% assign activity_key = day | append: '_activity_' | append: i %}
+                {% assign time = block.settings[time_key] %}
+                {% assign activity = block.settings[activity_key] %}
+
+                {% if time != blank and activity != blank %}
+                  <div class="ai-schedule-slot-{{ ai_gen_id }}">
+                    <div class="ai-schedule-time-{{ ai_gen_id }}">{{ time }}</div>
+                    <div class="ai-schedule-activity-{{ ai_gen_id }}">{{ activity }}</div>
+                  </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</weekly-schedule-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class WeeklySchedule{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+      }
+    }
+
+    customElements.define('weekly-schedule-{{ ai_gen_id }}', WeeklySchedule{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Weekly schedule",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Anchor"
+    },
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "Anchor ID",
+      "info": "Use for deep linking (e.g., #schedule)"
+    },
+    {
+      "type": "header",
+      "content": "Header"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Our Schedule"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Weekly Class Schedule"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Join us for our weekly fitness classes. Check the schedule below for times and activities.</p>"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 600,
+      "max": 1600,
+      "step": 100,
+      "unit": "px",
+      "label": "Maximum width",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 7,
+      "step": 1,
+      "label": "Columns on desktop",
+      "default": 4
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Columns on mobile",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "min": 8,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Gap between cards",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Card style"
+    },
+    {
+      "type": "range",
+      "id": "card_padding",
+      "min": 12,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Card padding",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "card_border_width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "label": "Border width",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Closed message"
+    },
+    {
+      "type": "text",
+      "id": "closed_message",
+      "label": "Closed message",
+      "default": "Closed"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle",
+      "default": "#c0272d"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#0a0a0a"
+    },
+    {
+      "type": "color",
+      "id": "card_text_color",
+      "label": "Card text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Card border",
+      "default": "#c0272d"
+    },
+    {
+      "type": "color",
+      "id": "day_name_color",
+      "label": "Day name",
+      "default": "#c0272d"
+    },
+    {
+      "type": "color",
+      "id": "time_color",
+      "label": "Time",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "activity_color",
+      "label": "Activity",
+      "default": "#cccccc"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Title size",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Subtitle size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "day_name_size",
+      "min": 14,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "label": "Day name size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "time_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Time size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "activity_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Activity size",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Monday"
+    },
+    {
+      "type": "checkbox",
+      "id": "monday_closed",
+      "label": "Closed on Monday",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "monday_time_1",
+      "label": "Time slot 1",
+      "default": "6:00 AM"
+    },
+    {
+      "type": "text",
+      "id": "monday_activity_1",
+      "label": "Activity 1",
+      "default": "Morning Bootcamp"
+    },
+    {
+      "type": "text",
+      "id": "monday_time_2",
+      "label": "Time slot 2",
+      "default": "12:00 PM"
+    },
+    {
+      "type": "text",
+      "id": "monday_activity_2",
+      "label": "Activity 2",
+      "default": "Lunch HIIT"
+    },
+    {
+      "type": "text",
+      "id": "monday_time_3",
+      "label": "Time slot 3",
+      "default": "5:30 PM"
+    },
+    {
+      "type": "text",
+      "id": "monday_activity_3",
+      "label": "Activity 3",
+      "default": "Evening Strength"
+    },
+    {
+      "type": "text",
+      "id": "monday_time_4",
+      "label": "Time slot 4"
+    },
+    {
+      "type": "text",
+      "id": "monday_activity_4",
+      "label": "Activity 4"
+    },
+    {
+      "type": "text",
+      "id": "monday_time_5",
+      "label": "Time slot 5"
+    },
+    {
+      "type": "text",
+      "id": "monday_activity_5",
+      "label": "Activity 5"
+    },
+    {
+      "type": "text",
+      "id": "monday_time_6",
+      "label": "Time slot 6"
+    },
+    {
+      "type": "text",
+      "id": "monday_activity_6",
+      "label": "Activity 6"
+    },
+    {
+      "type": "text",
+      "id": "monday_time_7",
+      "label": "Time slot 7"
+    },
+    {
+      "type": "text",
+      "id": "monday_activity_7",
+      "label": "Activity 7"
+    },
+    {
+      "type": "text",
+      "id": "monday_time_8",
+      "label": "Time slot 8"
+    },
+    {
+      "type": "text",
+      "id": "monday_activity_8",
+      "label": "Activity 8"
+    },
+    {
+      "type": "header",
+      "content": "Tuesday"
+    },
+    {
+      "type": "checkbox",
+      "id": "tuesday_closed",
+      "label": "Closed on Tuesday",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "tuesday_time_1",
+      "label": "Time slot 1",
+      "default": "6:00 AM"
+    },
+    {
+      "type": "text",
+      "id": "tuesday_activity_1",
+      "label": "Activity 1",
+      "default": "Morning Yoga"
+    },
+    {
+      "type": "text",
+      "id": "tuesday_time_2",
+      "label": "Time slot 2",
+      "default": "12:00 PM"
+    },
+    {
+      "type": "text",
+      "id": "tuesday_activity_2",
+      "label": "Activity 2",
+      "default": "Cardio Blast"
+    },
+    {
+      "type": "text",
+      "id": "tuesday_time_3",
+      "label": "Time slot 3",
+      "default": "5:30 PM"
+    },
+    {
+      "type": "text",
+      "id": "tuesday_activity_3",
+      "label": "Activity 3",
+      "default": "Boxing Basics"
+    },
+    {
+      "type": "text",
+      "id": "tuesday_time_4",
+      "label": "Time slot 4"
+    },
+    {
+      "type": "text",
+      "id": "tuesday_activity_4",
+      "label": "Activity 4"
+    },
+    {
+      "type": "text",
+      "id": "tuesday_time_5",
+      "label": "Time slot 5"
+    },
+    {
+      "type": "text",
+      "id": "tuesday_activity_5",
+      "label": "Activity 5"
+    },
+    {
+      "type": "text",
+      "id": "tuesday_time_6",
+      "label": "Time slot 6"
+    },
+    {
+      "type": "text",
+      "id": "tuesday_activity_6",
+      "label": "Activity 6"
+    },
+    {
+      "type": "text",
+      "id": "tuesday_time_7",
+      "label": "Time slot 7"
+    },
+    {
+      "type": "text",
+      "id": "tuesday_activity_7",
+      "label": "Activity 7"
+    },
+    {
+      "type": "text",
+      "id": "tuesday_time_8",
+      "label": "Time slot 8"
+    },
+    {
+      "type": "text",
+      "id": "tuesday_activity_8",
+      "label": "Activity 8"
+    },
+    {
+      "type": "header",
+      "content": "Wednesday"
+    },
+    {
+      "type": "checkbox",
+      "id": "wednesday_closed",
+      "label": "Closed on Wednesday",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "wednesday_time_1",
+      "label": "Time slot 1",
+      "default": "6:00 AM"
+    },
+    {
+      "type": "text",
+      "id": "wednesday_activity_1",
+      "label": "Activity 1",
+      "default": "Morning Bootcamp"
+    },
+    {
+      "type": "text",
+      "id": "wednesday_time_2",
+      "label": "Time slot 2",
+      "default": "12:00 PM"
+    },
+    {
+      "type": "text",
+      "id": "wednesday_activity_2",
+      "label": "Activity 2",
+      "default": "Lunch HIIT"
+    },
+    {
+      "type": "text",
+      "id": "wednesday_time_3",
+      "label": "Time slot 3",
+      "default": "5:30 PM"
+    },
+    {
+      "type": "text",
+      "id": "wednesday_activity_3",
+      "label": "Activity 3",
+      "default": "Evening Strength"
+    },
+    {
+      "type": "text",
+      "id": "wednesday_time_4",
+      "label": "Time slot 4"
+    },
+    {
+      "type": "text",
+      "id": "wednesday_activity_4",
+      "label": "Activity 4"
+    },
+    {
+      "type": "text",
+      "id": "wednesday_time_5",
+      "label": "Time slot 5"
+    },
+    {
+      "type": "text",
+      "id": "wednesday_activity_5",
+      "label": "Activity 5"
+    },
+    {
+      "type": "text",
+      "id": "wednesday_time_6",
+      "label": "Time slot 6"
+    },
+    {
+      "type": "text",
+      "id": "wednesday_activity_6",
+      "label": "Activity 6"
+    },
+    {
+      "type": "text",
+      "id": "wednesday_time_7",
+      "label": "Time slot 7"
+    },
+    {
+      "type": "text",
+      "id": "wednesday_activity_7",
+      "label": "Activity 7"
+    },
+    {
+      "type": "text",
+      "id": "wednesday_time_8",
+      "label": "Time slot 8"
+    },
+    {
+      "type": "text",
+      "id": "wednesday_activity_8",
+      "label": "Activity 8"
+    },
+    {
+      "type": "header",
+      "content": "Thursday"
+    },
+    {
+      "type": "checkbox",
+      "id": "thursday_closed",
+      "label": "Closed on Thursday",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "thursday_time_1",
+      "label": "Time slot 1",
+      "default": "6:00 AM"
+    },
+    {
+      "type": "text",
+      "id": "thursday_activity_1",
+      "label": "Activity 1",
+      "default": "Morning Yoga"
+    },
+    {
+      "type": "text",
+      "id": "thursday_time_2",
+      "label": "Time slot 2",
+      "default": "12:00 PM"
+    },
+    {
+      "type": "text",
+      "id": "thursday_activity_2",
+      "label": "Activity 2",
+      "default": "Cardio Blast"
+    },
+    {
+      "type": "text",
+      "id": "thursday_time_3",
+      "label": "Time slot 3",
+      "default": "5:30 PM"
+    },
+    {
+      "type": "text",
+      "id": "thursday_activity_3",
+      "label": "Activity 3",
+      "default": "Boxing Basics"
+    },
+    {
+      "type": "text",
+      "id": "thursday_time_4",
+      "label": "Time slot 4"
+    },
+    {
+      "type": "text",
+      "id": "thursday_activity_4",
+      "label": "Activity 4"
+    },
+    {
+      "type": "text",
+      "id": "thursday_time_5",
+      "label": "Time slot 5"
+    },
+    {
+      "type": "text",
+      "id": "thursday_activity_5",
+      "label": "Activity 5"
+    },
+    {
+      "type": "text",
+      "id": "thursday_time_6",
+      "label": "Time slot 6"
+    },
+    {
+      "type": "text",
+      "id": "thursday_activity_6",
+      "label": "Activity 6"
+    },
+    {
+      "type": "text",
+      "id": "thursday_time_7",
+      "label": "Time slot 7"
+    },
+    {
+      "type": "text",
+      "id": "thursday_activity_7",
+      "label": "Activity 7"
+    },
+    {
+      "type": "text",
+      "id": "thursday_time_8",
+      "label": "Time slot 8"
+    },
+    {
+      "type": "text",
+      "id": "thursday_activity_8",
+      "label": "Activity 8"
+    },
+    {
+      "type": "header",
+      "content": "Friday"
+    },
+    {
+      "type": "checkbox",
+      "id": "friday_closed",
+      "label": "Closed on Friday",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "friday_time_1",
+      "label": "Time slot 1",
+      "default": "6:00 AM"
+    },
+    {
+      "type": "text",
+      "id": "friday_activity_1",
+      "label": "Activity 1",
+      "default": "Morning Bootcamp"
+    },
+    {
+      "type": "text",
+      "id": "friday_time_2",
+      "label": "Time slot 2",
+      "default": "12:00 PM"
+    },
+    {
+      "type": "text",
+      "id": "friday_activity_2",
+      "label": "Activity 2",
+      "default": "Lunch HIIT"
+    },
+    {
+      "type": "text",
+      "id": "friday_time_3",
+      "label": "Time slot 3",
+      "default": "5:30 PM"
+    },
+    {
+      "type": "text",
+      "id": "friday_activity_3",
+      "label": "Activity 3",
+      "default": "Friday Night Fight"
+    },
+    {
+      "type": "text",
+      "id": "friday_time_4",
+      "label": "Time slot 4"
+    },
+    {
+      "type": "text",
+      "id": "friday_activity_4",
+      "label": "Activity 4"
+    },
+    {
+      "type": "text",
+      "id": "friday_time_5",
+      "label": "Time slot 5"
+    },
+    {
+      "type": "text",
+      "id": "friday_activity_5",
+      "label": "Activity 5"
+    },
+    {
+      "type": "text",
+      "id": "friday_time_6",
+      "label": "Time slot 6"
+    },
+    {
+      "type": "text",
+      "id": "friday_activity_6",
+      "label": "Activity 6"
+    },
+    {
+      "type": "text",
+      "id": "friday_time_7",
+      "label": "Time slot 7"
+    },
+    {
+      "type": "text",
+      "id": "friday_activity_7",
+      "label": "Activity 7"
+    },
+    {
+      "type": "text",
+      "id": "friday_time_8",
+      "label": "Time slot 8"
+    },
+    {
+      "type": "text",
+      "id": "friday_activity_8",
+      "label": "Activity 8"
+    },
+    {
+      "type": "header",
+      "content": "Saturday"
+    },
+    {
+      "type": "checkbox",
+      "id": "saturday_closed",
+      "label": "Closed on Saturday",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "saturday_time_1",
+      "label": "Time slot 1",
+      "default": "8:00 AM"
+    },
+    {
+      "type": "text",
+      "id": "saturday_activity_1",
+      "label": "Activity 1",
+      "default": "Weekend Warrior"
+    },
+    {
+      "type": "text",
+      "id": "saturday_time_2",
+      "label": "Time slot 2",
+      "default": "10:00 AM"
+    },
+    {
+      "type": "text",
+      "id": "saturday_activity_2",
+      "label": "Activity 2",
+      "default": "Open Gym"
+    },
+    {
+      "type": "text",
+      "id": "saturday_time_3",
+      "label": "Time slot 3"
+    },
+    {
+      "type": "text",
+      "id": "saturday_activity_3",
+      "label": "Activity 3"
+    },
+    {
+      "type": "text",
+      "id": "saturday_time_4",
+      "label": "Time slot 4"
+    },
+    {
+      "type": "text",
+      "id": "saturday_activity_4",
+      "label": "Activity 4"
+    },
+    {
+      "type": "text",
+      "id": "saturday_time_5",
+      "label": "Time slot 5"
+    },
+    {
+      "type": "text",
+      "id": "saturday_activity_5",
+      "label": "Activity 5"
+    },
+    {
+      "type": "text",
+      "id": "saturday_time_6",
+      "label": "Time slot 6"
+    },
+    {
+      "type": "text",
+      "id": "saturday_activity_6",
+      "label": "Activity 6"
+    },
+    {
+      "type": "text",
+      "id": "saturday_time_7",
+      "label": "Time slot 7"
+    },
+    {
+      "type": "text",
+      "id": "saturday_activity_7",
+      "label": "Activity 7"
+    },
+    {
+      "type": "text",
+      "id": "saturday_time_8",
+      "label": "Time slot 8"
+    },
+    {
+      "type": "text",
+      "id": "saturday_activity_8",
+      "label": "Activity 8"
+    },
+    {
+      "type": "header",
+      "content": "Sunday"
+    },
+    {
+      "type": "checkbox",
+      "id": "sunday_closed",
+      "label": "Closed on Sunday",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "sunday_time_1",
+      "label": "Time slot 1"
+    },
+    {
+      "type": "text",
+      "id": "sunday_activity_1",
+      "label": "Activity 1"
+    },
+    {
+      "type": "text",
+      "id": "sunday_time_2",
+      "label": "Time slot 2"
+    },
+    {
+      "type": "text",
+      "id": "sunday_activity_2",
+      "label": "Activity 2"
+    },
+    {
+      "type": "text",
+      "id": "sunday_time_3",
+      "label": "Time slot 3"
+    },
+    {
+      "type": "text",
+      "id": "sunday_activity_3",
+      "label": "Activity 3"
+    },
+    {
+      "type": "text",
+      "id": "sunday_time_4",
+      "label": "Time slot 4"
+    },
+    {
+      "type": "text",
+      "id": "sunday_activity_4",
+      "label": "Activity 4"
+    },
+    {
+      "type": "text",
+      "id": "sunday_time_5",
+      "label": "Time slot 5"
+    },
+    {
+      "type": "text",
+      "id": "sunday_activity_5",
+      "label": "Activity 5"
+    },
+    {
+      "type": "text",
+      "id": "sunday_time_6",
+      "label": "Time slot 6"
+    },
+    {
+      "type": "text",
+      "id": "sunday_activity_6",
+      "label": "Activity 6"
+    },
+    {
+      "type": "text",
+      "id": "sunday_time_7",
+      "label": "Time slot 7"
+    },
+    {
+      "type": "text",
+      "id": "sunday_activity_7",
+      "label": "Activity 7"
+    },
+    {
+      "type": "text",
+      "id": "sunday_time_8",
+      "label": "Time slot 8"
+    },
+    {
+      "type": "text",
+      "id": "sunday_activity_8",
+      "label": "Activity 8"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Weekly schedule"
+    }
+  ]
+}
+{% endschema %}

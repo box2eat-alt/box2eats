@@ -1,0 +1,488 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_banner_EErXMp": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_96HiJA": {
+          "type": "heading",
+          "settings": {
+            "heading": "She Hits at Box2Fit",
+            "heading_size": "h1"
+          }
+        },
+        "text_7wYikG": {
+          "type": "text",
+          "settings": {
+            "text": "",
+            "text_style": "body"
+          }
+        },
+        "buttons_jgtB3g": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "JOIN NOW",
+            "button_link_1": "shopify://pages/join-now",
+            "button_style_secondary_1": false,
+            "button_label_2": "View Schedule",
+            "button_link_2": "shopify://pages/our-schedule",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_96HiJA",
+        "text_7wYikG",
+        "buttons_jgtB3g"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/asdasd_9aef88e7-e737-4fda-8e03-5d3f501df84b.jpg",
+        "image_overlay_opacity": 40,
+        "image_height": "medium",
+        "adapt_height_first_image": false,
+        "desktop_content_position": "middle-center",
+        "show_text_box": true,
+        "desktop_content_alignment": "center",
+        "color_scheme": "background-1",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": true,
+        "show_text_below": false
+      }
+    },
+    "blocks_7pbgD7": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_ef724ea_KNaUhT": {
+          "type": "ai_gen_block_ef724ea",
+          "name": "Image with text",
+          "settings": {
+            "image_position": "left",
+            "content_alignment_desktop": "left",
+            "content_alignment_mobile": "center",
+            "image_width": 50,
+            "container_width": 1200,
+            "content_gap": 60,
+            "section_padding": 100,
+            "background_color": "#000000",
+            "image": "shopify://shop_images/efaqd.jpg",
+            "image_border_radius": 0,
+            "mini_title": "Women’s Program",
+            "mini_title_size": 12,
+            "mini_title_color": "#c0272d",
+            "heading": "Led by Coach Esmeralda La Sasso",
+            "heading_size": 40,
+            "heading_color": "#ffffff",
+            "description": "And our top women coaches, She Hits is designed to help you build real skill and real strength. You’ll learn proper boxing fundamentals including stance, footwork, punches, defense, and combinations while developing practical self-defense foundations like awareness, distance control, and generating power safely. Each session improves endurance, coordination, and conditioning in a supportive women-only environment that keeps you consistent and motivated.",
+            "description_size": 16,
+            "description_color": "#ffffff",
+            "button_layout": "horizontal",
+            "button_font_size": 14,
+            "button_border_radius": 0,
+            "button_primary_label": "Get started",
+            "button_primary_link": "",
+            "button_primary_bg": "#c0272d",
+            "button_primary_text_color": "#ffffff",
+            "button_primary_hover_bg": "#a01f24",
+            "button_secondary_label": "Learn more",
+            "button_secondary_link": "",
+            "button_secondary_bg": "rgba(0,0,0,0)",
+            "button_secondary_text_color": "#ffffff",
+            "button_secondary_border": "#ffffff",
+            "button_secondary_hover_bg": "#ffffff",
+            "button_secondary_hover_border": "#ffffff"
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_f08847d_UdBBkz": {
+          "type": "ai_gen_block_f08847d",
+          "settings": {
+            "background_color": "#000000",
+            "padding_top": 52,
+            "padding_bottom": 100,
+            "mini_title": "Program Details",
+            "mini_title_color": "#c0272d",
+            "headline": "What You Get – Month to Month Program",
+            "headline_size": 40,
+            "headline_color": "#ffffff",
+            "subtext": "A structured progression designed to build skill, confidence, and consistency.",
+            "subtext_size": 16,
+            "subtext_color": "#ffffff",
+            "card_1_title": "Cost: $189",
+            "card_1_content": "<p><strong>Length:</strong> Month (structured week-by-week progression)</p>",
+            "card_2_title": "Bonus Included:",
+            "card_2_content": "<p>1 full month of classes included with your program membership.</p>",
+            "card_3_title": "Attend classes at any of our three locations:",
+            "card_3_content": "<ul><li>Langley</li><li>Cloverdale<br/></li></ul><p></p>",
+            "card_background_color": "#0a0a0a",
+            "card_border_color": "#c0272d",
+            "card_border_thickness": 1,
+            "card_border_radius": 0,
+            "card_title_size": 20,
+            "card_title_color": "#ffffff",
+            "card_text_size": 15,
+            "card_text_color": "#ffffff"
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_cc660b5_qAiaRT": {
+          "type": "ai_gen_block_cc660b5",
+          "settings": {
+            "image": "shopify://shop_images/asdasd_9aef88e7-e737-4fda-8e03-5d3f501df84b.jpg",
+            "image_fit": "cover",
+            "height": 200,
+            "mobile_height": 150
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_ef724ea_KNaUhT",
+        "ai_gen_block_f08847d_UdBBkz",
+        "ai_gen_block_cc660b5_qAiaRT"
+      ],
+      "name": "Image banner",
+      "settings": {}
+    },
+    "1768856240f2afbda6": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_ef724ea_M43fxf": {
+          "type": "ai_gen_block_ef724ea",
+          "name": "Image with text",
+          "settings": {
+            "image_position": "right",
+            "content_alignment_desktop": "left",
+            "content_alignment_mobile": "center",
+            "image_width": 50,
+            "container_width": 1200,
+            "content_gap": 60,
+            "section_padding": 100,
+            "background_color": "#000000",
+            "image": "shopify://shop_images/hf_20260219_004523_b96c0717-91e2-4e6f-be3c-9e4a2ad33811.png",
+            "image_border_radius": 0,
+            "mini_title": "WHO IT’S FOR",
+            "mini_title_size": 12,
+            "mini_title_color": "#c0272d",
+            "heading": "Is She Hits Right for You?",
+            "heading_size": 40,
+            "heading_color": "#ffffff",
+            "description": "She Hits is built for women at every stage of their fitness journey. Whether you’re a complete beginner looking for a safe and supportive start, or someone ready to learn real boxing technique beyond just cardio punching, this program is designed for you.\n\nIt’s for women who want to build confidence, improve their fitness, and train in an environment where women support women. If you’ve been wanting to step into boxing but didn’t want the pressure or intimidation, this is your place.",
+            "description_size": 16,
+            "description_color": "#ffffff",
+            "button_layout": "horizontal",
+            "button_font_size": 14,
+            "button_border_radius": 0,
+            "button_primary_label": "Get started",
+            "button_primary_link": "",
+            "button_primary_bg": "#c0272d",
+            "button_primary_text_color": "#ffffff",
+            "button_primary_hover_bg": "#a01f24",
+            "button_secondary_label": "Learn more",
+            "button_secondary_link": "",
+            "button_secondary_bg": "rgba(0,0,0,0)",
+            "button_secondary_text_color": "#ffffff",
+            "button_secondary_border": "#ffffff",
+            "button_secondary_hover_bg": "#ffffff",
+            "button_secondary_hover_border": "#ffffff"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_ef724ea_M43fxf"
+      ],
+      "settings": {}
+    },
+    "rich_text_m4Ap3j": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_RQyEnn": {
+          "type": "heading",
+          "settings": {
+            "heading": "Train Bold. Train Together.",
+            "heading_size": "h1"
+          }
+        },
+        "text_NUVHii": {
+          "type": "text",
+          "settings": {
+            "text": "<p>She Hits is our women-only boxing program built for real confidence, real skill, and real community. In a supportive, no-pressure environment, women learn proper boxing fundamentals, practical self-defense concepts, and powerful conditioning that builds strength, endurance, and coordination. Led by Coach Esmeralda LoSasso and our top women coaches, She Hits helps you feel stronger, safer, and more capable every session.</p>"
+          }
+        },
+        "button_qP8XJD": {
+          "type": "button",
+          "settings": {
+            "button_label": "JOIN NOW",
+            "button_link": "shopify://pages/join-now",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_RQyEnn",
+        "text_NUVHii",
+        "button_qP8XJD"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "color_scheme": "background-1",
+        "full_width": true,
+        "padding_top": 60,
+        "padding_bottom": 100
+      }
+    },
+    "blocks_BiEhCU": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_cc660b5_Nk7KRL": {
+          "type": "ai_gen_block_cc660b5",
+          "name": "Image banner",
+          "settings": {
+            "image": "shopify://shop_images/hf_20260219_004741_f52c814f-f041-410f-862d-560c8f29b42d.png",
+            "image_fit": "cover",
+            "height": 500,
+            "mobile_height": 350
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_cc660b5_Nk7KRL"
+      ],
+      "settings": {}
+    },
+    "blocks_xbCqHx": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_2c51ba0_K88rhY": {
+          "type": "ai_gen_block_2c51ba0",
+          "settings": {
+            "heading": "Photo gallery",
+            "heading_color": "#ffffff",
+            "heading_size": 32,
+            "heading_alignment": "center",
+            "heading_spacing": 32,
+            "columns_desktop": 4,
+            "gap": 16,
+            "container_width": 1100,
+            "section_padding": 100,
+            "aspect_ratio": "1 / 1",
+            "image_border_radius": 0,
+            "hover_zoom": 1.1,
+            "image_1": "shopify://shop_images/hf_20260219_010242_afa1fe0e-203e-47b8-8128-289d3022884d.png",
+            "image_2": "shopify://shop_images/hf_20260219_010240_9f06c859-706a-4c06-a3f8-9e1101e919c6.png",
+            "image_3": "shopify://shop_images/hf_20260219_011613_96d03ee5-0086-46a2-ac1e-76dca90a2dd7.png",
+            "image_4": "shopify://shop_images/hf_20260219_012016_3f4e973c-5134-40b1-931d-e14acd308605.png"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_2c51ba0_K88rhY"
+      ],
+      "settings": {}
+    },
+    "blocks_nFGRXL": {
+      "type": "_blocks",
+      "settings": {}
+    },
+    "multicolumn_RYVUNd": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_EKYB4E": {
+          "type": "column",
+          "settings": {
+            "title": "CONFIDENCE THROUGH REAL SKILL",
+            "text": "<p>She Hits is built around learning true boxing fundamentals in a supportive, women-only environment. From stance and footwork to punches and defense, every session helps you build real confidence through real technique.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_VT6CrG": {
+          "type": "column",
+          "settings": {
+            "title": "PRACTICAL SELF-DEFENSE & PROGRESSION",
+            "text": "<p>Classes focus on awareness, distance control, proper mechanics, and safe power generation. You’ll develop skills week by week while improving strength, coordination, and overall conditioning.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_mKGjtL": {
+          "type": "column",
+          "settings": {
+            "title": "COMMUNITY & ACCOUNTABILITY",
+            "text": "<p>Train alongside a strong group of women who show up for each other. Led by experienced women coaches, She Hits creates an encouraging space that keeps you motivated, consistent, and leveling up together.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_EKYB4E",
+        "column_VT6CrG",
+        "column_mKGjtL"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "primary",
+        "button_label": "JOIN NOW",
+        "button_link": "shopify://pages/join-now",
+        "color_scheme": "background-1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 0,
+        "padding_bottom": 72
+      }
+    },
+    "collapsible_content_hYiyqG": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_gRMkXx": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Who is She Hits for?",
+            "icon": "check_mark",
+            "row_content": "<p>She Hits is for women at every stage of their fitness journey. Whether you’re a complete beginner looking for a supportive start, or someone ready to learn real boxing technique beyond cardio punching, this program is built for you. It’s for women who want confidence, skill, strength, and a strong community.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_cErQga": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What can I expect in a She Hits session?",
+            "icon": "check_mark",
+            "row_content": "<p>Each session focuses on real boxing fundamentals including stance, footwork, punches, defense, and combinations. You’ll also learn practical self-defense foundations like awareness, distance control, and generating power safely. Expect structured coaching, conditioning work, and a motivating women-only environment.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_VdCTGt": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Do I need boxing experience to join?",
+            "icon": "check_mark",
+            "row_content": "<p>No experience is needed. She Hits is designed to welcome beginners while still challenging those with experience. We teach proper technique from the ground up and progress week by week so you feel confident and capable.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_hCBJXB": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What should I bring to She Hits?",
+            "icon": "check_mark",
+            "row_content": "<p>Wear comfortable athletic clothing and training shoes. Bring a water bottle and a towel. Boxing gloves can be provided if needed. Most importantly, come ready to learn, train hard, and support the women around you.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_gRMkXx",
+        "collapsible_row_cErQga",
+        "collapsible_row_VdCTGt",
+        "collapsible_row_hCBJXB"
+      ],
+      "name": "t:sections.collapsible_content.presets.name",
+      "settings": {
+        "caption": "",
+        "heading": "SHE HITS DETAILS",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "layout": "none",
+        "color_scheme": "background-1",
+        "container_color_scheme": "background-2",
+        "open_first_collapsible_row": false,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 72,
+        "padding_bottom": 100
+      }
+    },
+    "1648592464d59719aa": {
+      "type": "image-banner",
+      "blocks": {
+        "1648592464bd9bb1c7-0": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "heading": "Image banner",
+            "heading_size": "h1"
+          }
+        },
+        "1648592464bd9bb1c7-1": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "Give customers details about the banner image(s) or content on the template.",
+            "text_style": "body"
+          }
+        },
+        "1648592464bd9bb1c7-2": {
+          "type": "buttons",
+          "disabled": true,
+          "settings": {
+            "button_label_1": "Button label",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "Button label",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "1648592464bd9bb1c7-0",
+        "1648592464bd9bb1c7-1",
+        "1648592464bd9bb1c7-2"
+      ],
+      "disabled": true,
+      "settings": {
+        "image": "shopify://shop_images/CONTACT_BANNER-new.png",
+        "image_overlay_opacity": 0,
+        "image_height": "small",
+        "adapt_height_first_image": false,
+        "desktop_content_position": "middle-center",
+        "show_text_box": false,
+        "desktop_content_alignment": "center",
+        "color_scheme": "background-1",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": false,
+        "show_text_below": false
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    }
+  },
+  "order": [
+    "image_banner_EErXMp",
+    "blocks_7pbgD7",
+    "1768856240f2afbda6",
+    "rich_text_m4Ap3j",
+    "blocks_BiEhCU",
+    "blocks_xbCqHx",
+    "blocks_nFGRXL",
+    "multicolumn_RYVUNd",
+    "collapsible_content_hYiyqG",
+    "1648592464d59719aa",
+    "main"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "sections": {
+    "forms_tabs": {
+      "type": "forms-tabs",
+      "settings": {
+        "heading": "Forms",
+        "subheading": "Complete the appropriate form below.",
+        "waiver_form_id": "212646182016248",
+        "cancellation_form_id": "212646719362258",
+        "color_scheme": "background-1",
+        "padding_top": 20,
+        "padding_bottom": 48
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    }
+  },
+  "order": ["forms_tabs", "main"]
+}

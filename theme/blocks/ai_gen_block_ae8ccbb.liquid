@@ -1,0 +1,395 @@
+{% doc %}
+  @prompt
+    I want to create a 3 div, that show each of our locations, it should have a picture with the option to put text in the middle or the bottom of the div and a little subtitle, and I want to link it to the section anchor ids on the page. , I need the cards able to link to the section on the page name, and I want the option for when this is on mobile to do two or more columns, I want to have a gradient over it that goes from the bottom up, and the overlay doesnt seem to be working. , I cant change the overlay colour, and dont see the overlay. or gradient options. , I need the overlay and gradient to go over the image, I dont see the overlay or gradient. , okay the over lay isnt working. so maybe just have a red box at the bottom that holds the title and sub-title. 
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-location-cards-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    padding: 40px 20px;
+  }
+
+  .ai-location-cards__grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .ai-location-card-{{ ai_gen_id }} {
+    position: relative;
+    overflow: hidden;
+    border-radius: {{ block.settings.card_border_radius }}px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    display: block;
+    background-color: #f4f4f4;
+  }
+
+  .ai-location-card-{{ ai_gen_id }}:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  .ai-location-card__image-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    padding-bottom: {{ block.settings.image_aspect_ratio }}%;
+    overflow: hidden;
+    background-color: #f4f4f4;
+  }
+
+  .ai-location-card__image-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-location-card__placeholder-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-location-card__placeholder-{{ ai_gen_id }} svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.3;
+  }
+
+  .ai-location-card__content-box-{{ ai_gen_id }} {
+    background-color: {{ block.settings.box_color }};
+    padding: 20px;
+    text-align: {{ block.settings.text_alignment }};
+  }
+
+  .ai-location-card__title-{{ ai_gen_id }} {
+    margin: 0 0 8px 0;
+    font-size: {{ block.settings.title_size }}px;
+    font-weight: 700;
+    color: {{ block.settings.text_color }};
+    line-height: 1.2;
+  }
+
+  .ai-location-card__subtitle-{{ ai_gen_id }} {
+    margin: 0;
+    font-size: {{ block.settings.subtitle_size }}px;
+    color: {{ block.settings.text_color }};
+    opacity: 0.9;
+    line-height: 1.4;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-location-cards__grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat({{ block.settings.columns_mobile }}, 1fr);
+      gap: 16px;
+    }
+
+    .ai-location-card__content-box-{{ ai_gen_id }} {
+      padding: 16px;
+    }
+
+    .ai-location-card__title-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.title_size }}px * 0.85);
+    }
+
+    .ai-location-card__subtitle-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.subtitle_size }}px * 0.85);
+    }
+  }
+{% endstyle %}
+
+<location-cards-{{ ai_gen_id }} class="ai-location-cards-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-location-cards__grid-{{ ai_gen_id }}">
+    {% for i in (1..3) %}
+      {% liquid
+        assign image_key = 'location_' | append: i | append: '_image'
+        assign title_key = 'location_' | append: i | append: '_title'
+        assign subtitle_key = 'location_' | append: i | append: '_subtitle'
+        assign anchor_key = 'location_' | append: i | append: '_anchor'
+
+        assign location_image = block.settings[image_key]
+        assign location_title = block.settings[title_key]
+        assign location_subtitle = block.settings[subtitle_key]
+        assign location_anchor = block.settings[anchor_key]
+      %}
+
+      <a
+        href="#{{ location_anchor }}"
+        class="ai-location-card-{{ ai_gen_id }}"
+        data-location-index="{{ i }}"
+      >
+        <div class="ai-location-card__image-wrapper-{{ ai_gen_id }}">
+          {% if location_image %}
+            <img
+              src="{{ location_image | image_url: width: 800 }}"
+              alt="{{ location_image.alt | escape }}"
+              loading="lazy"
+              width="{{ location_image.width }}"
+              height="{{ location_image.height }}"
+              class="ai-location-card__image-{{ ai_gen_id }}"
+            >
+          {% else %}
+            <div class="ai-location-card__placeholder-{{ ai_gen_id }}">
+              {{ 'image' | placeholder_svg_tag }}
+            </div>
+          {% endif %}
+        </div>
+
+        <div class="ai-location-card__content-box-{{ ai_gen_id }}">
+          {% if location_title != blank %}
+            <h3 class="ai-location-card__title-{{ ai_gen_id }}">{{ location_title }}</h3>
+          {% endif %}
+          {% if location_subtitle != blank %}
+            <p class="ai-location-card__subtitle-{{ ai_gen_id }}">{{ location_subtitle }}</p>
+          {% endif %}
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+</location-cards-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class LocationCards{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.cards = this.querySelectorAll('.ai-location-card-{{ ai_gen_id }}');
+        this.setupEventListeners();
+      }
+
+      setupEventListeners() {
+        this.cards.forEach((card) => {
+          card.addEventListener('click', (e) => {
+            const anchor = card.getAttribute('href');
+            if (anchor && anchor.startsWith('#')) {
+              e.preventDefault();
+              const targetId = anchor.substring(1);
+              const targetElement = document.getElementById(targetId);
+              
+              if (targetElement) {
+                targetElement.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'start'
+                });
+              }
+            }
+          });
+        });
+      }
+    }
+
+    customElements.define('location-cards-{{ ai_gen_id }}', LocationCards{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Location cards",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Columns on mobile",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "range",
+      "id": "image_aspect_ratio",
+      "label": "Image height",
+      "min": 50,
+      "max": 150,
+      "step": 10,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "Content box style"
+    },
+    {
+      "type": "color",
+      "id": "box_color",
+      "label": "Box color",
+      "default": "#c0272d"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Title size",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size",
+      "label": "Subtitle size",
+      "min": 12,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Card style"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Location 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "location_1_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "location_1_title",
+      "label": "Title",
+      "default": "Downtown Location"
+    },
+    {
+      "type": "text",
+      "id": "location_1_subtitle",
+      "label": "Subtitle",
+      "default": "123 Main Street"
+    },
+    {
+      "type": "text",
+      "id": "location_1_anchor",
+      "label": "Anchor ID",
+      "default": "downtown"
+    },
+    {
+      "type": "header",
+      "content": "Location 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "location_2_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "location_2_title",
+      "label": "Title",
+      "default": "Westside Location"
+    },
+    {
+      "type": "text",
+      "id": "location_2_subtitle",
+      "label": "Subtitle",
+      "default": "456 West Avenue"
+    },
+    {
+      "type": "text",
+      "id": "location_2_anchor",
+      "label": "Anchor ID",
+      "default": "westside"
+    },
+    {
+      "type": "header",
+      "content": "Location 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "location_3_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "location_3_title",
+      "label": "Title",
+      "default": "Eastside Location"
+    },
+    {
+      "type": "text",
+      "id": "location_3_subtitle",
+      "label": "Subtitle",
+      "default": "789 East Boulevard"
+    },
+    {
+      "type": "text",
+      "id": "location_3_anchor",
+      "label": "Anchor ID",
+      "default": "eastside"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Location cards"
+    }
+  ]
+}
+{% endschema %}

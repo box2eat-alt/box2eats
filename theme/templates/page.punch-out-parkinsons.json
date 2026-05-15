@@ -1,0 +1,337 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_banner_EErXMp": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_96HiJA": {
+          "type": "heading",
+          "settings": {
+            "heading": "Punch Out Parkinsons",
+            "heading_size": "h1"
+          }
+        },
+        "text_7wYikG": {
+          "type": "text",
+          "settings": {
+            "text": "",
+            "text_style": "body"
+          }
+        },
+        "buttons_jgtB3g": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "JOIN NOW",
+            "button_link_1": "shopify://pages/join-now",
+            "button_style_secondary_1": false,
+            "button_label_2": "VIEW SCHEDULE",
+            "button_link_2": "shopify://pages/our-schedule",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_96HiJA",
+        "text_7wYikG",
+        "buttons_jgtB3g"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/97351534-c411-49ce-93b6-04775c38f413_copy.png",
+        "image_overlay_opacity": 40,
+        "image_height": "medium",
+        "adapt_height_first_image": false,
+        "desktop_content_position": "middle-center",
+        "show_text_box": true,
+        "desktop_content_alignment": "center",
+        "color_scheme": "background-1",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": true,
+        "show_text_below": false
+      }
+    },
+    "rich_text_nXQgpm": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_qQVgTM": {
+          "type": "heading",
+          "settings": {
+            "heading": "Built to Support Movement & Quality of Life",
+            "heading_size": "h1"
+          }
+        },
+        "text_XydCQW": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Punch-Out Parkinson’s is a non-contact boxing and movement program designed to help individuals living with Parkinson’s disease stay active, confident, and engaged. Classes focus on balance, coordination, strength, and mobility through structured, coach-led training in a safe and supportive environment. Led by experienced coaches, each session encourages consistent movement, mental engagement, and community connection to help participants maintain independence and improve overall well-being at every stage of their journey.</p>"
+          }
+        },
+        "button_W6r8De": {
+          "type": "button",
+          "settings": {
+            "button_label": "JOIN NOW",
+            "button_link": "shopify://pages/join-now",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_qQVgTM",
+        "text_XydCQW",
+        "button_W6r8De"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "color_scheme": "background-1",
+        "full_width": true,
+        "padding_top": 72,
+        "padding_bottom": 52
+      }
+    },
+    "blocks_7pbgD7": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_cc660b5_MkNfrG": {
+          "type": "ai_gen_block_cc660b5",
+          "settings": {
+            "image": "shopify://shop_images/97351534-c411-49ce-93b6-04775c38f413_copy_913f72c9-0e83-43e3-97cf-78e39451c9d0.png",
+            "image_fit": "cover",
+            "height": 200,
+            "mobile_height": 150
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_cc660b5_MkNfrG"
+      ],
+      "name": "Image banner",
+      "settings": {}
+    },
+    "1768856240f2afbda6": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_2c51ba0_brEGJU": {
+          "type": "ai_gen_block_2c51ba0",
+          "settings": {
+            "heading": "Photo gallery",
+            "heading_color": "#ffffff",
+            "heading_size": 32,
+            "heading_alignment": "center",
+            "heading_spacing": 32,
+            "columns_desktop": 4,
+            "gap": 16,
+            "container_width": 1100,
+            "section_padding": 56,
+            "aspect_ratio": "1 / 1",
+            "image_border_radius": 0,
+            "hover_zoom": 1.1,
+            "image_1": "shopify://shop_images/Screenshot_2026-01-19_at_4.33.49_PM.png",
+            "image_2": "shopify://shop_images/Screenshot_2026-01-19_at_4.33.55_PM.png",
+            "image_3": "shopify://shop_images/Screenshot_2026-01-19_at_4.34.07_PM.png",
+            "image_4": "shopify://shop_images/Screenshot_2026-01-19_at_4.34.12_PM.png"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_2c51ba0_brEGJU"
+      ],
+      "settings": {}
+    },
+    "multicolumn_RYVUNd": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_EKYB4E": {
+          "type": "column",
+          "settings": {
+            "title": "FUNCTIONAL FULL-BODY MOVEMENT",
+            "text": "<p>Punch-Out Parkinson’s uses non-contact boxing and functional movement to support strength, balance, coordination, and mobility. Training focuses on keeping the body active and capable through safe, structured exercises designed to support daily movement.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_VT6CrG": {
+          "type": "column",
+          "settings": {
+            "title": "SKILL, COORDINATION & CONTROL",
+            "text": "<p>Classes emphasize controlled movements, hand-eye coordination, footwork, and rhythm to help improve motor skills and cognitive engagement. Drills are adaptable and designed to meet participants at their individual ability level.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_mKGjtL": {
+          "type": "column",
+          "settings": {
+            "title": "COACH-LED & SUPPORTIVE",
+            "text": "<p>Led by experienced coaches, each session provides a welcoming, encouraging environment where participants feel supported, motivated, and confident. The focus is on consistency, community, and maintaining independence through movement.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_EKYB4E",
+        "column_VT6CrG",
+        "column_mKGjtL"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "primary",
+        "button_label": "JOIN NOW",
+        "button_link": "shopify://pages/join-now",
+        "color_scheme": "background-1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 52,
+        "padding_bottom": 72
+      }
+    },
+    "collapsible_content_hYiyqG": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_gRMkXx": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Who is Punch-Out Parkinson’s for?",
+            "icon": "check_mark",
+            "row_content": "<p>Punch-Out Parkinson’s is designed for individuals living with Parkinson’s disease at any stage. The program is open to all fitness levels and focuses on movement, balance, and coordination in a safe, supportive environment.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_cErQga": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What can I expect in a Punch-Out Parkinson’s class?",
+            "icon": "check_mark",
+            "row_content": "<p>Classes include non-contact boxing, functional movement, and coordination drills aimed at improving strength, balance, mobility, and confidence. Sessions are structured, adaptable, and led by trained coaches who understand Parkinson’s-specific needs.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_VdCTGt": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Do I need boxing or fitness experience to join?",
+            "icon": "check_mark",
+            "row_content": "<p>No prior boxing or fitness experience is required. All exercises can be modified to meet individual abilities, ensuring participants feel comfortable, capable, and supported throughout each class.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_hCBJXB": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What should I bring to class?",
+            "icon": "check_mark",
+            "row_content": "<p>Wear comfortable athletic clothing and supportive shoes, and bring a water bottle. Boxing gloves are provided or optional depending on comfort and preference.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_gRMkXx",
+        "collapsible_row_cErQga",
+        "collapsible_row_VdCTGt",
+        "collapsible_row_hCBJXB"
+      ],
+      "name": "t:sections.collapsible_content.presets.name",
+      "settings": {
+        "caption": "",
+        "heading": "PUNCH-OUT PARKINSON’S DETAILS",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "layout": "none",
+        "color_scheme": "background-1",
+        "container_color_scheme": "background-2",
+        "open_first_collapsible_row": false,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
+    "1648592464d59719aa": {
+      "type": "image-banner",
+      "blocks": {
+        "1648592464bd9bb1c7-0": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "heading": "Image banner",
+            "heading_size": "h1"
+          }
+        },
+        "1648592464bd9bb1c7-1": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "Give customers details about the banner image(s) or content on the template.",
+            "text_style": "body"
+          }
+        },
+        "1648592464bd9bb1c7-2": {
+          "type": "buttons",
+          "disabled": true,
+          "settings": {
+            "button_label_1": "Button label",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "Button label",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "1648592464bd9bb1c7-0",
+        "1648592464bd9bb1c7-1",
+        "1648592464bd9bb1c7-2"
+      ],
+      "disabled": true,
+      "settings": {
+        "image": "shopify://shop_images/CONTACT_BANNER-new.png",
+        "image_overlay_opacity": 0,
+        "image_height": "small",
+        "adapt_height_first_image": false,
+        "desktop_content_position": "middle-center",
+        "show_text_box": false,
+        "desktop_content_alignment": "center",
+        "color_scheme": "background-1",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": false,
+        "show_text_below": false
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    }
+  },
+  "order": [
+    "image_banner_EErXMp",
+    "rich_text_nXQgpm",
+    "blocks_7pbgD7",
+    "1768856240f2afbda6",
+    "multicolumn_RYVUNd",
+    "collapsible_content_hYiyqG",
+    "1648592464d59719aa",
+    "main"
+  ]
+}

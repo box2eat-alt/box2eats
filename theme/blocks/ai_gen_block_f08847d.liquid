@@ -1,0 +1,405 @@
+{% doc %}
+  @prompt
+    1️⃣ Top of Section
+    
+    Background: Light neutral or black (depending on your brand section style)
+    Centered layout
+    
+    Mini Title (small text above headline):
+    Program Details
+    
+    Main Headline (H2):
+    What You Get – 6 Week Program
+    
+    Short Subtext (1 sentence under headline):
+    A structured progression designed to build skill, confidence, and consistency.
+    
+    ⸻
+    
+    2️⃣ Three Equal Columns (Desktop) / Stacked (Mobile)
+    
+    Each column should be a “card” with:
+    	•	Bold small title
+    	•	2–4 short lines max
+    	•	Clean spacing
+    	•	No long paragraphs, make it so i can add padding to the top or bottom 
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-program-details-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    padding-top: {{ block.settings.padding_top }}px;
+    padding-bottom: {{ block.settings.padding_bottom }}px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: {{ block.settings.background_color }};
+  }
+
+  .ai-program-details-container-{{ ai_gen_id }} {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .ai-program-details-header-{{ ai_gen_id }} {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  .ai-program-details-mini-title-{{ ai_gen_id }} {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: {{ block.settings.mini_title_color }};
+    margin: 0 0 12px 0;
+    font-weight: 400;
+  }
+
+  .ai-program-details-headline-{{ ai_gen_id }} {
+    font-size: {{ block.settings.headline_size }}px;
+    color: {{ block.settings.headline_color }};
+    margin: 0 0 16px 0;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .ai-program-details-subtext-{{ ai_gen_id }} {
+    font-size: {{ block.settings.subtext_size }}px;
+    color: {{ block.settings.subtext_color }};
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .ai-program-details-cards-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+
+  .ai-program-details-card-{{ ai_gen_id }} {
+    background-color: {{ block.settings.card_background_color }};
+    padding: 30px 24px;
+    border-radius: {{ block.settings.card_border_radius }}px;
+    border: {{ block.settings.card_border_thickness }}px solid {{ block.settings.card_border_color }};
+  }
+
+  .ai-program-details-card-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.card_title_size }}px;
+    color: {{ block.settings.card_title_color }};
+    font-weight: 700;
+    margin: 0 0 16px 0;
+    line-height: 1.3;
+  }
+
+  .ai-program-details-card-content-{{ ai_gen_id }} {
+    font-size: {{ block.settings.card_text_size }}px;
+    color: {{ block.settings.card_text_color }};
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .ai-program-details-card-content-{{ ai_gen_id }} p {
+    margin: 0 0 8px 0;
+  }
+
+  .ai-program-details-card-content-{{ ai_gen_id }} p:last-child {
+    margin-bottom: 0;
+  }
+
+  @media screen and (max-width: 989px) {
+    .ai-program-details-cards-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .ai-program-details-header-{{ ai_gen_id }} {
+      margin-bottom: 30px;
+    }
+
+    .ai-program-details-headline-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.headline_size }}px * 0.8);
+    }
+  }
+{% endstyle %}
+
+<program-details-{{ ai_gen_id }} class="ai-program-details-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-program-details-container-{{ ai_gen_id }}">
+    <div class="ai-program-details-header-{{ ai_gen_id }}">
+      {% if block.settings.mini_title != blank %}
+        <div class="ai-program-details-mini-title-{{ ai_gen_id }}">
+          {{ block.settings.mini_title }}
+        </div>
+      {% endif %}
+
+      {% if block.settings.headline != blank %}
+        <h2 class="ai-program-details-headline-{{ ai_gen_id }}">
+          {{ block.settings.headline }}
+        </h2>
+      {% endif %}
+
+      {% if block.settings.subtext != blank %}
+        <div class="ai-program-details-subtext-{{ ai_gen_id }}">
+          {{ block.settings.subtext }}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="ai-program-details-cards-{{ ai_gen_id }}">
+      {% for i in (1..3) %}
+        {% assign card_title_key = 'card_' | append: i | append: '_title' %}
+        {% assign card_content_key = 'card_' | append: i | append: '_content' %}
+        {% assign card_title = block.settings[card_title_key] %}
+        {% assign card_content = block.settings[card_content_key] %}
+
+        {% if card_title != blank or card_content != blank %}
+          <div class="ai-program-details-card-{{ ai_gen_id }}">
+            {% if card_title != blank %}
+              <h3 class="ai-program-details-card-title-{{ ai_gen_id }}">
+                {{ card_title }}
+              </h3>
+            {% endif %}
+
+            {% if card_content != blank %}
+              <div class="ai-program-details-card-content-{{ ai_gen_id }}">
+                {{ card_content }}
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</program-details-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class ProgramDetails{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+    }
+
+    customElements.define('program-details-{{ ai_gen_id }}', ProgramDetails{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Program details",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section style"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Header content"
+    },
+    {
+      "type": "text",
+      "id": "mini_title",
+      "label": "Mini title",
+      "default": "Program Details"
+    },
+    {
+      "type": "color",
+      "id": "mini_title_color",
+      "label": "Mini title color",
+      "default": "#c0272d"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "What You Get – 6 Week Program"
+    },
+    {
+      "type": "range",
+      "id": "headline_size",
+      "label": "Headline size",
+      "min": 24,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "color",
+      "id": "headline_color",
+      "label": "Headline color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "A structured progression designed to build skill, confidence, and consistency."
+    },
+    {
+      "type": "range",
+      "id": "subtext_size",
+      "label": "Subtext size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "subtext_color",
+      "label": "Subtext color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Card 1"
+    },
+    {
+      "type": "text",
+      "id": "card_1_title",
+      "label": "Title",
+      "default": "Skill Development"
+    },
+    {
+      "type": "richtext",
+      "id": "card_1_content",
+      "label": "Content",
+      "default": "<p>Progressive drills and technique work</p><p>Footwork and defensive fundamentals</p><p>Combination building and pad work</p>"
+    },
+    {
+      "type": "header",
+      "content": "Card 2"
+    },
+    {
+      "type": "text",
+      "id": "card_2_title",
+      "label": "Title",
+      "default": "Conditioning"
+    },
+    {
+      "type": "richtext",
+      "id": "card_2_content",
+      "label": "Content",
+      "default": "<p>High-intensity interval training</p><p>Boxing-specific cardio circuits</p><p>Core and strength conditioning</p>"
+    },
+    {
+      "type": "header",
+      "content": "Card 3"
+    },
+    {
+      "type": "text",
+      "id": "card_3_title",
+      "label": "Title",
+      "default": "Community"
+    },
+    {
+      "type": "richtext",
+      "id": "card_3_content",
+      "label": "Content",
+      "default": "<p>Small group training environment</p><p>Supportive coaching and feedback</p><p>Build confidence with like-minded athletes</p>"
+    },
+    {
+      "type": "header",
+      "content": "Card style"
+    },
+    {
+      "type": "color",
+      "id": "card_background_color",
+      "label": "Background",
+      "default": "#0a0a0a"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Border color",
+      "default": "#c0272d"
+    },
+    {
+      "type": "range",
+      "id": "card_border_thickness",
+      "label": "Border thickness",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "card_title_size",
+      "label": "Title size",
+      "min": 16,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "card_title_color",
+      "label": "Title color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "card_text_size",
+      "label": "Text size",
+      "min": 14,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "color",
+      "id": "card_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Program details"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,488 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_banner_ejCLJg": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_MWWBpy": {
+          "type": "heading",
+          "settings": {
+            "heading": "BOX2FIT CLASSES",
+            "heading_size": "h1"
+          }
+        },
+        "text_yncQfn": {
+          "type": "text",
+          "settings": {
+            "text": "",
+            "text_style": "body"
+          }
+        },
+        "buttons_dzr8Nk": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Contact Us",
+            "button_link_1": "shopify://pages/contact-us",
+            "button_style_secondary_1": false,
+            "button_label_2": "View Schedule",
+            "button_link_2": "shopify://pages/our-schedule",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_MWWBpy",
+        "text_yncQfn",
+        "buttons_dzr8Nk"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/97351534-c411-49ce-93b6-04775c38f413_copy.png",
+        "image_overlay_opacity": 40,
+        "image_height": "medium",
+        "adapt_height_first_image": false,
+        "desktop_content_position": "middle-center",
+        "show_text_box": true,
+        "desktop_content_alignment": "center",
+        "color_scheme": "background-1",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": true,
+        "show_text_below": false
+      }
+    },
+    "1768788843f6e6296c": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_ef724ea_W4rVTj": {
+          "type": "ai_gen_block_ef724ea",
+          "settings": {
+            "image_position": "left",
+            "content_alignment_desktop": "left",
+            "content_alignment_mobile": "center",
+            "image_width": 50,
+            "container_width": 1200,
+            "content_gap": 60,
+            "section_padding": 60,
+            "background_color": "#000000",
+            "image": "shopify://shop_images/hf_20260119_014526_3c829a12-3f9d-48c8-9ddd-11b69f71d435.png",
+            "image_border_radius": 0,
+            "mini_title": "Build Confidence Through Boxing",
+            "mini_title_size": 12,
+            "mini_title_color": "#c0272d",
+            "heading": "YOUTH PROGRAM",
+            "heading_size": 40,
+            "heading_color": "#ffffff",
+            "description": "Our Youth Boxing classes help kids and teens develop confidence, discipline, coordination, and strength in a safe, structured, and supportive environment. Led by experienced coaches, each session focuses on boxing fundamentals, movement, and age-appropriate conditioning while encouraging focus, respect, and healthy habits that carry beyond the gym.",
+            "description_size": 16,
+            "description_color": "#ffffff",
+            "button_layout": "horizontal",
+            "button_font_size": 14,
+            "button_border_radius": 0,
+            "button_primary_label": "JOIN NOW",
+            "button_primary_link": "shopify://pages/join-now",
+            "button_primary_bg": "#c0272d",
+            "button_primary_text_color": "#ffffff",
+            "button_primary_hover_bg": "#a01f24",
+            "button_secondary_label": "LEARN MORE",
+            "button_secondary_link": "",
+            "button_secondary_bg": "rgba(0,0,0,0)",
+            "button_secondary_text_color": "#c0272d",
+            "button_secondary_border": "#ffffff",
+            "button_secondary_hover_bg": "#ffffff",
+            "button_secondary_hover_border": "#ffffff"
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_cc660b5_QTy6Ab": {
+          "type": "ai_gen_block_cc660b5",
+          "settings": {
+            "image": "shopify://shop_images/97351534-c411-49ce-93b6-04775c38f413_copy_913f72c9-0e83-43e3-97cf-78e39451c9d0.png",
+            "image_fit": "cover",
+            "height": 200,
+            "mobile_height": 150
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_ef724ea_W4rVTj",
+        "ai_gen_block_cc660b5_QTy6Ab"
+      ],
+      "name": "Image Banner",
+      "settings": {}
+    },
+    "blocks_tCJ8W9": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_ef724ea_MbNcBj": {
+          "type": "ai_gen_block_ef724ea",
+          "settings": {
+            "image_position": "right",
+            "content_alignment_desktop": "left",
+            "content_alignment_mobile": "center",
+            "image_width": 50,
+            "container_width": 1200,
+            "content_gap": 60,
+            "section_padding": 60,
+            "background_color": "#000000",
+            "image": "shopify://shop_images/hf_20260119_195148_646cb69c-2d7a-4522-861f-74c95cd1c846.png",
+            "image_border_radius": 0,
+            "mini_title": "TRAINING PROGRAM",
+            "mini_title_size": 12,
+            "mini_title_color": "#c0272d",
+            "heading": "Fitness Boxing",
+            "heading_size": 40,
+            "heading_color": "#ffffff",
+            "description": "Fitness Boxing at Box2Fit combines boxing-based cardio, strength training, and conditioning to deliver a high-energy, full-body workout. Classes focus on technique, movement, and endurance while helping you burn calories, build strength, and improve overall fitness in a motivating and coach-led environment. Designed for all fitness levels, Fitness Boxing is a fun and effective way to train without the pressure of competition.",
+            "description_size": 16,
+            "description_color": "#ffffff",
+            "button_layout": "horizontal",
+            "button_font_size": 14,
+            "button_border_radius": 0,
+            "button_primary_label": "JOIN NOW",
+            "button_primary_link": "shopify://pages/join-now",
+            "button_primary_bg": "#c0272d",
+            "button_primary_text_color": "#ffffff",
+            "button_primary_hover_bg": "#a01f24",
+            "button_secondary_label": "LEARN MORE",
+            "button_secondary_link": "",
+            "button_secondary_bg": "rgba(0,0,0,0)",
+            "button_secondary_text_color": "#c0272d",
+            "button_secondary_border": "#ffffff",
+            "button_secondary_hover_bg": "#ffffff",
+            "button_secondary_hover_border": "#ffffff"
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_cc660b5_Yca6eD": {
+          "type": "ai_gen_block_cc660b5",
+          "settings": {
+            "image": "shopify://shop_images/97351534-c411-49ce-93b6-04775c38f413_copy_913f72c9-0e83-43e3-97cf-78e39451c9d0.png",
+            "image_fit": "cover",
+            "height": 200,
+            "mobile_height": 150
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_ef724ea_MbNcBj",
+        "ai_gen_block_cc660b5_Yca6eD"
+      ],
+      "name": "Image Banner",
+      "settings": {}
+    },
+    "blocks_pbKBpH": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_ef724ea_eWrfKf": {
+          "type": "ai_gen_block_ef724ea",
+          "settings": {
+            "image_position": "left",
+            "content_alignment_desktop": "left",
+            "content_alignment_mobile": "center",
+            "image_width": 50,
+            "container_width": 1200,
+            "content_gap": 60,
+            "section_padding": 60,
+            "background_color": "#000000",
+            "image": "shopify://shop_images/hf_20260119_194955_7286f948-9d53-4a03-864c-f842b5c3ba14.png",
+            "image_border_radius": 0,
+            "mini_title": "TRAINING PROGRAM",
+            "mini_title_size": 12,
+            "mini_title_color": "#c0272d",
+            "heading": "Personal Training",
+            "heading_size": 40,
+            "heading_color": "#ffffff",
+            "description": "Personal Training at Box2Fit delivers one-on-one or small-group coaching tailored to your specific goals. Each session combines boxing-based training, strength work, and conditioning to help you build muscle, burn fat, improve endurance, and move with confidence. Led by experienced coaches, this program provides personalized guidance, accountability, and progression in a focused training environment designed to help you get results efficiently and safely.",
+            "description_size": 16,
+            "description_color": "#ffffff",
+            "button_layout": "horizontal",
+            "button_font_size": 14,
+            "button_border_radius": 0,
+            "button_primary_label": "JOIN NOW",
+            "button_primary_link": "shopify://pages/join-now",
+            "button_primary_bg": "#c0272d",
+            "button_primary_text_color": "#ffffff",
+            "button_primary_hover_bg": "#a01f24",
+            "button_secondary_label": "LEARN MORE",
+            "button_secondary_link": "",
+            "button_secondary_bg": "rgba(0,0,0,0)",
+            "button_secondary_text_color": "#c0272d",
+            "button_secondary_border": "#ffffff",
+            "button_secondary_hover_bg": "#ffffff",
+            "button_secondary_hover_border": "#ffffff"
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_cc660b5_7MANAB": {
+          "type": "ai_gen_block_cc660b5",
+          "settings": {
+            "image": "shopify://shop_images/97351534-c411-49ce-93b6-04775c38f413_copy_913f72c9-0e83-43e3-97cf-78e39451c9d0.png",
+            "image_fit": "cover",
+            "height": 200,
+            "mobile_height": 150
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_ef724ea_TJPXgr": {
+          "type": "ai_gen_block_ef724ea",
+          "settings": {
+            "image_position": "right",
+            "content_alignment_desktop": "left",
+            "content_alignment_mobile": "center",
+            "image_width": 50,
+            "container_width": 1200,
+            "content_gap": 60,
+            "section_padding": 60,
+            "background_color": "#000000",
+            "image": "shopify://shop_images/fitness_boxing.jpg",
+            "image_border_radius": 0,
+            "mini_title": "TRAINING PROGRAM",
+            "mini_title_size": 12,
+            "mini_title_color": "#c0272d",
+            "heading": "Technical Boxing",
+            "heading_size": 40,
+            "heading_color": "#ffffff",
+            "description": "Technical Boxing at Box2Fit is focused on skill development, precision, and proper boxing technique. Classes emphasize footwork, defense, combinations, timing, and ring awareness in a structured, coach-led environment. Designed for those looking to refine their boxing fundamentals or advance their technical skills, this program is ideal for members who want to train with purpose, improve form, and deepen their understanding of the sport without the pressure of competition.",
+            "description_size": 16,
+            "description_color": "#ffffff",
+            "button_layout": "horizontal",
+            "button_font_size": 14,
+            "button_border_radius": 0,
+            "button_primary_label": "JOIN NOW",
+            "button_primary_link": "shopify://pages/join-now",
+            "button_primary_bg": "#c0272d",
+            "button_primary_text_color": "#ffffff",
+            "button_primary_hover_bg": "#a01f24",
+            "button_secondary_label": "LEARN MORE",
+            "button_secondary_link": "",
+            "button_secondary_bg": "rgba(0,0,0,0)",
+            "button_secondary_text_color": "#c0272d",
+            "button_secondary_border": "#ffffff",
+            "button_secondary_hover_bg": "#ffffff",
+            "button_secondary_hover_border": "#ffffff"
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_cc660b5_Kb8Frg": {
+          "type": "ai_gen_block_cc660b5",
+          "settings": {
+            "image": "shopify://shop_images/97351534-c411-49ce-93b6-04775c38f413_copy_913f72c9-0e83-43e3-97cf-78e39451c9d0.png",
+            "image_fit": "cover",
+            "height": 200,
+            "mobile_height": 150
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_ef724ea_aTNjXg": {
+          "type": "ai_gen_block_ef724ea",
+          "settings": {
+            "image_position": "left",
+            "content_alignment_desktop": "left",
+            "content_alignment_mobile": "center",
+            "image_width": 50,
+            "container_width": 1200,
+            "content_gap": 60,
+            "section_padding": 60,
+            "background_color": "#000000",
+            "image": "shopify://shop_images/asdasd.jpg",
+            "image_border_radius": 0,
+            "mini_title": "COMMUNITY PROGRAM",
+            "mini_title_size": 12,
+            "mini_title_color": "#c0272d",
+            "heading": "Punch-Out Parkinson’s",
+            "heading_size": 40,
+            "heading_color": "#ffffff",
+            "description": "Punch-Out Parkinson’s is a non-contact boxing and movement program designed to support individuals living with Parkinson’s disease. Classes focus on balance, coordination, strength, and mobility in a safe, structured, and encouraging environment. Led by trained coaches, the program helps participants stay active, build confidence, and improve quality of life while training alongside a supportive community that understands the journey.",
+            "description_size": 16,
+            "description_color": "#ffffff",
+            "button_layout": "horizontal",
+            "button_font_size": 14,
+            "button_border_radius": 0,
+            "button_primary_label": "JOIN NOW",
+            "button_primary_link": "shopify://pages/join-now",
+            "button_primary_bg": "#c0272d",
+            "button_primary_text_color": "#ffffff",
+            "button_primary_hover_bg": "#a01f24",
+            "button_secondary_label": "LEARN MORE",
+            "button_secondary_link": "",
+            "button_secondary_bg": "rgba(0,0,0,0)",
+            "button_secondary_text_color": "#c0272d",
+            "button_secondary_border": "#ffffff",
+            "button_secondary_hover_bg": "#ffffff",
+            "button_secondary_hover_border": "#ffffff"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_ef724ea_eWrfKf",
+        "ai_gen_block_cc660b5_7MANAB",
+        "ai_gen_block_ef724ea_TJPXgr",
+        "ai_gen_block_cc660b5_Kb8Frg",
+        "ai_gen_block_ef724ea_aTNjXg"
+      ],
+      "name": "Image Banner",
+      "settings": {}
+    },
+    "blocks_MNT3Yx": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_cc660b5_yeDVwf": {
+          "type": "ai_gen_block_cc660b5",
+          "settings": {
+            "image": "shopify://shop_images/97351534-c411-49ce-93b6-04775c38f413_copy_913f72c9-0e83-43e3-97cf-78e39451c9d0.png",
+            "image_fit": "cover",
+            "height": 200,
+            "mobile_height": 150
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_ef724ea_8XQqyq": {
+          "type": "ai_gen_block_ef724ea",
+          "settings": {
+            "image_position": "right",
+            "content_alignment_desktop": "left",
+            "content_alignment_mobile": "center",
+            "image_width": 50,
+            "container_width": 1200,
+            "content_gap": 60,
+            "section_padding": 60,
+            "background_color": "#000000",
+            "image": "shopify://shop_images/hf_20260119_195222_15de4894-a3d3-4cc7-ab58-8866526743fc.png",
+            "image_border_radius": 0,
+            "mini_title": "SIGNATURE PROGRAM",
+            "mini_title_size": 12,
+            "mini_title_color": "#c0272d",
+            "heading": "Beast Camp",
+            "heading_size": 40,
+            "heading_color": "#ffffff",
+            "description": "Beast Camp is a high-intensity, month-to-month training program designed to push you past limits and deliver real results. Each class combines boxing, strength training, and conditioning in a structured, high-energy environment led by experienced coaches. Built to help you burn fat, build muscle, and improve endurance, Beast Camp is ideal for anyone ready to train consistently, stay accountable, and level up their fitness without long-term contracts.",
+            "description_size": 16,
+            "description_color": "#ffffff",
+            "button_layout": "horizontal",
+            "button_font_size": 14,
+            "button_border_radius": 0,
+            "button_primary_label": "JOIN NOW",
+            "button_primary_link": "shopify://pages/join-now",
+            "button_primary_bg": "#c0272d",
+            "button_primary_text_color": "#ffffff",
+            "button_primary_hover_bg": "#a01f24",
+            "button_secondary_label": "LEARN MORE",
+            "button_secondary_link": "",
+            "button_secondary_bg": "rgba(0,0,0,0)",
+            "button_secondary_text_color": "#c0272d",
+            "button_secondary_border": "#ffffff",
+            "button_secondary_hover_bg": "#ffffff",
+            "button_secondary_hover_border": "#ffffff"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_cc660b5_yeDVwf",
+        "ai_gen_block_ef724ea_8XQqyq"
+      ],
+      "name": "Image Banner",
+      "settings": {}
+    },
+    "1648592464d59719aa": {
+      "type": "image-banner",
+      "blocks": {
+        "1648592464bd9bb1c7-0": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "heading": "Image banner",
+            "heading_size": "h1"
+          }
+        },
+        "1648592464bd9bb1c7-1": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "Give customers details about the banner image(s) or content on the template.",
+            "text_style": "body"
+          }
+        },
+        "1648592464bd9bb1c7-2": {
+          "type": "buttons",
+          "disabled": true,
+          "settings": {
+            "button_label_1": "Button label",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "Button label",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "1648592464bd9bb1c7-0",
+        "1648592464bd9bb1c7-1",
+        "1648592464bd9bb1c7-2"
+      ],
+      "disabled": true,
+      "settings": {
+        "image": "shopify://shop_images/CONTACT_BANNER-new.png",
+        "image_overlay_opacity": 0,
+        "image_height": "small",
+        "adapt_height_first_image": false,
+        "desktop_content_position": "middle-center",
+        "show_text_box": false,
+        "desktop_content_alignment": "center",
+        "color_scheme": "background-1",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": false,
+        "show_text_below": false
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "blocks_hMPyfA": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_cc660b5_FEaVLx": {
+          "type": "ai_gen_block_cc660b5",
+          "settings": {
+            "image": "shopify://shop_images/97351534-c411-49ce-93b6-04775c38f413_copy_913f72c9-0e83-43e3-97cf-78e39451c9d0.png",
+            "image_fit": "cover",
+            "height": 200,
+            "mobile_height": 150
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_cc660b5_FEaVLx"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "image_banner_ejCLJg",
+    "1768788843f6e6296c",
+    "blocks_tCJ8W9",
+    "blocks_pbKBpH",
+    "blocks_MNT3Yx",
+    "1648592464d59719aa",
+    "main",
+    "blocks_hMPyfA"
+  ]
+}

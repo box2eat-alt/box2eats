@@ -1,0 +1,594 @@
+{% doc %}
+  @prompt
+    I want 4 divs that have an image and a box under it the box should have a mini title, header, subtitle and a button under it 
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-four-column-grid-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    padding: 40px 20px;
+  }
+
+  .ai-four-column-grid__container-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: {{ block.settings.column_gap }}px;
+    max-width: {{ block.settings.max_width }}px;
+    margin: 0 auto;
+  }
+
+  .ai-four-column-grid__column-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: {{ block.settings.content_gap }}px;
+  }
+
+  .ai-four-column-grid__image-wrapper-{{ ai_gen_id }} {
+    width: 100%;
+    aspect-ratio: {{ block.settings.image_aspect_ratio }};
+    overflow: hidden;
+    border-radius: {{ block.settings.image_border_radius }}px;
+  }
+
+  .ai-four-column-grid__image-wrapper-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-four-column-grid__image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-four-column-grid__image-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    max-width: 200px;
+    max-height: 200px;
+  }
+
+  .ai-four-column-grid__content-box-{{ ai_gen_id }} {
+    background-color: {{ block.settings.box_background_color }};
+    padding: {{ block.settings.box_padding }}px;
+    border-radius: {{ block.settings.box_border_radius }}px;
+    display: flex;
+    flex-direction: column;
+    gap: {{ block.settings.text_gap }}px;
+  }
+
+  .ai-four-column-grid__mini-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.mini_title_size }}px;
+    color: {{ block.settings.mini_title_color }};
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+    font-weight: 600;
+  }
+
+  .ai-four-column-grid__header-{{ ai_gen_id }} {
+    font-size: {{ block.settings.header_size }}px;
+    color: {{ block.settings.header_color }};
+    margin: 0;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .ai-four-column-grid__subtitle-{{ ai_gen_id }} {
+    font-size: {{ block.settings.subtitle_size }}px;
+    color: {{ block.settings.subtitle_color }};
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .ai-four-column-grid__button-{{ ai_gen_id }} {
+    display: inline-block;
+    padding: {{ block.settings.button_padding_vertical }}px {{ block.settings.button_padding_horizontal }}px;
+    background-color: {{ block.settings.button_background_color }};
+    color: {{ block.settings.button_text_color }};
+    text-decoration: none;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    font-size: {{ block.settings.button_font_size }}px;
+    font-weight: 600;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
+  }
+
+  .ai-four-column-grid__button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_color }};
+  }
+
+  @media screen and (max-width: 989px) {
+    .ai-four-column-grid__container-{{ ai_gen_id }} {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-four-column-grid__container-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+    }
+  }
+{% endstyle %}
+
+<four-column-grid-{{ ai_gen_id }} class="ai-four-column-grid-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-four-column-grid__container-{{ ai_gen_id }}">
+    {% for i in (1..4) %}
+      {% liquid
+        assign image_key = 'column_' | append: i | append: '_image'
+        assign mini_title_key = 'column_' | append: i | append: '_mini_title'
+        assign header_key = 'column_' | append: i | append: '_header'
+        assign subtitle_key = 'column_' | append: i | append: '_subtitle'
+        assign button_text_key = 'column_' | append: i | append: '_button_text'
+        assign button_link_key = 'column_' | append: i | append: '_button_link'
+
+        assign column_image = block.settings[image_key]
+        assign mini_title = block.settings[mini_title_key]
+        assign header = block.settings[header_key]
+        assign subtitle = block.settings[subtitle_key]
+        assign button_text = block.settings[button_text_key]
+        assign button_link = block.settings[button_link_key]
+      %}
+
+      <div class="ai-four-column-grid__column-{{ ai_gen_id }}">
+        <div class="ai-four-column-grid__image-wrapper-{{ ai_gen_id }}">
+          {% if column_image %}
+            <img
+              src="{{ column_image | image_url: width: 600 }}"
+              alt="{{ column_image.alt | escape }}"
+              loading="lazy"
+              width="{{ column_image.width }}"
+              height="{{ column_image.height }}"
+            >
+          {% else %}
+            <div class="ai-four-column-grid__image-placeholder-{{ ai_gen_id }}">
+              {{ 'image' | placeholder_svg_tag }}
+            </div>
+          {% endif %}
+        </div>
+
+        <div class="ai-four-column-grid__content-box-{{ ai_gen_id }}">
+          {% if mini_title != blank %}
+            <p class="ai-four-column-grid__mini-title-{{ ai_gen_id }}">{{ mini_title }}</p>
+          {% endif %}
+
+          {% if header != blank %}
+            <h3 class="ai-four-column-grid__header-{{ ai_gen_id }}">{{ header }}</h3>
+          {% endif %}
+
+          {% if subtitle != blank %}
+            <p class="ai-four-column-grid__subtitle-{{ ai_gen_id }}">{{ subtitle }}</p>
+          {% endif %}
+
+          {% if button_text != blank %}
+            <a
+              href="{{ button_link }}"
+              class="ai-four-column-grid__button-{{ ai_gen_id }}"
+            >
+              {{ button_text }}
+            </a>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</four-column-grid-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class FourColumnGrid{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+    }
+    customElements.define('four-column-grid-{{ ai_gen_id }}', FourColumnGrid{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Four column grid",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 800,
+      "max": 1600,
+      "step": 100,
+      "unit": "px",
+      "label": "Maximum width",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "label": "Column gap",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "content_gap",
+      "min": 10,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "label": "Image to box gap",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "select",
+      "id": "image_aspect_ratio",
+      "label": "Aspect ratio",
+      "options": [
+        {
+          "value": "1 / 1",
+          "label": "Square (1:1)"
+        },
+        {
+          "value": "4 / 3",
+          "label": "Landscape (4:3)"
+        },
+        {
+          "value": "3 / 4",
+          "label": "Portrait (3:4)"
+        },
+        {
+          "value": "16 / 9",
+          "label": "Wide (16:9)"
+        }
+      ],
+      "default": "1 / 1"
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Content box"
+    },
+    {
+      "type": "color",
+      "id": "box_background_color",
+      "label": "Background color",
+      "default": "#0a0a0a"
+    },
+    {
+      "type": "range",
+      "id": "box_padding",
+      "min": 10,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "box_border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "text_gap",
+      "min": 5,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Text spacing",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Mini title"
+    },
+    {
+      "type": "range",
+      "id": "mini_title_size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 12
+    },
+    {
+      "type": "color",
+      "id": "mini_title_color",
+      "label": "Color",
+      "default": "#c0272d"
+    },
+    {
+      "type": "header",
+      "content": "Header"
+    },
+    {
+      "type": "range",
+      "id": "header_size",
+      "min": 16,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Font size",
+      "default": 24
+    },
+    {
+      "type": "color",
+      "id": "header_color",
+      "label": "Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Subtitle"
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "button_padding_vertical",
+      "min": 5,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Vertical padding",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "button_padding_horizontal",
+      "min": 10,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Horizontal padding",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "Background color",
+      "default": "#c0272d"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_color",
+      "label": "Hover background color",
+      "default": "#a01f24"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Column 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "column_1_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "column_1_mini_title",
+      "label": "Mini title",
+      "default": "Feature"
+    },
+    {
+      "type": "text",
+      "id": "column_1_header",
+      "label": "Header",
+      "default": "Column One"
+    },
+    {
+      "type": "textarea",
+      "id": "column_1_subtitle",
+      "label": "Subtitle",
+      "default": "Add a description for this column"
+    },
+    {
+      "type": "text",
+      "id": "column_1_button_text",
+      "label": "Button text",
+      "default": "Learn more"
+    },
+    {
+      "type": "url",
+      "id": "column_1_button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Column 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "column_2_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "column_2_mini_title",
+      "label": "Mini title",
+      "default": "Feature"
+    },
+    {
+      "type": "text",
+      "id": "column_2_header",
+      "label": "Header",
+      "default": "Column Two"
+    },
+    {
+      "type": "textarea",
+      "id": "column_2_subtitle",
+      "label": "Subtitle",
+      "default": "Add a description for this column"
+    },
+    {
+      "type": "text",
+      "id": "column_2_button_text",
+      "label": "Button text",
+      "default": "Learn more"
+    },
+    {
+      "type": "url",
+      "id": "column_2_button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Column 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "column_3_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "column_3_mini_title",
+      "label": "Mini title",
+      "default": "Feature"
+    },
+    {
+      "type": "text",
+      "id": "column_3_header",
+      "label": "Header",
+      "default": "Column Three"
+    },
+    {
+      "type": "textarea",
+      "id": "column_3_subtitle",
+      "label": "Subtitle",
+      "default": "Add a description for this column"
+    },
+    {
+      "type": "text",
+      "id": "column_3_button_text",
+      "label": "Button text",
+      "default": "Learn more"
+    },
+    {
+      "type": "url",
+      "id": "column_3_button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Column 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "column_4_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "column_4_mini_title",
+      "label": "Mini title",
+      "default": "Feature"
+    },
+    {
+      "type": "text",
+      "id": "column_4_header",
+      "label": "Header",
+      "default": "Column Four"
+    },
+    {
+      "type": "textarea",
+      "id": "column_4_subtitle",
+      "label": "Subtitle",
+      "default": "Add a description for this column"
+    },
+    {
+      "type": "text",
+      "id": "column_4_button_text",
+      "label": "Button text",
+      "default": "Learn more"
+    },
+    {
+      "type": "url",
+      "id": "column_4_button_link",
+      "label": "Button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Four column grid"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,718 @@
+{% doc %}
+  @prompt
+    I want to have a photo gallery. , make it when its on mobile the images are in a slider so it doesnt take up so much space 
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-photo-gallery-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    padding: {{ block.settings.section_padding }}px 0;
+  }
+
+  .ai-photo-gallery__container-{{ ai_gen_id }} {
+    max-width: {{ block.settings.container_width }}px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .ai-photo-gallery__heading-{{ ai_gen_id }} {
+    text-align: {{ block.settings.heading_alignment }};
+    color: {{ block.settings.heading_color }};
+    font-size: {{ block.settings.heading_size }}px;
+    margin: 0 0 {{ block.settings.heading_spacing }}px;
+  }
+
+  .ai-photo-gallery__grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat({{ block.settings.columns_desktop }}, 1fr);
+    gap: {{ block.settings.gap }}px;
+  }
+
+  .ai-photo-gallery__item-{{ ai_gen_id }} {
+    position: relative;
+    overflow: hidden;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    aspect-ratio: {{ block.settings.aspect_ratio }};
+    cursor: pointer;
+  }
+
+  .ai-photo-gallery__image-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .ai-photo-gallery__item-{{ ai_gen_id }}:hover .ai-photo-gallery__image-{{ ai_gen_id }} {
+    transform: scale({{ block.settings.hover_zoom }});
+  }
+
+  .ai-photo-gallery__placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-photo-gallery__placeholder-{{ ai_gen_id }} svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.3;
+  }
+
+  .ai-photo-gallery__slider-wrapper-{{ ai_gen_id }} {
+    display: none;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ai-photo-gallery__slider-{{ ai_gen_id }} {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .ai-photo-gallery__slider-{{ ai_gen_id }}::-webkit-scrollbar {
+    display: none;
+  }
+
+  .ai-photo-gallery__slider-item-{{ ai_gen_id }} {
+    flex: 0 0 85%;
+    scroll-snap-align: center;
+  }
+
+  .ai-photo-gallery__slider-nav-{{ ai_gen_id }} {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    z-index: 2;
+    transition: background 0.3s ease;
+  }
+
+  .ai-photo-gallery__slider-nav-{{ ai_gen_id }}:hover {
+    background: rgba(255, 255, 255, 1);
+  }
+
+  .ai-photo-gallery__slider-prev-{{ ai_gen_id }} {
+    left: 10px;
+  }
+
+  .ai-photo-gallery__slider-next-{{ ai_gen_id }} {
+    right: 10px;
+  }
+
+  .ai-photo-gallery__slider-dots-{{ ai_gen_id }} {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  .ai-photo-gallery__slider-dot-{{ ai_gen_id }} {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  .ai-photo-gallery__slider-dot-{{ ai_gen_id }}.active {
+    background: rgba(255, 255, 255, 0.9);
+  }
+
+  .ai-photo-gallery__lightbox-{{ ai_gen_id }} {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .ai-photo-gallery__lightbox-{{ ai_gen_id }}.active {
+    display: flex;
+    opacity: 1;
+  }
+
+  .ai-photo-gallery__lightbox-content-{{ ai_gen_id }} {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+  }
+
+  .ai-photo-gallery__lightbox-image-{{ ai_gen_id }} {
+    max-width: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+  }
+
+  .ai-photo-gallery__lightbox-close-{{ ai_gen_id }} {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 32px;
+    cursor: pointer;
+    padding: 10px;
+    line-height: 1;
+  }
+
+  .ai-photo-gallery__lightbox-close-{{ ai_gen_id }}:hover {
+    opacity: 0.7;
+  }
+
+  .ai-photo-gallery__lightbox-nav-{{ ai_gen_id }} {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: #ffffff;
+    font-size: 32px;
+    cursor: pointer;
+    padding: 20px;
+    line-height: 1;
+    transition: background 0.3s ease;
+  }
+
+  .ai-photo-gallery__lightbox-nav-{{ ai_gen_id }}:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  .ai-photo-gallery__lightbox-prev-{{ ai_gen_id }} {
+    left: 20px;
+  }
+
+  .ai-photo-gallery__lightbox-next-{{ ai_gen_id }} {
+    right: 20px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-photo-gallery__grid-{{ ai_gen_id }} {
+      display: none;
+    }
+
+    .ai-photo-gallery__slider-wrapper-{{ ai_gen_id }} {
+      display: block;
+    }
+
+    .ai-photo-gallery__lightbox-nav-{{ ai_gen_id }} {
+      padding: 15px;
+      font-size: 24px;
+    }
+
+    .ai-photo-gallery__lightbox-prev-{{ ai_gen_id }} {
+      left: 10px;
+    }
+
+    .ai-photo-gallery__lightbox-next-{{ ai_gen_id }} {
+      right: 10px;
+    }
+  }
+{% endstyle %}
+
+<photo-gallery-{{ ai_gen_id }} class="ai-photo-gallery-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-photo-gallery__container-{{ ai_gen_id }}">
+    {% if block.settings.heading != blank %}
+      <h2 class="ai-photo-gallery__heading-{{ ai_gen_id }}">{{ block.settings.heading }}</h2>
+    {% endif %}
+
+    <div class="ai-photo-gallery__grid-{{ ai_gen_id }}">
+      {% for i in (1..12) %}
+        {% assign image_key = 'image_' | append: i %}
+        {% assign image = block.settings[image_key] %}
+        
+        {% if image != blank %}
+          <div class="ai-photo-gallery__item-{{ ai_gen_id }}" data-index="{{ forloop.index0 }}">
+            <img
+              src="{{ image | image_url: width: 800 }}"
+              alt="{{ image.alt | escape }}"
+              loading="lazy"
+              width="{{ image.width }}"
+              height="{{ image.height }}"
+              class="ai-photo-gallery__image-{{ ai_gen_id }}"
+            >
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="ai-photo-gallery__slider-wrapper-{{ ai_gen_id }}">
+      <div class="ai-photo-gallery__slider-{{ ai_gen_id }}">
+        {% for i in (1..12) %}
+          {% assign image_key = 'image_' | append: i %}
+          {% assign image = block.settings[image_key] %}
+          
+          {% if image != blank %}
+            <div class="ai-photo-gallery__slider-item-{{ ai_gen_id }}">
+              <div class="ai-photo-gallery__item-{{ ai_gen_id }}" data-index="{{ forloop.index0 }}">
+                <img
+                  src="{{ image | image_url: width: 800 }}"
+                  alt="{{ image.alt | escape }}"
+                  loading="lazy"
+                  width="{{ image.width }}"
+                  height="{{ image.height }}"
+                  class="ai-photo-gallery__image-{{ ai_gen_id }}"
+                >
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <button class="ai-photo-gallery__slider-nav-{{ ai_gen_id }} ai-photo-gallery__slider-prev-{{ ai_gen_id }}" aria-label="Previous slide">‹</button>
+      <button class="ai-photo-gallery__slider-nav-{{ ai_gen_id }} ai-photo-gallery__slider-next-{{ ai_gen_id }}" aria-label="Next slide">›</button>
+      <div class="ai-photo-gallery__slider-dots-{{ ai_gen_id }}"></div>
+    </div>
+  </div>
+
+  <div class="ai-photo-gallery__lightbox-{{ ai_gen_id }}">
+    <div class="ai-photo-gallery__lightbox-content-{{ ai_gen_id }}">
+      <button class="ai-photo-gallery__lightbox-close-{{ ai_gen_id }}" aria-label="Close lightbox">×</button>
+      <img src="" alt="" class="ai-photo-gallery__lightbox-image-{{ ai_gen_id }}">
+      <button class="ai-photo-gallery__lightbox-nav-{{ ai_gen_id }} ai-photo-gallery__lightbox-prev-{{ ai_gen_id }}" aria-label="Previous image">‹</button>
+      <button class="ai-photo-gallery__lightbox-nav-{{ ai_gen_id }} ai-photo-gallery__lightbox-next-{{ ai_gen_id }}" aria-label="Next image">›</button>
+    </div>
+  </div>
+</photo-gallery-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class PhotoGallery{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.images = [];
+        this.currentIndex = 0;
+        this.currentSlide = 0;
+      }
+
+      connectedCallback() {
+        this.lightbox = this.querySelector('.ai-photo-gallery__lightbox-{{ ai_gen_id }}');
+        this.lightboxImage = this.querySelector('.ai-photo-gallery__lightbox-image-{{ ai_gen_id }}');
+        this.closeBtn = this.querySelector('.ai-photo-gallery__lightbox-close-{{ ai_gen_id }}');
+        this.prevBtn = this.querySelectorAll('.ai-photo-gallery__lightbox-prev-{{ ai_gen_id }}')[0];
+        this.nextBtn = this.querySelectorAll('.ai-photo-gallery__lightbox-next-{{ ai_gen_id }}')[0];
+        this.items = this.querySelectorAll('.ai-photo-gallery__item-{{ ai_gen_id }}');
+        
+        this.slider = this.querySelector('.ai-photo-gallery__slider-{{ ai_gen_id }}');
+        this.sliderPrevBtn = this.querySelector('.ai-photo-gallery__slider-prev-{{ ai_gen_id }}');
+        this.sliderNextBtn = this.querySelector('.ai-photo-gallery__slider-next-{{ ai_gen_id }}');
+        this.dotsContainer = this.querySelector('.ai-photo-gallery__slider-dots-{{ ai_gen_id }}');
+
+        this.collectImages();
+        this.setupEventListeners();
+        this.setupSlider();
+      }
+
+      collectImages() {
+        const gridItems = this.querySelectorAll('.ai-photo-gallery__grid-{{ ai_gen_id }} .ai-photo-gallery__item-{{ ai_gen_id }}');
+        gridItems.forEach((item) => {
+          const img = item.querySelector('.ai-photo-gallery__image-{{ ai_gen_id }}');
+          if (img) {
+            this.images.push({
+              src: img.src.replace(/width=\d+/, 'width=2000'),
+              alt: img.alt
+            });
+          }
+        });
+      }
+
+      setupEventListeners() {
+        this.items.forEach((item, index) => {
+          item.addEventListener('click', () => {
+            const dataIndex = parseInt(item.getAttribute('data-index'));
+            this.openLightbox(dataIndex);
+          });
+        });
+
+        this.closeBtn.addEventListener('click', () => {
+          this.closeLightbox();
+        });
+
+        this.prevBtn.addEventListener('click', () => {
+          this.showPrevious();
+        });
+
+        this.nextBtn.addEventListener('click', () => {
+          this.showNext();
+        });
+
+        this.lightbox.addEventListener('click', (e) => {
+          if (e.target === this.lightbox) {
+            this.closeLightbox();
+          }
+        });
+
+        document.addEventListener('keydown', (e) => {
+          if (!this.lightbox.classList.contains('active')) return;
+          
+          if (e.key === 'Escape') {
+            this.closeLightbox();
+          } else if (e.key === 'ArrowLeft') {
+            this.showPrevious();
+          } else if (e.key === 'ArrowRight') {
+            this.showNext();
+          }
+        });
+      }
+
+      setupSlider() {
+        if (!this.slider) return;
+
+        const slideCount = this.images.length;
+        
+        for (let i = 0; i < slideCount; i++) {
+          const dot = document.createElement('button');
+          dot.className = 'ai-photo-gallery__slider-dot-{{ ai_gen_id }}';
+          dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+          if (i === 0) dot.classList.add('active');
+          dot.addEventListener('click', () => {
+            this.goToSlide(i);
+          });
+          this.dotsContainer.appendChild(dot);
+        }
+
+        this.sliderPrevBtn.addEventListener('click', () => {
+          this.previousSlide();
+        });
+
+        this.sliderNextBtn.addEventListener('click', () => {
+          this.nextSlide();
+        });
+
+        this.slider.addEventListener('scroll', () => {
+          this.updateActiveSlide();
+        });
+      }
+
+      goToSlide(index) {
+        const slideWidth = this.slider.querySelector('.ai-photo-gallery__slider-item-{{ ai_gen_id }}').offsetWidth;
+        const gap = 16;
+        this.slider.scrollTo({
+          left: index * (slideWidth + gap),
+          behavior: 'smooth'
+        });
+        this.currentSlide = index;
+        this.updateDots();
+      }
+
+      previousSlide() {
+        const newIndex = this.currentSlide > 0 ? this.currentSlide - 1 : this.images.length - 1;
+        this.goToSlide(newIndex);
+      }
+
+      nextSlide() {
+        const newIndex = this.currentSlide < this.images.length - 1 ? this.currentSlide + 1 : 0;
+        this.goToSlide(newIndex);
+      }
+
+      updateActiveSlide() {
+        const slideWidth = this.slider.querySelector('.ai-photo-gallery__slider-item-{{ ai_gen_id }}').offsetWidth;
+        const gap = 16;
+        const scrollLeft = this.slider.scrollLeft;
+        const newIndex = Math.round(scrollLeft / (slideWidth + gap));
+        
+        if (newIndex !== this.currentSlide) {
+          this.currentSlide = newIndex;
+          this.updateDots();
+        }
+      }
+
+      updateDots() {
+        const dots = this.dotsContainer.querySelectorAll('.ai-photo-gallery__slider-dot-{{ ai_gen_id }}');
+        dots.forEach((dot, index) => {
+          if (index === this.currentSlide) {
+            dot.classList.add('active');
+          } else {
+            dot.classList.remove('active');
+          }
+        });
+      }
+
+      openLightbox(index) {
+        this.currentIndex = index;
+        this.updateLightboxImage();
+        this.lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      closeLightbox() {
+        this.lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      showPrevious() {
+        this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
+        this.updateLightboxImage();
+      }
+
+      showNext() {
+        this.currentIndex = (this.currentIndex + 1) % this.images.length;
+        this.updateLightboxImage();
+      }
+
+      updateLightboxImage() {
+        const image = this.images[this.currentIndex];
+        this.lightboxImage.src = image.src;
+        this.lightboxImage.alt = image.alt;
+      }
+    }
+
+    customElements.define('photo-gallery-{{ ai_gen_id }}', PhotoGallery{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Photo gallery",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Photo gallery"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 16,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading size",
+      "default": 32
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "Heading alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "heading_spacing",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "label": "Heading spacing",
+      "default": 32
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "label": "Columns on desktop",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Gap between images",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "min": 800,
+      "max": 1600,
+      "step": 100,
+      "unit": "px",
+      "label": "Container width",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Section padding",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Image style"
+    },
+    {
+      "type": "select",
+      "id": "aspect_ratio",
+      "label": "Aspect ratio",
+      "options": [
+        {
+          "value": "1 / 1",
+          "label": "Square (1:1)"
+        },
+        {
+          "value": "4 / 3",
+          "label": "Landscape (4:3)"
+        },
+        {
+          "value": "3 / 4",
+          "label": "Portrait (3:4)"
+        },
+        {
+          "value": "16 / 9",
+          "label": "Wide (16:9)"
+        },
+        {
+          "value": "auto",
+          "label": "Original"
+        }
+      ],
+      "default": "1 / 1"
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "hover_zoom",
+      "min": 1,
+      "max": 1.5,
+      "step": 0.1,
+      "label": "Hover zoom",
+      "default": 1.1
+    },
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_4",
+      "label": "Image 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_5",
+      "label": "Image 5"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_6",
+      "label": "Image 6"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_7",
+      "label": "Image 7"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_8",
+      "label": "Image 8"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_9",
+      "label": "Image 9"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_10",
+      "label": "Image 10"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_11",
+      "label": "Image 11"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_12",
+      "label": "Image 12"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Photo gallery"
+    }
+  ]
+}
+{% endschema %}

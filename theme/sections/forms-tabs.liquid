@@ -1,0 +1,187 @@
+<div class="forms-tabs page-width section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
+  {%- if section.settings.heading != blank -%}
+    <h1 class="forms-tabs__heading">{{ section.settings.heading | escape }}</h1>
+  {%- endif -%}
+
+  {%- if section.settings.subheading != blank -%}
+    <p class="forms-tabs__subheading">{{ section.settings.subheading | escape }}</p>
+  {%- endif -%}
+
+  <div class="forms-tabs__controls" role="tablist">
+    <button type="button" class="forms-tabs__tab is-active" data-target="waiver" role="tab" aria-selected="true">Waiver Form</button>
+    <button type="button" class="forms-tabs__tab" data-target="cancellation" role="tab" aria-selected="false">Cancellation Form</button>
+  </div>
+
+  <div class="forms-tabs__panel is-active" id="waiver" role="tabpanel">
+    <h2 class="forms-tabs__panel-title">Box 2 Fit Waiver</h2>
+    <iframe
+      id="JotFormIFrame-{{ section.settings.waiver_form_id }}"
+      title="BOX 2 FIT Waiver"
+      onload="window.parent.scrollTo(0,0)"
+      allowtransparency="true"
+      allow="geolocation; microphone; camera; fullscreen; payment"
+      src="https://form.jotform.com/{{ section.settings.waiver_form_id }}"
+      frameborder="0"
+      style="min-width:100%;max-width:100%;height:1200px;border:none;"
+      scrolling="auto"
+    ></iframe>
+  </div>
+
+  <div class="forms-tabs__panel" id="cancellation" role="tabpanel" hidden>
+    <h2 class="forms-tabs__panel-title">Box 2 Fit Cancellation</h2>
+    <iframe
+      id="JotFormIFrame-{{ section.settings.cancellation_form_id }}"
+      title="BOX 2 FIT CANCELLATION FORM"
+      onload="window.parent.scrollTo(0,0)"
+      allowtransparency="true"
+      allow="geolocation; microphone; camera; fullscreen; payment"
+      src="https://form.jotform.com/{{ section.settings.cancellation_form_id }}"
+      frameborder="0"
+      style="min-width:100%;max-width:100%;height:1200px;border:none;"
+      scrolling="auto"
+    ></iframe>
+  </div>
+</div>
+
+<style>
+  .forms-tabs { padding: 3rem 1rem; }
+  .forms-tabs__heading { text-align: center; margin: 0 0 0.5rem; font-size: clamp(2rem, 4vw, 3rem); }
+  .forms-tabs__subheading { text-align: center; max-width: 60ch; margin: 0 auto 2rem; opacity: 0.85; }
+  .forms-tabs__controls {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+  .forms-tabs__tab {
+    background: transparent;
+    color: inherit;
+    border: 2px solid rgb(192, 39, 45);
+    padding: 0.85rem 2rem;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .forms-tabs__tab.is-active,
+  .forms-tabs__tab:hover {
+    background: rgb(192, 39, 45);
+    color: #fff;
+  }
+  .forms-tabs__panel { display: none; }
+  .forms-tabs__panel.is-active { display: block; }
+  .forms-tabs__panel-title {
+    text-align: center;
+    margin: 0 0 1.5rem;
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+  }
+
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+</style>
+
+<script>
+  (function() {
+    const root = document.currentScript.previousElementSibling;
+    const tabs = document.querySelectorAll('.forms-tabs__tab');
+    const panels = document.querySelectorAll('.forms-tabs__panel');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const target = tab.dataset.target;
+        tabs.forEach(t => {
+          t.classList.toggle('is-active', t === tab);
+          t.setAttribute('aria-selected', t === tab ? 'true' : 'false');
+        });
+        panels.forEach(p => {
+          const match = p.id === target;
+          p.classList.toggle('is-active', match);
+          if (match) { p.removeAttribute('hidden'); } else { p.setAttribute('hidden', ''); }
+        });
+      });
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Forms Tabs",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Forms"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Complete the appropriate form below."
+    },
+    {
+      "type": "text",
+      "id": "waiver_form_id",
+      "label": "JotForm ID — Waiver",
+      "default": "212646182016248"
+    },
+    {
+      "type": "text",
+      "id": "cancellation_form_id",
+      "label": "JotForm ID — Cancellation",
+      "default": "212646719362258"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "options": [
+        { "value": "background-1", "label": "Background 1" },
+        { "value": "background-2", "label": "Background 2" },
+        { "value": "accent-1", "label": "Accent 1" },
+        { "value": "accent-2", "label": "Accent 2" },
+        { "value": "inverse", "label": "Inverse" }
+      ],
+      "default": "background-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 48
+    }
+  ],
+  "presets": [
+    {
+      "name": "Forms Tabs"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,337 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "image_banner_EErXMp": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_96HiJA": {
+          "type": "heading",
+          "settings": {
+            "heading": "BOX2EATS",
+            "heading_size": "h1"
+          }
+        },
+        "text_7wYikG": {
+          "type": "text",
+          "settings": {
+            "text": "",
+            "text_style": "body"
+          }
+        },
+        "buttons_jgtB3g": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "ORDER NOW",
+            "button_link_1": "https://box2eats.com",
+            "button_style_secondary_1": false,
+            "button_label_2": "CONTACT US",
+            "button_link_2": "shopify://pages/contact-us",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_96HiJA",
+        "text_7wYikG",
+        "buttons_jgtB3g"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/food_-_bg.jpg",
+        "image_overlay_opacity": 40,
+        "image_height": "medium",
+        "adapt_height_first_image": false,
+        "desktop_content_position": "middle-center",
+        "show_text_box": true,
+        "desktop_content_alignment": "center",
+        "color_scheme": "background-1",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": true,
+        "show_text_below": false
+      }
+    },
+    "rich_text_nXQgpm": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_qQVgTM": {
+          "type": "heading",
+          "settings": {
+            "heading": "Fuel Built to Support Your Results",
+            "heading_size": "h1"
+          }
+        },
+        "text_XydCQW": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Box2Eats delivers chef-prepared, performance-focused meals designed to support active lifestyles, busy schedules, and real results. Our meals are crafted with high-quality ingredients and balanced macros to help fuel training, speed up recovery, and make healthy eating simple and consistent.</p><p></p><p>Whether your goal is building muscle, leaning out, or staying energized throughout the day, Box2Eats takes the guesswork out of nutrition. With convenient, ready-to-eat meals made to fit your routine, you can spend less time cooking and more time focused on training, work, and life.<br/></p><p>Eat with purpose. Stay consistent. Fuel your results with Box2Eats.</p>"
+          }
+        },
+        "button_W6r8De": {
+          "type": "button",
+          "settings": {
+            "button_label": "ORDER NOW",
+            "button_link": "https://box2eats.com",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_qQVgTM",
+        "text_XydCQW",
+        "button_W6r8De"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "color_scheme": "background-1",
+        "full_width": true,
+        "padding_top": 72,
+        "padding_bottom": 52
+      }
+    },
+    "blocks_7pbgD7": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_cc660b5_MkNfrG": {
+          "type": "ai_gen_block_cc660b5",
+          "settings": {
+            "image": "shopify://shop_images/hf_20260120_015540_d6cd9280-8ffd-4cc5-9151-7c28c178c3a1.png",
+            "image_fit": "cover",
+            "height": 250,
+            "mobile_height": 250
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_cc660b5_MkNfrG"
+      ],
+      "name": "Image banner",
+      "settings": {}
+    },
+    "1768856240f2afbda6": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_2c51ba0_brEGJU": {
+          "type": "ai_gen_block_2c51ba0",
+          "settings": {
+            "heading": "Photo gallery",
+            "heading_color": "#ffffff",
+            "heading_size": 32,
+            "heading_alignment": "center",
+            "heading_spacing": 32,
+            "columns_desktop": 4,
+            "gap": 16,
+            "container_width": 1100,
+            "section_padding": 56,
+            "aspect_ratio": "1 / 1",
+            "image_border_radius": 0,
+            "hover_zoom": 1.1,
+            "image_1": "shopify://shop_images/hf_20260120_015033_4a1b7c17-efdc-4295-8a55-7d7ed9880200.png",
+            "image_2": "shopify://shop_images/hf_20260120_015949_4f27f53f-70f5-40f5-8b07-b2018f7a357e.png",
+            "image_3": "shopify://shop_images/hf_20260120_015957_7199f5b1-91ef-4eba-82fe-ad1796d4de52.png",
+            "image_4": "shopify://shop_images/hf_20260120_020541_19bf206a-60a3-45e0-a200-34a11508a00e.png"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_2c51ba0_brEGJU"
+      ],
+      "settings": {}
+    },
+    "multicolumn_RYVUNd": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_EKYB4E": {
+          "type": "column",
+          "settings": {
+            "title": "PERFORMANCE-DRIVEN NUTRITION",
+            "text": "<p>Chef-prepared meals designed to fuel performance, support recovery, and fit seamlessly into an active lifestyle without sacrificing flavour.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_VT6CrG": {
+          "type": "column",
+          "settings": {
+            "title": "BALANCED & MACRO-FRIENDLY",
+            "text": "<p>Thoughtfully portioned meals made with quality ingredients to support energy, strength, and consistency whether you train hard or stay on the go.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_mKGjtL": {
+          "type": "column",
+          "settings": {
+            "title": "CONVENIENT & RELIABLE",
+            "text": "<p>Fresh, ready-to-eat meals that save time, remove guesswork, and help you stay on track with your nutrition goals week after week.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_EKYB4E",
+        "column_VT6CrG",
+        "column_mKGjtL"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "primary",
+        "button_label": "ORDER NOW",
+        "button_link": "https://box2eats.com",
+        "color_scheme": "background-1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 52,
+        "padding_bottom": 72
+      }
+    },
+    "collapsible_content_hYiyqG": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_gRMkXx": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Who is Box2Eats for?",
+            "icon": "check_mark",
+            "row_content": "<p>Box2Eats is for busy individuals, athletes, and everyday professionals who want convenient, high-quality meals that support performance, recovery, and a healthy lifestyle.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_cErQga": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What can I expect from Box2Eats meals?",
+            "icon": "check_mark",
+            "row_content": "<p>You can expect fresh, chef-prepared meals made with quality ingredients, balanced portions, and flavours designed to keep you fuelled without the hassle of cooking or meal planning.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_VdCTGt": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Do I need to track macros or follow a specific diet?",
+            "icon": "check_mark",
+            "row_content": "<p>No. Box2Eats meals are designed to be balanced and macro-friendly, making them easy to fit into most nutrition goals without strict tracking.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_hCBJXB": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How should I store and prepare my meals?",
+            "icon": "check_mark",
+            "row_content": "<p>Meals arrive fresh and ready to eat. Simply store them in the fridge and heat when ready to enjoy. No prep, no cleanup, no guesswork.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_gRMkXx",
+        "collapsible_row_cErQga",
+        "collapsible_row_VdCTGt",
+        "collapsible_row_hCBJXB"
+      ],
+      "name": "t:sections.collapsible_content.presets.name",
+      "settings": {
+        "caption": "",
+        "heading": "BOX2EATS DETAILS",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "layout": "none",
+        "color_scheme": "background-1",
+        "container_color_scheme": "background-2",
+        "open_first_collapsible_row": false,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
+    "1648592464d59719aa": {
+      "type": "image-banner",
+      "blocks": {
+        "1648592464bd9bb1c7-0": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "heading": "Image banner",
+            "heading_size": "h1"
+          }
+        },
+        "1648592464bd9bb1c7-1": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "Give customers details about the banner image(s) or content on the template.",
+            "text_style": "body"
+          }
+        },
+        "1648592464bd9bb1c7-2": {
+          "type": "buttons",
+          "disabled": true,
+          "settings": {
+            "button_label_1": "Button label",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "Button label",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "1648592464bd9bb1c7-0",
+        "1648592464bd9bb1c7-1",
+        "1648592464bd9bb1c7-2"
+      ],
+      "disabled": true,
+      "settings": {
+        "image": "shopify://shop_images/CONTACT_BANNER-new.png",
+        "image_overlay_opacity": 0,
+        "image_height": "small",
+        "adapt_height_first_image": false,
+        "desktop_content_position": "middle-center",
+        "show_text_box": false,
+        "desktop_content_alignment": "center",
+        "color_scheme": "background-1",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": false,
+        "show_text_below": false
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    }
+  },
+  "order": [
+    "image_banner_EErXMp",
+    "rich_text_nXQgpm",
+    "blocks_7pbgD7",
+    "1768856240f2afbda6",
+    "multicolumn_RYVUNd",
+    "collapsible_content_hYiyqG",
+    "1648592464d59719aa",
+    "main"
+  ]
+}
