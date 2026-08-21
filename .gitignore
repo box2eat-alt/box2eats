@@ -33,3 +33,10 @@ dist-ssr
 # Supabase CLI local link state
 supabase/.temp/
 .vercel
+
+# separate repo, pushed to the charity GitHub account
+gnh-tickets/
+
+# local scratch (playwright output, screenshots, page dumps)
+.playwright-mcp/
+_archive/

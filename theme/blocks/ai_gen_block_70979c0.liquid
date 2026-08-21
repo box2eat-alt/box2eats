@@ -15,24 +15,36 @@
     position: relative;
     width: 100%;
     overflow: hidden;
-    height: {{ block.settings.desktop_height }}vh;
+    box-sizing: border-box;
+    min-height: {{ block.settings.desktop_height }}vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 0;
   }
 
   .ai-banner-image-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     display: block;
     object-fit: cover;
+    z-index: 0;
   }
 
   .ai-banner-placeholder-{{ ai_gen_id }} {
     background-color: #f4f4f4;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
+    z-index: 0;
   }
 
   .ai-banner-placeholder-{{ ai_gen_id }} svg {
@@ -68,10 +80,7 @@
   }
 
   .ai-banner-content-{{ ai_gen_id }} {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: relative;
     text-align: {{ block.settings.text_alignment }};
     width: 90%;
     max-width: {{ block.settings.content_max_width }}px;
@@ -183,7 +192,8 @@
 
   @media screen and (max-width: 749px) {
     .ai-banner-wrapper-{{ ai_gen_id }} {
-      height: {{ block.settings.mobile_height }}vh;
+      min-height: {{ block.settings.mobile_height }}vh;
+      padding: 40px 0;
     }
 
     .ai-banner-content-{{ ai_gen_id }} {
